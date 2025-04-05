@@ -1,0 +1,1296 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_7378b5f4-f33e-4666-8986-0d4b9bf22796" data-node-id="7378b5f4-f33e-4666-8986-0d4b9bf22796" data-node-name="Module"><span class="ast-node" id="student_code_71e77637-fd23-4389-b49b-abb7f9a34d19" data-node-id="71e77637-fd23-4389-b49b-abb7f9a34d19" data-node-name="FunctionDef name: oneToN" data-key=0 data-parent-list-id="1c544550-106b-4f45-a003-effb83389e92">def oneToN(<span class="ast-node" id="student_code_04ae5e64-1ce7-47ac-a11b-385ab1406d6d" data-node-id="04ae5e64-1ce7-47ac-a11b-385ab1406d6d" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_ce1400bd-b07a-4cb2-9d45-dcf1539ff376" data-node-id="ce1400bd-b07a-4cb2-9d45-dcf1539ff376" data-node-name="arg(arg = n)" data-key=0 data-parent-list-id="3d91abbc-87c5-446d-8828-5fee175b6c01">n</span></span>):
+    <span class="ast-node" id="student_code_0c55e721-7b70-4116-85f8-b53647216b73" data-node-id="0c55e721-7b70-4116-85f8-b53647216b73" data-node-name="For" data-key=0 data-parent-list-id="40979580-440e-402d-8f96-313c70ac3fe2">for <span class="ast-node rename-node" id="student_code_bf522481-2f6c-45dd-b8e7-49676568e38b" data-node-id="bf522481-2f6c-45dd-b8e7-49676568e38b" data-node-name="Store identifier n" data-key=target>n</span> in <span class="ast-node" id="student_code_b93883a8-f8c1-4a97-8290-456ca3bb9799" data-node-id="b93883a8-f8c1-4a97-8290-456ca3bb9799" data-node-name="Call" data-key=iter><span class="ast-node" id="student_code_2ab3648d-6133-4b16-9723-21b7987c52e5" data-node-id="2ab3648d-6133-4b16-9723-21b7987c52e5" data-node-name="Load identifier range" data-key=func>range</span>(<span class="ast-node" id="student_code_d257f617-cb60-4e1d-8f05-55050e0c5063" data-node-id="d257f617-cb60-4e1d-8f05-55050e0c5063" data-node-name="Num(n = 1)" data-key=0 data-parent-list-id="2c7ab7d8-7c06-4a80-842b-55e386cdecca">1</span>, <span class="ast-node" id="student_code_c37c276c-f9d7-4c33-ab7c-15cc1d7471f9" data-node-id="c37c276c-f9d7-4c33-ab7c-15cc1d7471f9" data-node-name="BinOp +" data-key=1 data-parent-list-id="2c7ab7d8-7c06-4a80-842b-55e386cdecca"><span class="ast-node" id="student_code_98c60e4d-6e7e-4881-8cab-eb79cd2cc958" data-node-id="98c60e4d-6e7e-4881-8cab-eb79cd2cc958" data-node-name="Load identifier n" data-key=left>n</span> + <span class="ast-node" id="student_code_ee8c718d-3d1a-4689-9b71-5beed8ec1ebe" data-node-id="ee8c718d-3d1a-4689-9b71-5beed8ec1ebe" data-node-name="Num(n = 1)" data-key=right>1</span></span>)</span>:
+        <span class="ast-node" id="student_code_2eeddb40-6ea6-4514-8f37-9f2d19e7520f" data-node-id="2eeddb40-6ea6-4514-8f37-9f2d19e7520f" data-node-name="AugAssign +" data-key=0 data-parent-list-id="8ebacc09-7253-4f14-bc20-36d60c011b72"><span class="ast-node rename-node" id="student_code_e78e6297-8cb8-4b51-a6a9-9bfad11de9d2" data-node-id="e78e6297-8cb8-4b51-a6a9-9bfad11de9d2" data-node-name="Store identifier n" data-key=target>n</span> += <span class="ast-node" id="student_code_5119e208-4ba5-459b-8a96-07e8f354ffa8" data-node-id="5119e208-4ba5-459b-8a96-07e8f354ffa8" data-node-name="Call" data-key=value><span class="ast-node" id="student_code_d273f662-db90-4881-a68c-05b3ad86ae04" data-node-id="d273f662-db90-4881-a68c-05b3ad86ae04" data-node-name="Load identifier str" data-key=func>str</span>(<span class="ast-node rename-node" id="student_code_d6651ecb-3335-4ca0-a3b6-3e157f701b00" data-node-id="d6651ecb-3335-4ca0-a3b6-3e157f701b00" data-node-name="Load identifier n" data-key=0 data-parent-list-id="3d5fa9c9-f3db-4277-976b-0babe18e1061">n</span>)</span></span></span>
+    <span class="ast-node" id="student_code_4837530e-b23c-4f02-9c1a-1ec1a3af3628" data-node-id="4837530e-b23c-4f02-9c1a-1ec1a3af3628" data-node-name="Return" data-key=1 data-parent-list-id="40979580-440e-402d-8f96-313c70ac3fe2">return</span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_7378b5f4-f33e-4666-8986-0d4b9bf22796" data-node-id="7378b5f4-f33e-4666-8986-0d4b9bf22796" data-node-name="Module"><span class="ast-node" id="corrected_code_71e77637-fd23-4389-b49b-abb7f9a34d19" data-node-id="71e77637-fd23-4389-b49b-abb7f9a34d19" data-node-name="FunctionDef name: oneToN" data-key=0 data-parent-list-id="1c544550-106b-4f45-a003-effb83389e92">def oneToN(<span class="ast-node" id="corrected_code_04ae5e64-1ce7-47ac-a11b-385ab1406d6d" data-node-id="04ae5e64-1ce7-47ac-a11b-385ab1406d6d" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_ce1400bd-b07a-4cb2-9d45-dcf1539ff376" data-node-id="ce1400bd-b07a-4cb2-9d45-dcf1539ff376" data-node-name="arg(arg = n)" data-key=0 data-parent-list-id="3d91abbc-87c5-446d-8828-5fee175b6c01">n</span></span>):
+    <span class="ast-node insert-node" id="corrected_code_ff40188b-b9fd-4e29-a5d1-4309963be874" data-node-id="ff40188b-b9fd-4e29-a5d1-4309963be874" data-node-name="Assign" data-key=0 data-parent-list-id="40979580-440e-402d-8f96-313c70ac3fe2"><span class="ast-node insert-node" id="corrected_code_d90e7571-1dca-4e86-8119-e1b75084604b" data-node-id="d90e7571-1dca-4e86-8119-e1b75084604b" data-node-name="Store identifier result" data-key=0 data-parent-list-id="3244cd67-23fb-4079-b586-eb1471eed30d">result</span> = <span class="ast-node insert-node" id="corrected_code_5bfb1a46-ff93-4651-a61c-da9f932592f0" data-node-id="5bfb1a46-ff93-4651-a61c-da9f932592f0" data-node-name="Str(s = )" data-key=value>''</span></span>
+    <span class="ast-node" id="corrected_code_0c55e721-7b70-4116-85f8-b53647216b73" data-node-id="0c55e721-7b70-4116-85f8-b53647216b73" data-node-name="For" data-key=1 data-parent-list-id="40979580-440e-402d-8f96-313c70ac3fe2">for <span class="ast-node rename-node" id="corrected_code_bf522481-2f6c-45dd-b8e7-49676568e38b" data-node-id="bf522481-2f6c-45dd-b8e7-49676568e38b" data-node-name="Store identifier i" data-key=target>i</span> in <span class="ast-node" id="corrected_code_b93883a8-f8c1-4a97-8290-456ca3bb9799" data-node-id="b93883a8-f8c1-4a97-8290-456ca3bb9799" data-node-name="Call" data-key=iter><span class="ast-node" id="corrected_code_2ab3648d-6133-4b16-9723-21b7987c52e5" data-node-id="2ab3648d-6133-4b16-9723-21b7987c52e5" data-node-name="Load identifier range" data-key=func>range</span>(<span class="ast-node" id="corrected_code_d257f617-cb60-4e1d-8f05-55050e0c5063" data-node-id="d257f617-cb60-4e1d-8f05-55050e0c5063" data-node-name="Num(n = 1)" data-key=0 data-parent-list-id="2c7ab7d8-7c06-4a80-842b-55e386cdecca">1</span>, <span class="ast-node" id="corrected_code_c37c276c-f9d7-4c33-ab7c-15cc1d7471f9" data-node-id="c37c276c-f9d7-4c33-ab7c-15cc1d7471f9" data-node-name="BinOp +" data-key=1 data-parent-list-id="2c7ab7d8-7c06-4a80-842b-55e386cdecca"><span class="ast-node" id="corrected_code_98c60e4d-6e7e-4881-8cab-eb79cd2cc958" data-node-id="98c60e4d-6e7e-4881-8cab-eb79cd2cc958" data-node-name="Load identifier n" data-key=left>n</span> + <span class="ast-node" id="corrected_code_ee8c718d-3d1a-4689-9b71-5beed8ec1ebe" data-node-id="ee8c718d-3d1a-4689-9b71-5beed8ec1ebe" data-node-name="Num(n = 1)" data-key=right>1</span></span>)</span>:
+        <span class="ast-node" id="corrected_code_2eeddb40-6ea6-4514-8f37-9f2d19e7520f" data-node-id="2eeddb40-6ea6-4514-8f37-9f2d19e7520f" data-node-name="AugAssign +" data-key=0 data-parent-list-id="8ebacc09-7253-4f14-bc20-36d60c011b72"><span class="ast-node rename-node" id="corrected_code_e78e6297-8cb8-4b51-a6a9-9bfad11de9d2" data-node-id="e78e6297-8cb8-4b51-a6a9-9bfad11de9d2" data-node-name="Store identifier result" data-key=target>result</span> += <span class="ast-node" id="corrected_code_5119e208-4ba5-459b-8a96-07e8f354ffa8" data-node-id="5119e208-4ba5-459b-8a96-07e8f354ffa8" data-node-name="Call" data-key=value><span class="ast-node" id="corrected_code_d273f662-db90-4881-a68c-05b3ad86ae04" data-node-id="d273f662-db90-4881-a68c-05b3ad86ae04" data-node-name="Load identifier str" data-key=func>str</span>(<span class="ast-node rename-node" id="corrected_code_d6651ecb-3335-4ca0-a3b6-3e157f701b00" data-node-id="d6651ecb-3335-4ca0-a3b6-3e157f701b00" data-node-name="Load identifier i" data-key=0 data-parent-list-id="3d5fa9c9-f3db-4277-976b-0babe18e1061">i</span>)</span></span></span>
+    <span class="ast-node" id="corrected_code_4837530e-b23c-4f02-9c1a-1ec1a3af3628" data-node-id="4837530e-b23c-4f02-9c1a-1ec1a3af3628" data-node-name="Return" data-key=2 data-parent-list-id="40979580-440e-402d-8f96-313c70ac3fe2">return <span class="ast-node insert-node" id="corrected_code_f332674b-12f5-471f-8f3d-2096e0c3c0de" data-node-id="f332674b-12f5-471f-8f3d-2096e0c3c0de" data-node-name="Load identifier result" data-key=value>result</span></span></span></span></pre></div>
+    <script>
+        problem_statement = "Write a function, oneToN(n), which returns a string with the numbers from 1 to n concatenated together. For example, oneToN(4) should return '1234'."
+
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_7378b5f4-f33e-4666-8986-0d4b9bf22796\" data-node-id=\"7378b5f4-f33e-4666-8986-0d4b9bf22796\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_71e77637-fd23-4389-b49b-abb7f9a34d19\" data-node-id=\"71e77637-fd23-4389-b49b-abb7f9a34d19\" data-node-name=\"FunctionDef name: oneToN\" data-key=0 data-parent-list-id=\"1c544550-106b-4f45-a003-effb83389e92\">def oneToN(<span class=\"ast-node\" id=\"student_code_only_04ae5e64-1ce7-47ac-a11b-385ab1406d6d\" data-node-id=\"04ae5e64-1ce7-47ac-a11b-385ab1406d6d\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_ce1400bd-b07a-4cb2-9d45-dcf1539ff376\" data-node-id=\"ce1400bd-b07a-4cb2-9d45-dcf1539ff376\" data-node-name=\"arg(arg = n)\" data-key=0 data-parent-list-id=\"3d91abbc-87c5-446d-8828-5fee175b6c01\">n</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_0c55e721-7b70-4116-85f8-b53647216b73\" data-node-id=\"0c55e721-7b70-4116-85f8-b53647216b73\" data-node-name=\"For\" data-key=0 data-parent-list-id=\"40979580-440e-402d-8f96-313c70ac3fe2\">for <span class=\"ast-node\" id=\"student_code_only_bf522481-2f6c-45dd-b8e7-49676568e38b\" data-node-id=\"bf522481-2f6c-45dd-b8e7-49676568e38b\" data-node-name=\"Store identifier n\" data-key=target>n</span> in <span class=\"ast-node\" id=\"student_code_only_b93883a8-f8c1-4a97-8290-456ca3bb9799\" data-node-id=\"b93883a8-f8c1-4a97-8290-456ca3bb9799\" data-node-name=\"Call\" data-key=iter><span class=\"ast-node\" id=\"student_code_only_2ab3648d-6133-4b16-9723-21b7987c52e5\" data-node-id=\"2ab3648d-6133-4b16-9723-21b7987c52e5\" data-node-name=\"Load identifier range\" data-key=func>range</span>(<span class=\"ast-node\" id=\"student_code_only_d257f617-cb60-4e1d-8f05-55050e0c5063\" data-node-id=\"d257f617-cb60-4e1d-8f05-55050e0c5063\" data-node-name=\"Num(n = 1)\" data-key=0 data-parent-list-id=\"2c7ab7d8-7c06-4a80-842b-55e386cdecca\">1</span>, <span class=\"ast-node\" id=\"student_code_only_c37c276c-f9d7-4c33-ab7c-15cc1d7471f9\" data-node-id=\"c37c276c-f9d7-4c33-ab7c-15cc1d7471f9\" data-node-name=\"BinOp +\" data-key=1 data-parent-list-id=\"2c7ab7d8-7c06-4a80-842b-55e386cdecca\"><span class=\"ast-node\" id=\"student_code_only_98c60e4d-6e7e-4881-8cab-eb79cd2cc958\" data-node-id=\"98c60e4d-6e7e-4881-8cab-eb79cd2cc958\" data-node-name=\"Load identifier n\" data-key=left>n</span> + <span class=\"ast-node\" id=\"student_code_only_ee8c718d-3d1a-4689-9b71-5beed8ec1ebe\" data-node-id=\"ee8c718d-3d1a-4689-9b71-5beed8ec1ebe\" data-node-name=\"Num(n = 1)\" data-key=right>1</span></span>)</span>:\n        <span class=\"ast-node\" id=\"student_code_only_2eeddb40-6ea6-4514-8f37-9f2d19e7520f\" data-node-id=\"2eeddb40-6ea6-4514-8f37-9f2d19e7520f\" data-node-name=\"AugAssign +\" data-key=0 data-parent-list-id=\"8ebacc09-7253-4f14-bc20-36d60c011b72\"><span class=\"ast-node\" id=\"student_code_only_e78e6297-8cb8-4b51-a6a9-9bfad11de9d2\" data-node-id=\"e78e6297-8cb8-4b51-a6a9-9bfad11de9d2\" data-node-name=\"Store identifier n\" data-key=target>n</span> += <span class=\"ast-node\" id=\"student_code_only_5119e208-4ba5-459b-8a96-07e8f354ffa8\" data-node-id=\"5119e208-4ba5-459b-8a96-07e8f354ffa8\" data-node-name=\"Call\" data-key=value><span class=\"ast-node\" id=\"student_code_only_d273f662-db90-4881-a68c-05b3ad86ae04\" data-node-id=\"d273f662-db90-4881-a68c-05b3ad86ae04\" data-node-name=\"Load identifier str\" data-key=func>str</span>(<span class=\"ast-node\" id=\"student_code_only_d6651ecb-3335-4ca0-a3b6-3e157f701b00\" data-node-id=\"d6651ecb-3335-4ca0-a3b6-3e157f701b00\" data-node-name=\"Load identifier n\" data-key=0 data-parent-list-id=\"3d5fa9c9-f3db-4277-976b-0babe18e1061\">n</span>)</span></span></span>\n    <span class=\"ast-node\" id=\"student_code_only_4837530e-b23c-4f02-9c1a-1ec1a3af3628\" data-node-id=\"4837530e-b23c-4f02-9c1a-1ec1a3af3628\" data-node-name=\"Return\" data-key=1 data-parent-list-id=\"40979580-440e-402d-8f96-313c70ac3fe2\">return</span></span></span>",
+  "dest_string": "def oneToN(n):\n    result = ''\n    for i in range(1, n + 1):\n        result += str(i)\n    return result\n",
+  "source_string": "def oneToN(n):\n    for n in range(1, n + 1):\n        n += str(n)\n    return\n",
+  "unit_test_string": "oneToN(5) == \"12345\"",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "<code object oneToN>"
+        ],
+        "op": "LOAD_CONST <code object oneToN at 0x130eff9c0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "<code object oneToN>"
+        ],
+        "op": "LOAD_CONST <code object oneToN at 0x130f08c90, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "oneToN"
+        ],
+        "op": "LOAD_CONST oneToN",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "oneToN"
+        ],
+        "op": "LOAD_CONST oneToN",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "<function oneToN>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [
+          "<function oneToN>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [],
+        "op": "STORE_NAME oneToN",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "71e77637-fd23-4389-b49b-abb7f9a34d19",
+        "values": [],
+        "op": "STORE_NAME oneToN",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "5bfb1a46-ff93-4651-a61c-da9f932592f0",
+        "values": [
+          ""
+        ],
+        "op": "LOAD_CONST ",
+        "op_id": [
+          "oneToN",
+          0
+        ],
+        "actual_op": "('oneToN', 0) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "d90e7571-1dca-4e86-8119-e1b75084604b",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          2
+        ],
+        "actual_op": "('oneToN', 2) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "SETUP_LOOP 36",
+        "op_id": [
+          "oneToN",
+          0
+        ],
+        "actual_op": "('oneToN', 0) SETUP_LOOP 70"
+      },
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "SETUP_LOOP 40",
+        "op_id": [
+          "oneToN",
+          4
+        ],
+        "actual_op": "('oneToN', 4) SETUP_LOOP 70"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "2ab3648d-6133-4b16-9723-21b7987c52e5",
+        "values": [
+          "<class 'range'>"
+        ],
+        "op": "LOAD_GLOBAL range",
+        "op_id": [
+          "oneToN",
+          2
+        ],
+        "actual_op": "('oneToN', 2) LOAD_GLOBAL 0"
+      },
+      "after": {
+        "node": "2ab3648d-6133-4b16-9723-21b7987c52e5",
+        "values": [
+          "<class 'range'>"
+        ],
+        "op": "LOAD_GLOBAL range",
+        "op_id": [
+          "oneToN",
+          6
+        ],
+        "actual_op": "('oneToN', 6) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "d257f617-cb60-4e1d-8f05-55050e0c5063",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "oneToN",
+          4
+        ],
+        "actual_op": "('oneToN', 4) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "d257f617-cb60-4e1d-8f05-55050e0c5063",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "oneToN",
+          8
+        ],
+        "actual_op": "('oneToN', 8) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "98c60e4d-6e7e-4881-8cab-eb79cd2cc958",
+        "values": [
+          "5"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "oneToN",
+          6
+        ],
+        "actual_op": "('oneToN', 6) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "98c60e4d-6e7e-4881-8cab-eb79cd2cc958",
+        "values": [
+          "5"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "oneToN",
+          10
+        ],
+        "actual_op": "('oneToN', 10) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "ee8c718d-3d1a-4689-9b71-5beed8ec1ebe",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "oneToN",
+          8
+        ],
+        "actual_op": "('oneToN', 8) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "ee8c718d-3d1a-4689-9b71-5beed8ec1ebe",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "oneToN",
+          12
+        ],
+        "actual_op": "('oneToN', 12) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "c37c276c-f9d7-4c33-ab7c-15cc1d7471f9",
+        "values": [
+          "6"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "oneToN",
+          10
+        ],
+        "actual_op": "('oneToN', 10) BINARY_ADD 0"
+      },
+      "after": {
+        "node": "c37c276c-f9d7-4c33-ab7c-15cc1d7471f9",
+        "values": [
+          "6"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "oneToN",
+          14
+        ],
+        "actual_op": "('oneToN', 14) BINARY_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "b93883a8-f8c1-4a97-8290-456ca3bb9799",
+        "values": [
+          "range(1, 6)"
+        ],
+        "op": "CALL_FUNCTION 2",
+        "op_id": [
+          "oneToN",
+          12
+        ],
+        "actual_op": "('oneToN', 12) CALL_FUNCTION 2"
+      },
+      "after": {
+        "node": "b93883a8-f8c1-4a97-8290-456ca3bb9799",
+        "values": [
+          "range(1, 6)"
+        ],
+        "op": "CALL_FUNCTION 2",
+        "op_id": [
+          "oneToN",
+          16
+        ],
+        "actual_op": "('oneToN', 16) CALL_FUNCTION 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>"
+        ],
+        "op": "GET_ITER",
+        "op_id": [
+          "oneToN",
+          14
+        ],
+        "actual_op": "('oneToN', 14) GET_ITER 0"
+      },
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>"
+        ],
+        "op": "GET_ITER",
+        "op_id": [
+          "oneToN",
+          18
+        ],
+        "actual_op": "('oneToN', 18) GET_ITER 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "1"
+        ],
+        "op": "FOR_ITER 34",
+        "op_id": [
+          "oneToN",
+          16
+        ],
+        "actual_op": "('oneToN', 16) FOR_ITER 36"
+      },
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "1"
+        ],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST n",
+        "op_id": [
+          "oneToN",
+          18
+        ],
+        "actual_op": "('oneToN', 18) STORE_FAST 0"
+      },
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST i",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) STORE_FAST 4"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          ""
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 1"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) LOAD_GLOBAL 1"
+      },
+      "after": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "d6651ecb-3335-4ca0-a3b6-3e157f701b00",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST i",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) LOAD_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "1"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) CALL_FUNCTION 1"
+      },
+      "after": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "1"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          30
+        ],
+        "actual_op": "('oneToN', 30) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "Exception: unsupported operand type(s) for +=: 'int' and 'str'"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) INPLACE_ADD 0"
+      },
+      "after": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "1"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          32
+        ],
+        "actual_op": "('oneToN', 32) INPLACE_ADD 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          34
+        ],
+        "actual_op": "('oneToN', 34) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "JUMP_ABSOLUTE 20",
+        "op_id": [
+          "oneToN",
+          36
+        ],
+        "actual_op": "('oneToN', 36) JUMP_ABSOLUTE 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "2"
+        ],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST i",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) STORE_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [
+          "2"
+        ],
+        "op": "LOAD_FAST i",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) LOAD_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "2"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          30
+        ],
+        "actual_op": "('oneToN', 30) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "12"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          32
+        ],
+        "actual_op": "('oneToN', 32) INPLACE_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          34
+        ],
+        "actual_op": "('oneToN', 34) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "JUMP_ABSOLUTE 20",
+        "op_id": [
+          "oneToN",
+          36
+        ],
+        "actual_op": "('oneToN', 36) JUMP_ABSOLUTE 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "3"
+        ],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST i",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) STORE_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          "12"
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [
+          "3"
+        ],
+        "op": "LOAD_FAST i",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) LOAD_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "3"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          30
+        ],
+        "actual_op": "('oneToN', 30) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "123"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          32
+        ],
+        "actual_op": "('oneToN', 32) INPLACE_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          34
+        ],
+        "actual_op": "('oneToN', 34) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "JUMP_ABSOLUTE 20",
+        "op_id": [
+          "oneToN",
+          36
+        ],
+        "actual_op": "('oneToN', 36) JUMP_ABSOLUTE 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "4"
+        ],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST i",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) STORE_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          "123"
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [
+          "4"
+        ],
+        "op": "LOAD_FAST i",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) LOAD_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "4"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          30
+        ],
+        "actual_op": "('oneToN', 30) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "1234"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          32
+        ],
+        "actual_op": "('oneToN', 32) INPLACE_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          34
+        ],
+        "actual_op": "('oneToN', 34) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "JUMP_ABSOLUTE 20",
+        "op_id": [
+          "oneToN",
+          36
+        ],
+        "actual_op": "('oneToN', 36) JUMP_ABSOLUTE 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [
+          "<range_iterator object>",
+          "5"
+        ],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [],
+        "op": "STORE_FAST i",
+        "op_id": [
+          "oneToN",
+          22
+        ],
+        "actual_op": "('oneToN', 22) STORE_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [
+          "1234"
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          24
+        ],
+        "actual_op": "('oneToN', 24) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "d273f662-db90-4881-a68c-05b3ad86ae04",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "LOAD_GLOBAL str",
+        "op_id": [
+          "oneToN",
+          26
+        ],
+        "actual_op": "('oneToN', 26) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "bf522481-2f6c-45dd-b8e7-49676568e38b",
+        "values": [
+          "5"
+        ],
+        "op": "LOAD_FAST i",
+        "op_id": [
+          "oneToN",
+          28
+        ],
+        "actual_op": "('oneToN', 28) LOAD_FAST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "5119e208-4ba5-459b-8a96-07e8f354ffa8",
+        "values": [
+          "5"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "oneToN",
+          30
+        ],
+        "actual_op": "('oneToN', 30) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "2eeddb40-6ea6-4514-8f37-9f2d19e7520f",
+        "values": [
+          "12345"
+        ],
+        "op": "INPLACE_ADD",
+        "op_id": [
+          "oneToN",
+          32
+        ],
+        "actual_op": "('oneToN', 32) INPLACE_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+        "values": [],
+        "op": "STORE_FAST result",
+        "op_id": [
+          "oneToN",
+          34
+        ],
+        "actual_op": "('oneToN', 34) STORE_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "JUMP_ABSOLUTE 20",
+        "op_id": [
+          "oneToN",
+          36
+        ],
+        "actual_op": "('oneToN', 36) JUMP_ABSOLUTE 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "FOR_ITER 38",
+        "op_id": [
+          "oneToN",
+          20
+        ],
+        "actual_op": "('oneToN', 20) FOR_ITER 36"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c55e721-7b70-4116-85f8-b53647216b73",
+        "values": [],
+        "op": "POP_BLOCK",
+        "op_id": [
+          "oneToN",
+          38
+        ],
+        "actual_op": "('oneToN', 38) POP_BLOCK 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f332674b-12f5-471f-8f3d-2096e0c3c0de",
+        "values": [
+          "12345"
+        ],
+        "op": "LOAD_FAST result",
+        "op_id": [
+          "oneToN",
+          40
+        ],
+        "actual_op": "('oneToN', 40) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "4837530e-b23c-4f02-9c1a-1ec1a3af3628",
+        "values": [
+          "12345"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "oneToN",
+          42
+        ],
+        "actual_op": "('oneToN', 42) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 20,
+    "first_wrong_before_fix": 21,
+    "exception_before_fix": 21,
+    "last_matching_after_fix": 63
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe run completed in the fixed version, but did not complete in the old version (unsupported operand type(s) for +=: 'int' and 'str').",
+  "edits": [
+    "Action.UPDATE_Stage.UPDATE_e78e6297-8cb8-4b51-a6a9-9bfad11de9d2",
+    "Action.UPDATE_Stage.UPDATE_d6651ecb-3335-4ca0-a3b6-3e157f701b00",
+    "Action.UPDATE_Stage.UPDATE_bf522481-2f6c-45dd-b8e7-49676568e38b",
+    "Action.INSERT_Stage.INSERT_ff40188b-b9fd-4e29-a5d1-4309963be874",
+    "Action.INSERT_Stage.INSERT_3244cd67-23fb-4079-b586-eb1471eed30d",
+    "Action.INSERT_Stage.INSERT_5bfb1a46-ff93-4651-a61c-da9f932592f0",
+    "Action.INSERT_Stage.INSERT_f332674b-12f5-471f-8f3d-2096e0c3c0de",
+    "Action.INSERT_Stage.INSERT_d90e7571-1dca-4e86-8119-e1b75084604b"
+  ]
+}
+    </script>
+
+</body>

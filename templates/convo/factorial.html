@@ -1,0 +1,614 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="../static/llm_handler_convo.js"></script>
+    <script type="text/javascript" src="../static/fixes_convo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/fixes_convo.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_61710ada-b172-4443-b5f0-a53fc2afedf2" data-node-id="61710ada-b172-4443-b5f0-a53fc2afedf2" data-node-name="Module"><span class="ast-node" id="student_code_1a5991bd-1d44-4a98-b89a-55a19298111b" data-node-id="1a5991bd-1d44-4a98-b89a-55a19298111b" data-node-name="FunctionDef name: factorial" data-key=0 data-parent-list-id="35705611-f06d-4343-b066-7476354c6bd4">def factorial(<span class="ast-node" id="student_code_af50c27d-e744-4916-9c23-54330343cd04" data-node-id="af50c27d-e744-4916-9c23-54330343cd04" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_35820e7c-0497-4197-9643-83afa8963239" data-node-id="35820e7c-0497-4197-9643-83afa8963239" data-node-name="arg(arg = n)" data-key=0 data-parent-list-id="5280b173-47a0-417b-981a-a8eaa05bb3b5">n</span></span>):
+    <span class="ast-node" id="student_code_ea9155e3-d0c5-45c9-8495-e4048c7f1a6f" data-node-id="ea9155e3-d0c5-45c9-8495-e4048c7f1a6f" data-node-name="If" data-key=0 data-parent-list-id="86526d7c-94d0-4145-a6f6-5aeaf8a9c2ee">if <span class="ast-node rename-node" id="student_code_13a27a1f-6d00-47c4-a7b0-07c051627516" data-node-id="13a27a1f-6d00-47c4-a7b0-07c051627516" data-node-name="Compare operators: ['Gt']" data-key=test><span class="ast-node" id="student_code_9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956" data-node-id="9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956" data-node-name="Load identifier n" data-key=left>n</span> > <span class="ast-node" id="student_code_c005dd19-f14d-464d-896f-e934fbb5420d" data-node-id="c005dd19-f14d-464d-896f-e934fbb5420d" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="a62a3d64-2a3d-42be-be67-b6f8e62e54b7">0</span></span>:
+        <span class="ast-node move-node" id="student_code_265554e5-b3be-43f4-9402-fbab8e1abf25" data-node-id="265554e5-b3be-43f4-9402-fbab8e1abf25" data-node-name="Return" data-key=0 data-parent-list-id="49025771-2655-40f6-8a7d-13d186848f8a">return <span class="ast-node" id="student_code_9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe" data-node-id="9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe" data-node-name="BinOp *" data-key=value><span class="ast-node" id="student_code_e728c57f-aba4-4eb4-b833-6ee239a7074c" data-node-id="e728c57f-aba4-4eb4-b833-6ee239a7074c" data-node-name="Load identifier n" data-key=left>n</span> * <span class="ast-node" id="student_code_eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd" data-node-id="eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd" data-node-name="Call" data-key=right><span class="ast-node" id="student_code_f917bdbe-4295-4321-ad0f-48bd63fee22d" data-node-id="f917bdbe-4295-4321-ad0f-48bd63fee22d" data-node-name="Load identifier factorial" data-key=func>factorial</span>(<span class="ast-node" id="student_code_7ca6975e-e84a-4325-bbd5-9bca374ec443" data-node-id="7ca6975e-e84a-4325-bbd5-9bca374ec443" data-node-name="BinOp -" data-key=0 data-parent-list-id="2a3c5e73-8c1e-42f6-8845-8f53ad974606"><span class="ast-node" id="student_code_b353c833-e637-482b-a6ba-3bbad7b1f3fc" data-node-id="b353c833-e637-482b-a6ba-3bbad7b1f3fc" data-node-name="Load identifier n" data-key=left>n</span> - <span class="ast-node" id="student_code_4774355a-c158-491c-a04e-80f9b7870681" data-node-id="4774355a-c158-491c-a04e-80f9b7870681" data-node-name="Num(n = 1)" data-key=right>1</span></span>)</span></span></span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_61710ada-b172-4443-b5f0-a53fc2afedf2" data-node-id="61710ada-b172-4443-b5f0-a53fc2afedf2" data-node-name="Module"><span class="ast-node" id="corrected_code_1a5991bd-1d44-4a98-b89a-55a19298111b" data-node-id="1a5991bd-1d44-4a98-b89a-55a19298111b" data-node-name="FunctionDef name: factorial" data-key=0 data-parent-list-id="35705611-f06d-4343-b066-7476354c6bd4">def factorial(<span class="ast-node" id="corrected_code_af50c27d-e744-4916-9c23-54330343cd04" data-node-id="af50c27d-e744-4916-9c23-54330343cd04" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_35820e7c-0497-4197-9643-83afa8963239" data-node-id="35820e7c-0497-4197-9643-83afa8963239" data-node-name="arg(arg = n)" data-key=0 data-parent-list-id="5280b173-47a0-417b-981a-a8eaa05bb3b5">n</span></span>):
+    <span class="ast-node" id="corrected_code_ea9155e3-d0c5-45c9-8495-e4048c7f1a6f" data-node-id="ea9155e3-d0c5-45c9-8495-e4048c7f1a6f" data-node-name="If" data-key=0 data-parent-list-id="86526d7c-94d0-4145-a6f6-5aeaf8a9c2ee">if <span class="ast-node rename-node" id="corrected_code_13a27a1f-6d00-47c4-a7b0-07c051627516" data-node-id="13a27a1f-6d00-47c4-a7b0-07c051627516" data-node-name="Compare operators: ['Eq']" data-key=test><span class="ast-node" id="corrected_code_9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956" data-node-id="9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956" data-node-name="Load identifier n" data-key=left>n</span> == <span class="ast-node" id="corrected_code_c005dd19-f14d-464d-896f-e934fbb5420d" data-node-id="c005dd19-f14d-464d-896f-e934fbb5420d" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="a62a3d64-2a3d-42be-be67-b6f8e62e54b7">0</span></span>:
+        <span class="ast-node insert-node" id="corrected_code_24c1c503-6cc6-4d81-997a-d784c5b214c9" data-node-id="24c1c503-6cc6-4d81-997a-d784c5b214c9" data-node-name="Return" data-key=0 data-parent-list-id="86247daa-ff56-4216-a5de-4de508c46d66">return <span class="ast-node insert-node" id="corrected_code_7e88ed09-4b9e-4877-884a-60683908d9d7" data-node-id="7e88ed09-4b9e-4877-884a-60683908d9d7" data-node-name="Num(n = 1)" data-key=value>1</span></span>
+    else:
+        <span class="ast-node move-node" id="corrected_code_265554e5-b3be-43f4-9402-fbab8e1abf25" data-node-id="265554e5-b3be-43f4-9402-fbab8e1abf25" data-node-name="Return" data-key=0 data-parent-list-id="20c3292b-1d9e-4276-b0dd-349649daec11">return <span class="ast-node" id="corrected_code_9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe" data-node-id="9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe" data-node-name="BinOp *" data-key=value><span class="ast-node" id="corrected_code_e728c57f-aba4-4eb4-b833-6ee239a7074c" data-node-id="e728c57f-aba4-4eb4-b833-6ee239a7074c" data-node-name="Load identifier n" data-key=left>n</span> * <span class="ast-node" id="corrected_code_eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd" data-node-id="eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd" data-node-name="Call" data-key=right><span class="ast-node" id="corrected_code_f917bdbe-4295-4321-ad0f-48bd63fee22d" data-node-id="f917bdbe-4295-4321-ad0f-48bd63fee22d" data-node-name="Load identifier factorial" data-key=func>factorial</span>(<span class="ast-node" id="corrected_code_7ca6975e-e84a-4325-bbd5-9bca374ec443" data-node-id="7ca6975e-e84a-4325-bbd5-9bca374ec443" data-node-name="BinOp -" data-key=0 data-parent-list-id="2a3c5e73-8c1e-42f6-8845-8f53ad974606"><span class="ast-node" id="corrected_code_b353c833-e637-482b-a6ba-3bbad7b1f3fc" data-node-id="b353c833-e637-482b-a6ba-3bbad7b1f3fc" data-node-name="Load identifier n" data-key=left>n</span> - <span class="ast-node" id="corrected_code_4774355a-c158-491c-a04e-80f9b7870681" data-node-id="4774355a-c158-491c-a04e-80f9b7870681" data-node-name="Num(n = 1)" data-key=right>1</span></span>)</span></span></span></span></span></span></pre></div>
+    <script>
+    problem_statement = 'Write a recursive function, factorial(n), which computes the factorial of the input number n.'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_61710ada-b172-4443-b5f0-a53fc2afedf2\" data-node-id=\"61710ada-b172-4443-b5f0-a53fc2afedf2\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_1a5991bd-1d44-4a98-b89a-55a19298111b\" data-node-id=\"1a5991bd-1d44-4a98-b89a-55a19298111b\" data-node-name=\"FunctionDef name: factorial\" data-key=0 data-parent-list-id=\"35705611-f06d-4343-b066-7476354c6bd4\">def factorial(<span class=\"ast-node\" id=\"student_code_only_af50c27d-e744-4916-9c23-54330343cd04\" data-node-id=\"af50c27d-e744-4916-9c23-54330343cd04\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_35820e7c-0497-4197-9643-83afa8963239\" data-node-id=\"35820e7c-0497-4197-9643-83afa8963239\" data-node-name=\"arg(arg = n)\" data-key=0 data-parent-list-id=\"5280b173-47a0-417b-981a-a8eaa05bb3b5\">n</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_ea9155e3-d0c5-45c9-8495-e4048c7f1a6f\" data-node-id=\"ea9155e3-d0c5-45c9-8495-e4048c7f1a6f\" data-node-name=\"If\" data-key=0 data-parent-list-id=\"86526d7c-94d0-4145-a6f6-5aeaf8a9c2ee\">if <span class=\"ast-node\" id=\"student_code_only_13a27a1f-6d00-47c4-a7b0-07c051627516\" data-node-id=\"13a27a1f-6d00-47c4-a7b0-07c051627516\" data-node-name=\"Compare operators: ['Gt']\" data-key=test><span class=\"ast-node\" id=\"student_code_only_9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956\" data-node-id=\"9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956\" data-node-name=\"Load identifier n\" data-key=left>n</span> > <span class=\"ast-node\" id=\"student_code_only_c005dd19-f14d-464d-896f-e934fbb5420d\" data-node-id=\"c005dd19-f14d-464d-896f-e934fbb5420d\" data-node-name=\"Num(n = 0)\" data-key=0 data-parent-list-id=\"a62a3d64-2a3d-42be-be67-b6f8e62e54b7\">0</span></span>:\n        <span class=\"ast-node\" id=\"student_code_only_265554e5-b3be-43f4-9402-fbab8e1abf25\" data-node-id=\"265554e5-b3be-43f4-9402-fbab8e1abf25\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"49025771-2655-40f6-8a7d-13d186848f8a\">return <span class=\"ast-node\" id=\"student_code_only_9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe\" data-node-id=\"9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe\" data-node-name=\"BinOp *\" data-key=value><span class=\"ast-node\" id=\"student_code_only_e728c57f-aba4-4eb4-b833-6ee239a7074c\" data-node-id=\"e728c57f-aba4-4eb4-b833-6ee239a7074c\" data-node-name=\"Load identifier n\" data-key=left>n</span> * <span class=\"ast-node\" id=\"student_code_only_eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd\" data-node-id=\"eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd\" data-node-name=\"Call\" data-key=right><span class=\"ast-node\" id=\"student_code_only_f917bdbe-4295-4321-ad0f-48bd63fee22d\" data-node-id=\"f917bdbe-4295-4321-ad0f-48bd63fee22d\" data-node-name=\"Load identifier factorial\" data-key=func>factorial</span>(<span class=\"ast-node\" id=\"student_code_only_7ca6975e-e84a-4325-bbd5-9bca374ec443\" data-node-id=\"7ca6975e-e84a-4325-bbd5-9bca374ec443\" data-node-name=\"BinOp -\" data-key=0 data-parent-list-id=\"2a3c5e73-8c1e-42f6-8845-8f53ad974606\"><span class=\"ast-node\" id=\"student_code_only_b353c833-e637-482b-a6ba-3bbad7b1f3fc\" data-node-id=\"b353c833-e637-482b-a6ba-3bbad7b1f3fc\" data-node-name=\"Load identifier n\" data-key=left>n</span> - <span class=\"ast-node\" id=\"student_code_only_4774355a-c158-491c-a04e-80f9b7870681\" data-node-id=\"4774355a-c158-491c-a04e-80f9b7870681\" data-node-name=\"Num(n = 1)\" data-key=right>1</span></span>)</span></span></span></span></span></span>",
+  "dest_string": "def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n - 1)\n",
+  "source_string": "def factorial(n):\n    if n > 0:\n        return n * factorial(n - 1)\n",
+  "unit_test_string": "factorial(1) == 1",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "<code object factorial>"
+        ],
+        "op": "LOAD_CONST <code object factorial at 0x12b1a08a0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "<code object factorial>"
+        ],
+        "op": "LOAD_CONST <code object factorial at 0x12b1a4db0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "factorial"
+        ],
+        "op": "LOAD_CONST factorial",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "factorial"
+        ],
+        "op": "LOAD_CONST factorial",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "<function factorial>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [
+          "<function factorial>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [],
+        "op": "STORE_NAME factorial",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "1a5991bd-1d44-4a98-b89a-55a19298111b",
+        "values": [],
+        "op": "STORE_NAME factorial",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          0
+        ],
+        "actual_op": "('factorial', 0) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          0
+        ],
+        "actual_op": "('factorial', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "c005dd19-f14d-464d-896f-e934fbb5420d",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "factorial",
+          2
+        ],
+        "actual_op": "('factorial', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "c005dd19-f14d-464d-896f-e934fbb5420d",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "factorial",
+          2
+        ],
+        "actual_op": "('factorial', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "13a27a1f-6d00-47c4-a7b0-07c051627516",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP >",
+        "op_id": [
+          "factorial",
+          4
+        ],
+        "actual_op": "('factorial', 4) COMPARE_OP 4"
+      },
+      "after": {
+        "node": "13a27a1f-6d00-47c4-a7b0-07c051627516",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP ==",
+        "op_id": [
+          "factorial",
+          4
+        ],
+        "actual_op": "('factorial', 4) COMPARE_OP 2"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "ea9155e3-d0c5-45c9-8495-e4048c7f1a6f",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 24",
+        "op_id": [
+          "factorial",
+          6
+        ],
+        "actual_op": "('factorial', 6) POP_JUMP_IF_FALSE 44"
+      },
+      "after": {
+        "node": "ea9155e3-d0c5-45c9-8495-e4048c7f1a6f",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 12",
+        "op_id": [
+          "factorial",
+          6
+        ],
+        "actual_op": "('factorial', 6) POP_JUMP_IF_FALSE 16"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "e728c57f-aba4-4eb4-b833-6ee239a7074c",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          8
+        ],
+        "actual_op": "('factorial', 8) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "e728c57f-aba4-4eb4-b833-6ee239a7074c",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          12
+        ],
+        "actual_op": "('factorial', 12) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "f917bdbe-4295-4321-ad0f-48bd63fee22d",
+        "values": [
+          "<function factorial>"
+        ],
+        "op": "LOAD_GLOBAL factorial",
+        "op_id": [
+          "factorial",
+          10
+        ],
+        "actual_op": "('factorial', 10) LOAD_GLOBAL 0"
+      },
+      "after": {
+        "node": "f917bdbe-4295-4321-ad0f-48bd63fee22d",
+        "values": [
+          "<function factorial>"
+        ],
+        "op": "LOAD_GLOBAL factorial",
+        "op_id": [
+          "factorial",
+          14
+        ],
+        "actual_op": "('factorial', 14) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "b353c833-e637-482b-a6ba-3bbad7b1f3fc",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          12
+        ],
+        "actual_op": "('factorial', 12) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "b353c833-e637-482b-a6ba-3bbad7b1f3fc",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          16
+        ],
+        "actual_op": "('factorial', 16) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "4774355a-c158-491c-a04e-80f9b7870681",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "factorial",
+          14
+        ],
+        "actual_op": "('factorial', 14) LOAD_CONST 2"
+      },
+      "after": {
+        "node": "4774355a-c158-491c-a04e-80f9b7870681",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "factorial",
+          18
+        ],
+        "actual_op": "('factorial', 18) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "7ca6975e-e84a-4325-bbd5-9bca374ec443",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_SUBTRACT",
+        "op_id": [
+          "factorial",
+          16
+        ],
+        "actual_op": "('factorial', 16) BINARY_SUBTRACT 0"
+      },
+      "after": {
+        "node": "7ca6975e-e84a-4325-bbd5-9bca374ec443",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_SUBTRACT",
+        "op_id": [
+          "factorial",
+          20
+        ],
+        "actual_op": "('factorial', 20) BINARY_SUBTRACT 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd",
+        "values": [],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "factorial",
+          18
+        ],
+        "actual_op": "('factorial', 18) CALL_FUNCTION 1"
+      },
+      "after": {
+        "node": "eeb69a0b-7090-4106-9e76-e1a0d8a4e4cd",
+        "values": [],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "factorial",
+          22
+        ],
+        "actual_op": "('factorial', 22) CALL_FUNCTION 1"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          0
+        ],
+        "actual_op": "('factorial', 0) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "9c0a9be2-3aa9-4454-9b66-c2bbf3ba3956",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_FAST n",
+        "op_id": [
+          "factorial",
+          0
+        ],
+        "actual_op": "('factorial', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "c005dd19-f14d-464d-896f-e934fbb5420d",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "factorial",
+          2
+        ],
+        "actual_op": "('factorial', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "c005dd19-f14d-464d-896f-e934fbb5420d",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "factorial",
+          2
+        ],
+        "actual_op": "('factorial', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "13a27a1f-6d00-47c4-a7b0-07c051627516",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP >",
+        "op_id": [
+          "factorial",
+          4
+        ],
+        "actual_op": "('factorial', 4) COMPARE_OP 4"
+      },
+      "after": {
+        "node": "13a27a1f-6d00-47c4-a7b0-07c051627516",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP ==",
+        "op_id": [
+          "factorial",
+          4
+        ],
+        "actual_op": "('factorial', 4) COMPARE_OP 2"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "ea9155e3-d0c5-45c9-8495-e4048c7f1a6f",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 24",
+        "op_id": [
+          "factorial",
+          6
+        ],
+        "actual_op": "('factorial', 6) POP_JUMP_IF_FALSE 44"
+      },
+      "after": {
+        "node": "ea9155e3-d0c5-45c9-8495-e4048c7f1a6f",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 12",
+        "op_id": [
+          "factorial",
+          6
+        ],
+        "actual_op": "('factorial', 6) POP_JUMP_IF_FALSE 16"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "7e88ed09-4b9e-4877-884a-60683908d9d7",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "factorial",
+          8
+        ],
+        "actual_op": "('factorial', 8) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "24c1c503-6cc6-4d81-997a-d784c5b214c9",
+        "values": [
+          "1"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "factorial",
+          10
+        ],
+        "actual_op": "('factorial', 10) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe",
+        "values": [
+          "Exception: unsupported operand type(s) for *: 'int' and 'NoneType'"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "factorial",
+          20
+        ],
+        "actual_op": "('factorial', 20) BINARY_MULTIPLY 0"
+      },
+      "after": {
+        "node": "9fbc65c6-b6eb-46ba-8bb6-77f0f8b285fe",
+        "values": [
+          "1"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "factorial",
+          24
+        ],
+        "actual_op": "('factorial', 24) BINARY_MULTIPLY 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "265554e5-b3be-43f4-9402-fbab8e1abf25",
+        "values": [
+          "1"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "factorial",
+          26
+        ],
+        "actual_op": "('factorial', 26) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 15,
+    "first_wrong_before_fix": 16,
+    "exception_before_fix": 20,
+    "last_matching_after_fix": 21
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe run completed in the fixed version, but did not complete in the old version (unsupported operand type(s) for *: 'int' and 'NoneType').",
+  "edits": [
+    "Action.UPDATE_Stage.UPDATE_13a27a1f-6d00-47c4-a7b0-07c051627516",
+    "Action.INSERT_Stage.INSERT_86247daa-ff56-4216-a5de-4de508c46d66",
+    "Action.INSERT_Stage.INSERT_20c3292b-1d9e-4276-b0dd-349649daec11",
+    "Action.INSERT_Stage.INSERT_24c1c503-6cc6-4d81-997a-d784c5b214c9",
+    "Action.INSERT_Stage.INSERT_7e88ed09-4b9e-4877-884a-60683908d9d7",
+    "Action.MOVE_Stage.MOVE_265554e5-b3be-43f4-9402-fbab8e1abf25",
+    "Action.DELETE_Stage.DELETE_49025771-2655-40f6-8a7d-13d186848f8a"
+  ]
+}
+    </script>
+
+</body>

@@ -1,0 +1,398 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_a357ec74-0442-42e9-bf77-d4ad2f315280" data-node-id="a357ec74-0442-42e9-bf77-d4ad2f315280" data-node-name="Module"><span class="ast-node" id="student_code_46ad4d3c-fa87-4141-b2b9-4c5220daf290" data-node-id="46ad4d3c-fa87-4141-b2b9-4c5220daf290" data-node-name="FunctionDef name: canDrinkAlcohol" data-key=0 data-parent-list-id="9e7fffe3-3c67-442d-ad40-64d3b69a1121">def canDrinkAlcohol(<span class="ast-node" id="student_code_c1c27c0e-ed1c-4821-a546-65817c06a002" data-node-id="c1c27c0e-ed1c-4821-a546-65817c06a002" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_efce1bd5-7b01-4b8b-95ad-cea461c0b373" data-node-id="efce1bd5-7b01-4b8b-95ad-cea461c0b373" data-node-name="arg(arg = age)" data-key=0 data-parent-list-id="1bd907e5-461c-46c3-8736-e60354a21394">age</span>, <span class="ast-node" id="student_code_8eaa65fa-236c-4ead-8314-cf3977cd1269" data-node-id="8eaa65fa-236c-4ead-8314-cf3977cd1269" data-node-name="arg(arg = is_driving)" data-key=1 data-parent-list-id="1bd907e5-461c-46c3-8736-e60354a21394">is_driving</span></span>):
+    <span class="ast-node" id="student_code_4b97f0db-c044-48e6-a28b-674466c2a744" data-node-id="4b97f0db-c044-48e6-a28b-674466c2a744" data-node-name="If" data-key=0 data-parent-list-id="1a582163-93f0-43b2-b71b-6e46e5e3243a">if <span class="ast-node" id="student_code_bf744945-9118-4a33-9f2e-c44cb4014e52" data-node-id="bf744945-9118-4a33-9f2e-c44cb4014e52" data-node-name="Compare operators: ['Lt']" data-key=test><span class="ast-node" id="student_code_92a11375-f61f-4e5e-a2de-e3354fff8a3e" data-node-id="92a11375-f61f-4e5e-a2de-e3354fff8a3e" data-node-name="Load identifier age" data-key=left>age</span> < <span class="ast-node" id="student_code_216d2451-3f2c-41bb-87fe-067ae08aff58" data-node-id="216d2451-3f2c-41bb-87fe-067ae08aff58" data-node-name="Num(n = 21)" data-key=0 data-parent-list-id="56bbcd2c-edef-4e6b-9ee4-d050881a5040">21</span></span>:
+        <span class="ast-node" id="student_code_2f2f0691-4ec5-4eca-a102-9a0ea05dccac" data-node-id="2f2f0691-4ec5-4eca-a102-9a0ea05dccac" data-node-name="Return" data-key=0 data-parent-list-id="58e90287-3c0b-4728-ba9d-a07baab10ef5">return <span class="ast-node" id="student_code_29634966-2d20-47fb-9431-65c215d285ba" data-node-id="29634966-2d20-47fb-9431-65c215d285ba" data-node-name="NameConstant(value = False)" data-key=value>False</span></span>
+        <span class="ast-node move-node" id="student_code_b9125d6e-b140-4c69-bdc2-90bbfb1aa097" data-node-id="b9125d6e-b140-4c69-bdc2-90bbfb1aa097" data-node-name="If" data-key=1 data-parent-list-id="58e90287-3c0b-4728-ba9d-a07baab10ef5">if <span class="ast-node" id="student_code_e56e0aed-9df4-4d57-925e-3c6bd0190ffc" data-node-id="e56e0aed-9df4-4d57-925e-3c6bd0190ffc" data-node-name="Compare operators: ['Eq']" data-key=test><span class="ast-node" id="student_code_28fd47f7-838c-47bf-9ca0-5c6ccb078536" data-node-id="28fd47f7-838c-47bf-9ca0-5c6ccb078536" data-node-name="Load identifier is_driving" data-key=left>is_driving</span> == <span class="ast-node" id="student_code_3528a1c1-d578-4132-a1f2-f3c2a869a1da" data-node-id="3528a1c1-d578-4132-a1f2-f3c2a869a1da" data-node-name="NameConstant(value = True)" data-key=0 data-parent-list-id="0244c2ff-3290-49f1-8b02-805511f47f00">True</span></span>:
+            <span class="ast-node" id="student_code_6682cac1-5190-4870-a060-902abc7dcb7f" data-node-id="6682cac1-5190-4870-a060-902abc7dcb7f" data-node-name="Return" data-key=0 data-parent-list-id="a7cbdcff-0991-4542-af97-18972809cb66">return <span class="ast-node" id="student_code_dca41eb7-0f9b-427a-ab9a-070dbb83af74" data-node-id="dca41eb7-0f9b-427a-ab9a-070dbb83af74" data-node-name="NameConstant(value = False)" data-key=value>False</span></span></span>
+    else:
+        <span class="ast-node" id="student_code_ce275194-06d3-4afa-811b-d2c6ca485d4e" data-node-id="ce275194-06d3-4afa-811b-d2c6ca485d4e" data-node-name="Return" data-key=0 data-parent-list-id="5cf46244-943a-4b48-849e-d1d20499b69c">return <span class="ast-node" id="student_code_dc65f1cd-8973-49b7-b386-0b5603494583" data-node-id="dc65f1cd-8973-49b7-b386-0b5603494583" data-node-name="NameConstant(value = True)" data-key=value>True</span></span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_a357ec74-0442-42e9-bf77-d4ad2f315280" data-node-id="a357ec74-0442-42e9-bf77-d4ad2f315280" data-node-name="Module"><span class="ast-node" id="corrected_code_46ad4d3c-fa87-4141-b2b9-4c5220daf290" data-node-id="46ad4d3c-fa87-4141-b2b9-4c5220daf290" data-node-name="FunctionDef name: canDrinkAlcohol" data-key=0 data-parent-list-id="9e7fffe3-3c67-442d-ad40-64d3b69a1121">def canDrinkAlcohol(<span class="ast-node" id="corrected_code_c1c27c0e-ed1c-4821-a546-65817c06a002" data-node-id="c1c27c0e-ed1c-4821-a546-65817c06a002" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_efce1bd5-7b01-4b8b-95ad-cea461c0b373" data-node-id="efce1bd5-7b01-4b8b-95ad-cea461c0b373" data-node-name="arg(arg = age)" data-key=0 data-parent-list-id="1bd907e5-461c-46c3-8736-e60354a21394">age</span>, <span class="ast-node" id="corrected_code_8eaa65fa-236c-4ead-8314-cf3977cd1269" data-node-id="8eaa65fa-236c-4ead-8314-cf3977cd1269" data-node-name="arg(arg = is_driving)" data-key=1 data-parent-list-id="1bd907e5-461c-46c3-8736-e60354a21394">is_driving</span></span>):
+    <span class="ast-node" id="corrected_code_4b97f0db-c044-48e6-a28b-674466c2a744" data-node-id="4b97f0db-c044-48e6-a28b-674466c2a744" data-node-name="If" data-key=0 data-parent-list-id="1a582163-93f0-43b2-b71b-6e46e5e3243a">if <span class="ast-node" id="corrected_code_bf744945-9118-4a33-9f2e-c44cb4014e52" data-node-id="bf744945-9118-4a33-9f2e-c44cb4014e52" data-node-name="Compare operators: ['Lt']" data-key=test><span class="ast-node" id="corrected_code_92a11375-f61f-4e5e-a2de-e3354fff8a3e" data-node-id="92a11375-f61f-4e5e-a2de-e3354fff8a3e" data-node-name="Load identifier age" data-key=left>age</span> < <span class="ast-node" id="corrected_code_216d2451-3f2c-41bb-87fe-067ae08aff58" data-node-id="216d2451-3f2c-41bb-87fe-067ae08aff58" data-node-name="Num(n = 21)" data-key=0 data-parent-list-id="56bbcd2c-edef-4e6b-9ee4-d050881a5040">21</span></span>:
+        <span class="ast-node" id="corrected_code_2f2f0691-4ec5-4eca-a102-9a0ea05dccac" data-node-id="2f2f0691-4ec5-4eca-a102-9a0ea05dccac" data-node-name="Return" data-key=0 data-parent-list-id="58e90287-3c0b-4728-ba9d-a07baab10ef5">return <span class="ast-node" id="corrected_code_29634966-2d20-47fb-9431-65c215d285ba" data-node-id="29634966-2d20-47fb-9431-65c215d285ba" data-node-name="NameConstant(value = False)" data-key=value>False</span></span></span>
+    <span class="ast-node move-node" id="corrected_code_b9125d6e-b140-4c69-bdc2-90bbfb1aa097" data-node-id="b9125d6e-b140-4c69-bdc2-90bbfb1aa097" data-node-name="If" data-key=1 data-parent-list-id="1a582163-93f0-43b2-b71b-6e46e5e3243a">if <span class="ast-node" id="corrected_code_e56e0aed-9df4-4d57-925e-3c6bd0190ffc" data-node-id="e56e0aed-9df4-4d57-925e-3c6bd0190ffc" data-node-name="Compare operators: ['Eq']" data-key=test><span class="ast-node" id="corrected_code_28fd47f7-838c-47bf-9ca0-5c6ccb078536" data-node-id="28fd47f7-838c-47bf-9ca0-5c6ccb078536" data-node-name="Load identifier is_driving" data-key=left>is_driving</span> == <span class="ast-node" id="corrected_code_3528a1c1-d578-4132-a1f2-f3c2a869a1da" data-node-id="3528a1c1-d578-4132-a1f2-f3c2a869a1da" data-node-name="NameConstant(value = True)" data-key=0 data-parent-list-id="0244c2ff-3290-49f1-8b02-805511f47f00">True</span></span>:
+        <span class="ast-node" id="corrected_code_6682cac1-5190-4870-a060-902abc7dcb7f" data-node-id="6682cac1-5190-4870-a060-902abc7dcb7f" data-node-name="Return" data-key=0 data-parent-list-id="a7cbdcff-0991-4542-af97-18972809cb66">return <span class="ast-node" id="corrected_code_dca41eb7-0f9b-427a-ab9a-070dbb83af74" data-node-id="dca41eb7-0f9b-427a-ab9a-070dbb83af74" data-node-name="NameConstant(value = False)" data-key=value>False</span></span>
+    else:
+        <span class="ast-node" id="corrected_code_ce275194-06d3-4afa-811b-d2c6ca485d4e" data-node-id="ce275194-06d3-4afa-811b-d2c6ca485d4e" data-node-name="Return" data-key=0 data-parent-list-id="5cf46244-943a-4b48-849e-d1d20499b69c">return <span class="ast-node" id="corrected_code_dc65f1cd-8973-49b7-b386-0b5603494583" data-node-id="dc65f1cd-8973-49b7-b386-0b5603494583" data-node-name="NameConstant(value = True)" data-key=value>True</span></span></span></span></span></pre></div>
+    <script>
+        control = false
+
+    problem_statement = '<span>Write a function, canDrinkAlcohol(age, is_driving),</span><span> which returns True if this person can drink alcohol at a party.</span><span> A person can only drink alcohol if they are over 21 years old,</span><span class="expected"> and they are not driving.</span>'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_a357ec74-0442-42e9-bf77-d4ad2f315280\" data-node-id=\"a357ec74-0442-42e9-bf77-d4ad2f315280\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_46ad4d3c-fa87-4141-b2b9-4c5220daf290\" data-node-id=\"46ad4d3c-fa87-4141-b2b9-4c5220daf290\" data-node-name=\"FunctionDef name: canDrinkAlcohol\" data-key=0 data-parent-list-id=\"9e7fffe3-3c67-442d-ad40-64d3b69a1121\">def canDrinkAlcohol(<span class=\"ast-node\" id=\"student_code_only_c1c27c0e-ed1c-4821-a546-65817c06a002\" data-node-id=\"c1c27c0e-ed1c-4821-a546-65817c06a002\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_efce1bd5-7b01-4b8b-95ad-cea461c0b373\" data-node-id=\"efce1bd5-7b01-4b8b-95ad-cea461c0b373\" data-node-name=\"arg(arg = age)\" data-key=0 data-parent-list-id=\"1bd907e5-461c-46c3-8736-e60354a21394\">age</span>, <span class=\"ast-node\" id=\"student_code_only_8eaa65fa-236c-4ead-8314-cf3977cd1269\" data-node-id=\"8eaa65fa-236c-4ead-8314-cf3977cd1269\" data-node-name=\"arg(arg = is_driving)\" data-key=1 data-parent-list-id=\"1bd907e5-461c-46c3-8736-e60354a21394\">is_driving</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_4b97f0db-c044-48e6-a28b-674466c2a744\" data-node-id=\"4b97f0db-c044-48e6-a28b-674466c2a744\" data-node-name=\"If\" data-key=0 data-parent-list-id=\"1a582163-93f0-43b2-b71b-6e46e5e3243a\">if <span class=\"ast-node\" id=\"student_code_only_bf744945-9118-4a33-9f2e-c44cb4014e52\" data-node-id=\"bf744945-9118-4a33-9f2e-c44cb4014e52\" data-node-name=\"Compare operators: ['Lt']\" data-key=test><span class=\"ast-node\" id=\"student_code_only_92a11375-f61f-4e5e-a2de-e3354fff8a3e\" data-node-id=\"92a11375-f61f-4e5e-a2de-e3354fff8a3e\" data-node-name=\"Load identifier age\" data-key=left>age</span> < <span class=\"ast-node\" id=\"student_code_only_216d2451-3f2c-41bb-87fe-067ae08aff58\" data-node-id=\"216d2451-3f2c-41bb-87fe-067ae08aff58\" data-node-name=\"Num(n = 21)\" data-key=0 data-parent-list-id=\"56bbcd2c-edef-4e6b-9ee4-d050881a5040\">21</span></span>:\n        <span class=\"ast-node\" id=\"student_code_only_2f2f0691-4ec5-4eca-a102-9a0ea05dccac\" data-node-id=\"2f2f0691-4ec5-4eca-a102-9a0ea05dccac\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"58e90287-3c0b-4728-ba9d-a07baab10ef5\">return <span class=\"ast-node\" id=\"student_code_only_29634966-2d20-47fb-9431-65c215d285ba\" data-node-id=\"29634966-2d20-47fb-9431-65c215d285ba\" data-node-name=\"NameConstant(value = False)\" data-key=value>False</span></span>\n        <span class=\"ast-node\" id=\"student_code_only_b9125d6e-b140-4c69-bdc2-90bbfb1aa097\" data-node-id=\"b9125d6e-b140-4c69-bdc2-90bbfb1aa097\" data-node-name=\"If\" data-key=1 data-parent-list-id=\"58e90287-3c0b-4728-ba9d-a07baab10ef5\">if <span class=\"ast-node\" id=\"student_code_only_e56e0aed-9df4-4d57-925e-3c6bd0190ffc\" data-node-id=\"e56e0aed-9df4-4d57-925e-3c6bd0190ffc\" data-node-name=\"Compare operators: ['Eq']\" data-key=test><span class=\"ast-node\" id=\"student_code_only_28fd47f7-838c-47bf-9ca0-5c6ccb078536\" data-node-id=\"28fd47f7-838c-47bf-9ca0-5c6ccb078536\" data-node-name=\"Load identifier is_driving\" data-key=left>is_driving</span> == <span class=\"ast-node\" id=\"student_code_only_3528a1c1-d578-4132-a1f2-f3c2a869a1da\" data-node-id=\"3528a1c1-d578-4132-a1f2-f3c2a869a1da\" data-node-name=\"NameConstant(value = True)\" data-key=0 data-parent-list-id=\"0244c2ff-3290-49f1-8b02-805511f47f00\">True</span></span>:\n            <span class=\"ast-node\" id=\"student_code_only_6682cac1-5190-4870-a060-902abc7dcb7f\" data-node-id=\"6682cac1-5190-4870-a060-902abc7dcb7f\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"a7cbdcff-0991-4542-af97-18972809cb66\">return <span class=\"ast-node\" id=\"student_code_only_dca41eb7-0f9b-427a-ab9a-070dbb83af74\" data-node-id=\"dca41eb7-0f9b-427a-ab9a-070dbb83af74\" data-node-name=\"NameConstant(value = False)\" data-key=value>False</span></span></span>\n    else:\n        <span class=\"ast-node\" id=\"student_code_only_ce275194-06d3-4afa-811b-d2c6ca485d4e\" data-node-id=\"ce275194-06d3-4afa-811b-d2c6ca485d4e\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"5cf46244-943a-4b48-849e-d1d20499b69c\">return <span class=\"ast-node\" id=\"student_code_only_dc65f1cd-8973-49b7-b386-0b5603494583\" data-node-id=\"dc65f1cd-8973-49b7-b386-0b5603494583\" data-node-name=\"NameConstant(value = True)\" data-key=value>True</span></span></span></span></span>",
+  "dest_string": "def canDrinkAlcohol(age, is_driving):\n    if age < 21:\n        return False\n    if is_driving == True:\n        return False\n    else:\n        return True\n",
+  "source_string": "def canDrinkAlcohol(age, is_driving):\n    if age < 21:\n        return False\n        if is_driving == True:\n            return False\n    else:\n        return True\n",
+  "unit_test_string": "canDrinkAlcohol(33,True) == False",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "<code object canDrinkAlcohol>"
+        ],
+        "op": "LOAD_CONST <code object canDrinkAlcohol at 0x12a25a0c0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "<code object canDrinkAlcohol>"
+        ],
+        "op": "LOAD_CONST <code object canDrinkAlcohol at 0x12a25d810, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "canDrinkAlcohol"
+        ],
+        "op": "LOAD_CONST canDrinkAlcohol",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "canDrinkAlcohol"
+        ],
+        "op": "LOAD_CONST canDrinkAlcohol",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "<function canDrinkAlcohol>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [
+          "<function canDrinkAlcohol>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [],
+        "op": "STORE_NAME canDrinkAlcohol",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "46ad4d3c-fa87-4141-b2b9-4c5220daf290",
+        "values": [],
+        "op": "STORE_NAME canDrinkAlcohol",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "92a11375-f61f-4e5e-a2de-e3354fff8a3e",
+        "values": [
+          "33"
+        ],
+        "op": "LOAD_FAST age",
+        "op_id": [
+          "canDrinkAlcohol",
+          0
+        ],
+        "actual_op": "('canDrinkAlcohol', 0) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "92a11375-f61f-4e5e-a2de-e3354fff8a3e",
+        "values": [
+          "33"
+        ],
+        "op": "LOAD_FAST age",
+        "op_id": [
+          "canDrinkAlcohol",
+          0
+        ],
+        "actual_op": "('canDrinkAlcohol', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "216d2451-3f2c-41bb-87fe-067ae08aff58",
+        "values": [
+          "21"
+        ],
+        "op": "LOAD_CONST 21",
+        "op_id": [
+          "canDrinkAlcohol",
+          2
+        ],
+        "actual_op": "('canDrinkAlcohol', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "216d2451-3f2c-41bb-87fe-067ae08aff58",
+        "values": [
+          "21"
+        ],
+        "op": "LOAD_CONST 21",
+        "op_id": [
+          "canDrinkAlcohol",
+          2
+        ],
+        "actual_op": "('canDrinkAlcohol', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "bf744945-9118-4a33-9f2e-c44cb4014e52",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP <",
+        "op_id": [
+          "canDrinkAlcohol",
+          4
+        ],
+        "actual_op": "('canDrinkAlcohol', 4) COMPARE_OP 0"
+      },
+      "after": {
+        "node": "bf744945-9118-4a33-9f2e-c44cb4014e52",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP <",
+        "op_id": [
+          "canDrinkAlcohol",
+          4
+        ],
+        "actual_op": "('canDrinkAlcohol', 4) COMPARE_OP 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "4b97f0db-c044-48e6-a28b-674466c2a744",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 14",
+        "op_id": [
+          "canDrinkAlcohol",
+          6
+        ],
+        "actual_op": "('canDrinkAlcohol', 6) POP_JUMP_IF_FALSE 18"
+      },
+      "after": {
+        "node": "4b97f0db-c044-48e6-a28b-674466c2a744",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 12",
+        "op_id": [
+          "canDrinkAlcohol",
+          6
+        ],
+        "actual_op": "('canDrinkAlcohol', 6) POP_JUMP_IF_FALSE 16"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "dc65f1cd-8973-49b7-b386-0b5603494583",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_CONST True",
+        "op_id": [
+          "canDrinkAlcohol",
+          14
+        ],
+        "actual_op": "('canDrinkAlcohol', 14) LOAD_CONST 3"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "ce275194-06d3-4afa-811b-d2c6ca485d4e",
+        "values": [
+          "True"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "canDrinkAlcohol",
+          16
+        ],
+        "actual_op": "('canDrinkAlcohol', 16) RETURN_VALUE 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "28fd47f7-838c-47bf-9ca0-5c6ccb078536",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_FAST is_driving",
+        "op_id": [
+          "canDrinkAlcohol",
+          12
+        ],
+        "actual_op": "('canDrinkAlcohol', 12) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "3528a1c1-d578-4132-a1f2-f3c2a869a1da",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_CONST True",
+        "op_id": [
+          "canDrinkAlcohol",
+          14
+        ],
+        "actual_op": "('canDrinkAlcohol', 14) LOAD_CONST 3"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e56e0aed-9df4-4d57-925e-3c6bd0190ffc",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP ==",
+        "op_id": [
+          "canDrinkAlcohol",
+          16
+        ],
+        "actual_op": "('canDrinkAlcohol', 16) COMPARE_OP 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "b9125d6e-b140-4c69-bdc2-90bbfb1aa097",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 24",
+        "op_id": [
+          "canDrinkAlcohol",
+          18
+        ],
+        "actual_op": "('canDrinkAlcohol', 18) POP_JUMP_IF_FALSE 32"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "dca41eb7-0f9b-427a-ab9a-070dbb83af74",
+        "values": [
+          "False"
+        ],
+        "op": "LOAD_CONST False",
+        "op_id": [
+          "canDrinkAlcohol",
+          20
+        ],
+        "actual_op": "('canDrinkAlcohol', 20) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "6682cac1-5190-4870-a060-902abc7dcb7f",
+        "values": [
+          "False"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "canDrinkAlcohol",
+          22
+        ],
+        "actual_op": "('canDrinkAlcohol', 22) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 6,
+    "last_matching_after_fix": 15
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version.",
+  "edits": [
+    "Action.MOVE_Stage.MOVE_b9125d6e-b140-4c69-bdc2-90bbfb1aa097",
+    "Action.MOVE_Stage.MOVE_5cf46244-943a-4b48-849e-d1d20499b69c"
+  ]
+}
+    </script>
+
+</body>

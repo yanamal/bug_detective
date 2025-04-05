@@ -1,0 +1,764 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="../static/llm_handler_convo.js"></script>
+    <script type="text/javascript" src="../static/fixes_convo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/fixes_convo.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_78725256-664d-4a76-9f7a-0ffaec63241b" data-node-id="78725256-664d-4a76-9f7a-0ffaec63241b" data-node-name="Module"><span class="ast-node" id="student_code_fee00f1f-1716-4bab-9086-6af2bdc308f6" data-node-id="fee00f1f-1716-4bab-9086-6af2bdc308f6" data-node-name="Import" data-key=0 data-parent-list-id="a2b5b9df-06f9-4aa8-b59a-574c0243e8f5"><span class="ast-node" id="student_code_c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c" data-node-id="c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c" data-node-name="alias name: string" data-key=0 data-parent-list-id="0b05c143-9210-4399-a556-c0e52aca4fe7">import</span> string</span>
+
+
+<span class="ast-node" id="student_code_32e8a4d0-41fb-40b5-9532-0443691c94ce" data-node-id="32e8a4d0-41fb-40b5-9532-0443691c94ce" data-node-name="FunctionDef name: anyLowercase" data-key=1 data-parent-list-id="a2b5b9df-06f9-4aa8-b59a-574c0243e8f5">def anyLowercase(<span class="ast-node" id="student_code_287d7fb9-3e1f-4f61-9349-61acb20f7229" data-node-id="287d7fb9-3e1f-4f61-9349-61acb20f7229" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_acdfac72-6339-43d7-a03a-406753a39bbc" data-node-id="acdfac72-6339-43d7-a03a-406753a39bbc" data-node-name="arg(arg = s)" data-key=0 data-parent-list-id="7fbd34e9-7c52-4ca0-a6f6-a60bd280f978">s</span></span>):
+    <span class="ast-node" id="student_code_49382eb5-0b40-4e16-9844-6cab4b5c6e30" data-node-id="49382eb5-0b40-4e16-9844-6cab4b5c6e30" data-node-name="Assign" data-key=0 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0"><span class="ast-node" id="student_code_0c4d1ebf-04a6-4c62-b3fa-31904bb5d890" data-node-id="0c4d1ebf-04a6-4c62-b3fa-31904bb5d890" data-node-name="Store identifier lower" data-key=0 data-parent-list-id="37316083-69b8-4593-8a10-43b2dfb959c0">lower</span> = <span class="ast-node" id="student_code_0710bde2-46ef-411f-84f0-5ffef81a7618" data-node-id="0710bde2-46ef-411f-84f0-5ffef81a7618" data-node-name="Attribute(ctx=Load)(attr = ascii_lowercase)" data-key=value><span class="ast-node" id="student_code_f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a" data-node-id="f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a" data-node-name="Load identifier string" data-key=value>string</span>.ascii_lowercase</span></span>
+    <span class="ast-node" id="student_code_0847c17c-8967-4467-a201-c0f6c4b0afbe" data-node-id="0847c17c-8967-4467-a201-c0f6c4b0afbe" data-node-name="Assign" data-key=1 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0"><span class="ast-node" id="student_code_b39bd341-fee4-455f-be4a-4adcde3905fc" data-node-id="b39bd341-fee4-455f-be4a-4adcde3905fc" data-node-name="Store identifier good" data-key=0 data-parent-list-id="fb8b5acf-9813-40b8-8e27-72227ce44306">good</span> = <span class="ast-node" id="student_code_49cb22af-6d2f-4acf-89ff-082a928b9d7b" data-node-id="49cb22af-6d2f-4acf-89ff-082a928b9d7b" data-node-name="NameConstant(value = True)" data-key=value>True</span></span>
+    <span class="ast-node" id="student_code_f3020741-59db-442e-85b4-70efb28d1ec2" data-node-id="f3020741-59db-442e-85b4-70efb28d1ec2" data-node-name="For" data-key=2 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0">for <span class="ast-node" id="student_code_aedd91ac-fd44-4253-ba2b-125e87168d10" data-node-id="aedd91ac-fd44-4253-ba2b-125e87168d10" data-node-name="Store identifier c" data-key=target>c</span> in <span class="ast-node" id="student_code_423274c4-b06a-4405-97bf-4f1d848e0fd7" data-node-id="423274c4-b06a-4405-97bf-4f1d848e0fd7" data-node-name="Load identifier s" data-key=iter>s</span>:
+        <span class="ast-node" id="student_code_a6822fa5-f0f3-454b-8e15-94d8b4434b9d" data-node-id="a6822fa5-f0f3-454b-8e15-94d8b4434b9d" data-node-name="If" data-key=0 data-parent-list-id="79acf430-1ad5-46b2-99b2-5887640cf6f2">if <span class="ast-node" id="student_code_995f36b1-28b9-4e17-9360-9f68e33f4d33" data-node-id="995f36b1-28b9-4e17-9360-9f68e33f4d33" data-node-name="Compare operators: ['In']" data-key=test><span class="ast-node" id="student_code_20c437aa-16af-4022-9349-d07761e94fc3" data-node-id="20c437aa-16af-4022-9349-d07761e94fc3" data-node-name="Load identifier c" data-key=left>c</span> in <span class="ast-node" id="student_code_844cfbba-0fdd-4e07-8c9c-52afaf9823c4" data-node-id="844cfbba-0fdd-4e07-8c9c-52afaf9823c4" data-node-name="Load identifier lower" data-key=0 data-parent-list-id="15b07f0f-4cd8-4ef0-a7f4-e6633319e658">lower</span></span>:
+            <span class="ast-node" id="student_code_680b745a-5104-4a03-acd5-098f8bab0f44" data-node-id="680b745a-5104-4a03-acd5-098f8bab0f44" data-node-name="Assign" data-key=0 data-parent-list-id="0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46"><span class="ast-node" id="student_code_a60147fd-98d7-4d3c-b419-2c7fc55b1f4d" data-node-id="a60147fd-98d7-4d3c-b419-2c7fc55b1f4d" data-node-name="Store identifier good" data-key=0 data-parent-list-id="1a5d4980-7ec2-4ef7-ab5e-2162e0b7fbdd">good</span> = <span class="ast-node" id="student_code_82aeb01e-a146-460c-9391-52565e38b0df" data-node-id="82aeb01e-a146-460c-9391-52565e38b0df" data-node-name="NameConstant(value = False)" data-key=value>False</span></span>
+            <span class="ast-node" id="student_code_d02745e1-b9ab-4050-9002-aeeb2d7d5c1c" data-node-id="d02745e1-b9ab-4050-9002-aeeb2d7d5c1c" data-node-name="Break" data-key=1 data-parent-list-id="0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46">break</span></span></span>
+    <span class="ast-node" id="student_code_f116d894-5414-4363-80c9-43cc1f17169a" data-node-id="f116d894-5414-4363-80c9-43cc1f17169a" data-node-name="Return" data-key=3 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0">return <span class="ast-node delete-node" id="student_code_5eb85bcf-f2d1-499a-9932-150c715a4b0a" data-node-id="5eb85bcf-f2d1-499a-9932-150c715a4b0a" data-node-name="Load identifier good" data-key=value>good</span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_78725256-664d-4a76-9f7a-0ffaec63241b" data-node-id="78725256-664d-4a76-9f7a-0ffaec63241b" data-node-name="Module"><span class="ast-node" id="corrected_code_fee00f1f-1716-4bab-9086-6af2bdc308f6" data-node-id="fee00f1f-1716-4bab-9086-6af2bdc308f6" data-node-name="Import" data-key=0 data-parent-list-id="a2b5b9df-06f9-4aa8-b59a-574c0243e8f5"><span class="ast-node" id="corrected_code_c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c" data-node-id="c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c" data-node-name="alias name: string" data-key=0 data-parent-list-id="0b05c143-9210-4399-a556-c0e52aca4fe7">import</span> string</span>
+
+
+<span class="ast-node" id="corrected_code_32e8a4d0-41fb-40b5-9532-0443691c94ce" data-node-id="32e8a4d0-41fb-40b5-9532-0443691c94ce" data-node-name="FunctionDef name: anyLowercase" data-key=1 data-parent-list-id="a2b5b9df-06f9-4aa8-b59a-574c0243e8f5">def anyLowercase(<span class="ast-node" id="corrected_code_287d7fb9-3e1f-4f61-9349-61acb20f7229" data-node-id="287d7fb9-3e1f-4f61-9349-61acb20f7229" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_acdfac72-6339-43d7-a03a-406753a39bbc" data-node-id="acdfac72-6339-43d7-a03a-406753a39bbc" data-node-name="arg(arg = s)" data-key=0 data-parent-list-id="7fbd34e9-7c52-4ca0-a6f6-a60bd280f978">s</span></span>):
+    <span class="ast-node" id="corrected_code_49382eb5-0b40-4e16-9844-6cab4b5c6e30" data-node-id="49382eb5-0b40-4e16-9844-6cab4b5c6e30" data-node-name="Assign" data-key=0 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0"><span class="ast-node" id="corrected_code_0c4d1ebf-04a6-4c62-b3fa-31904bb5d890" data-node-id="0c4d1ebf-04a6-4c62-b3fa-31904bb5d890" data-node-name="Store identifier lower" data-key=0 data-parent-list-id="37316083-69b8-4593-8a10-43b2dfb959c0">lower</span> = <span class="ast-node" id="corrected_code_0710bde2-46ef-411f-84f0-5ffef81a7618" data-node-id="0710bde2-46ef-411f-84f0-5ffef81a7618" data-node-name="Attribute(ctx=Load)(attr = ascii_lowercase)" data-key=value><span class="ast-node" id="corrected_code_f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a" data-node-id="f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a" data-node-name="Load identifier string" data-key=value>string</span>.ascii_lowercase</span></span>
+    <span class="ast-node" id="corrected_code_0847c17c-8967-4467-a201-c0f6c4b0afbe" data-node-id="0847c17c-8967-4467-a201-c0f6c4b0afbe" data-node-name="Assign" data-key=1 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0"><span class="ast-node" id="corrected_code_b39bd341-fee4-455f-be4a-4adcde3905fc" data-node-id="b39bd341-fee4-455f-be4a-4adcde3905fc" data-node-name="Store identifier good" data-key=0 data-parent-list-id="fb8b5acf-9813-40b8-8e27-72227ce44306">good</span> = <span class="ast-node" id="corrected_code_49cb22af-6d2f-4acf-89ff-082a928b9d7b" data-node-id="49cb22af-6d2f-4acf-89ff-082a928b9d7b" data-node-name="NameConstant(value = True)" data-key=value>True</span></span>
+    <span class="ast-node" id="corrected_code_f3020741-59db-442e-85b4-70efb28d1ec2" data-node-id="f3020741-59db-442e-85b4-70efb28d1ec2" data-node-name="For" data-key=2 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0">for <span class="ast-node" id="corrected_code_aedd91ac-fd44-4253-ba2b-125e87168d10" data-node-id="aedd91ac-fd44-4253-ba2b-125e87168d10" data-node-name="Store identifier c" data-key=target>c</span> in <span class="ast-node" id="corrected_code_423274c4-b06a-4405-97bf-4f1d848e0fd7" data-node-id="423274c4-b06a-4405-97bf-4f1d848e0fd7" data-node-name="Load identifier s" data-key=iter>s</span>:
+        <span class="ast-node" id="corrected_code_a6822fa5-f0f3-454b-8e15-94d8b4434b9d" data-node-id="a6822fa5-f0f3-454b-8e15-94d8b4434b9d" data-node-name="If" data-key=0 data-parent-list-id="79acf430-1ad5-46b2-99b2-5887640cf6f2">if <span class="ast-node" id="corrected_code_995f36b1-28b9-4e17-9360-9f68e33f4d33" data-node-id="995f36b1-28b9-4e17-9360-9f68e33f4d33" data-node-name="Compare operators: ['In']" data-key=test><span class="ast-node" id="corrected_code_20c437aa-16af-4022-9349-d07761e94fc3" data-node-id="20c437aa-16af-4022-9349-d07761e94fc3" data-node-name="Load identifier c" data-key=left>c</span> in <span class="ast-node" id="corrected_code_844cfbba-0fdd-4e07-8c9c-52afaf9823c4" data-node-id="844cfbba-0fdd-4e07-8c9c-52afaf9823c4" data-node-name="Load identifier lower" data-key=0 data-parent-list-id="15b07f0f-4cd8-4ef0-a7f4-e6633319e658">lower</span></span>:
+            <span class="ast-node insert-node" id="corrected_code_7e3c9867-2f08-4de4-b4e1-90c999fd0885" data-node-id="7e3c9867-2f08-4de4-b4e1-90c999fd0885" data-node-name="Return" data-key=0 data-parent-list-id="0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46">return <span class="ast-node insert-node" id="corrected_code_314ff1d0-a083-46d4-8278-ea6ae662bbf8" data-node-id="314ff1d0-a083-46d4-8278-ea6ae662bbf8" data-node-name="NameConstant(value = True)" data-key=value>True</span></span>
+            <span class="ast-node" id="corrected_code_680b745a-5104-4a03-acd5-098f8bab0f44" data-node-id="680b745a-5104-4a03-acd5-098f8bab0f44" data-node-name="Assign" data-key=1 data-parent-list-id="0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46"><span class="ast-node" id="corrected_code_a60147fd-98d7-4d3c-b419-2c7fc55b1f4d" data-node-id="a60147fd-98d7-4d3c-b419-2c7fc55b1f4d" data-node-name="Store identifier good" data-key=0 data-parent-list-id="1a5d4980-7ec2-4ef7-ab5e-2162e0b7fbdd">good</span> = <span class="ast-node" id="corrected_code_82aeb01e-a146-460c-9391-52565e38b0df" data-node-id="82aeb01e-a146-460c-9391-52565e38b0df" data-node-name="NameConstant(value = False)" data-key=value>False</span></span>
+            <span class="ast-node" id="corrected_code_d02745e1-b9ab-4050-9002-aeeb2d7d5c1c" data-node-id="d02745e1-b9ab-4050-9002-aeeb2d7d5c1c" data-node-name="Break" data-key=2 data-parent-list-id="0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46">break</span></span></span>
+    <span class="ast-node" id="corrected_code_f116d894-5414-4363-80c9-43cc1f17169a" data-node-id="f116d894-5414-4363-80c9-43cc1f17169a" data-node-name="Return" data-key=3 data-parent-list-id="9cf3b2e1-cae0-43e9-92e0-3c983653fec0">return <span class="ast-node insert-node" id="corrected_code_e2648655-ae9e-43a9-80fe-a2236cf9d87e" data-node-id="e2648655-ae9e-43a9-80fe-a2236cf9d87e" data-node-name="NameConstant(value = False)" data-key=value>False</span></span></span></span></pre></div>
+    <script>
+    control=true
+        problem_statement = '<span>Write a function, anyLowercase(s),</span> <span class="expected">which returns True if any of the letters in the input string are lowercase.</span> <span>Return False otherwise.</span>'
+
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_78725256-664d-4a76-9f7a-0ffaec63241b\" data-node-id=\"78725256-664d-4a76-9f7a-0ffaec63241b\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_fee00f1f-1716-4bab-9086-6af2bdc308f6\" data-node-id=\"fee00f1f-1716-4bab-9086-6af2bdc308f6\" data-node-name=\"Import\" data-key=0 data-parent-list-id=\"a2b5b9df-06f9-4aa8-b59a-574c0243e8f5\"><span class=\"ast-node\" id=\"student_code_only_c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c\" data-node-id=\"c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c\" data-node-name=\"alias name: string\" data-key=0 data-parent-list-id=\"0b05c143-9210-4399-a556-c0e52aca4fe7\">import</span> string</span>\n\n\n<span class=\"ast-node\" id=\"student_code_only_32e8a4d0-41fb-40b5-9532-0443691c94ce\" data-node-id=\"32e8a4d0-41fb-40b5-9532-0443691c94ce\" data-node-name=\"FunctionDef name: anyLowercase\" data-key=1 data-parent-list-id=\"a2b5b9df-06f9-4aa8-b59a-574c0243e8f5\">def anyLowercase(<span class=\"ast-node\" id=\"student_code_only_287d7fb9-3e1f-4f61-9349-61acb20f7229\" data-node-id=\"287d7fb9-3e1f-4f61-9349-61acb20f7229\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_acdfac72-6339-43d7-a03a-406753a39bbc\" data-node-id=\"acdfac72-6339-43d7-a03a-406753a39bbc\" data-node-name=\"arg(arg = s)\" data-key=0 data-parent-list-id=\"7fbd34e9-7c52-4ca0-a6f6-a60bd280f978\">s</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_49382eb5-0b40-4e16-9844-6cab4b5c6e30\" data-node-id=\"49382eb5-0b40-4e16-9844-6cab4b5c6e30\" data-node-name=\"Assign\" data-key=0 data-parent-list-id=\"9cf3b2e1-cae0-43e9-92e0-3c983653fec0\"><span class=\"ast-node\" id=\"student_code_only_0c4d1ebf-04a6-4c62-b3fa-31904bb5d890\" data-node-id=\"0c4d1ebf-04a6-4c62-b3fa-31904bb5d890\" data-node-name=\"Store identifier lower\" data-key=0 data-parent-list-id=\"37316083-69b8-4593-8a10-43b2dfb959c0\">lower</span> = <span class=\"ast-node\" id=\"student_code_only_0710bde2-46ef-411f-84f0-5ffef81a7618\" data-node-id=\"0710bde2-46ef-411f-84f0-5ffef81a7618\" data-node-name=\"Attribute(ctx=Load)(attr = ascii_lowercase)\" data-key=value><span class=\"ast-node\" id=\"student_code_only_f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a\" data-node-id=\"f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a\" data-node-name=\"Load identifier string\" data-key=value>string</span>.ascii_lowercase</span></span>\n    <span class=\"ast-node\" id=\"student_code_only_0847c17c-8967-4467-a201-c0f6c4b0afbe\" data-node-id=\"0847c17c-8967-4467-a201-c0f6c4b0afbe\" data-node-name=\"Assign\" data-key=1 data-parent-list-id=\"9cf3b2e1-cae0-43e9-92e0-3c983653fec0\"><span class=\"ast-node\" id=\"student_code_only_b39bd341-fee4-455f-be4a-4adcde3905fc\" data-node-id=\"b39bd341-fee4-455f-be4a-4adcde3905fc\" data-node-name=\"Store identifier good\" data-key=0 data-parent-list-id=\"fb8b5acf-9813-40b8-8e27-72227ce44306\">good</span> = <span class=\"ast-node\" id=\"student_code_only_49cb22af-6d2f-4acf-89ff-082a928b9d7b\" data-node-id=\"49cb22af-6d2f-4acf-89ff-082a928b9d7b\" data-node-name=\"NameConstant(value = True)\" data-key=value>True</span></span>\n    <span class=\"ast-node\" id=\"student_code_only_f3020741-59db-442e-85b4-70efb28d1ec2\" data-node-id=\"f3020741-59db-442e-85b4-70efb28d1ec2\" data-node-name=\"For\" data-key=2 data-parent-list-id=\"9cf3b2e1-cae0-43e9-92e0-3c983653fec0\">for <span class=\"ast-node\" id=\"student_code_only_aedd91ac-fd44-4253-ba2b-125e87168d10\" data-node-id=\"aedd91ac-fd44-4253-ba2b-125e87168d10\" data-node-name=\"Store identifier c\" data-key=target>c</span> in <span class=\"ast-node\" id=\"student_code_only_423274c4-b06a-4405-97bf-4f1d848e0fd7\" data-node-id=\"423274c4-b06a-4405-97bf-4f1d848e0fd7\" data-node-name=\"Load identifier s\" data-key=iter>s</span>:\n        <span class=\"ast-node\" id=\"student_code_only_a6822fa5-f0f3-454b-8e15-94d8b4434b9d\" data-node-id=\"a6822fa5-f0f3-454b-8e15-94d8b4434b9d\" data-node-name=\"If\" data-key=0 data-parent-list-id=\"79acf430-1ad5-46b2-99b2-5887640cf6f2\">if <span class=\"ast-node\" id=\"student_code_only_995f36b1-28b9-4e17-9360-9f68e33f4d33\" data-node-id=\"995f36b1-28b9-4e17-9360-9f68e33f4d33\" data-node-name=\"Compare operators: ['In']\" data-key=test><span class=\"ast-node\" id=\"student_code_only_20c437aa-16af-4022-9349-d07761e94fc3\" data-node-id=\"20c437aa-16af-4022-9349-d07761e94fc3\" data-node-name=\"Load identifier c\" data-key=left>c</span> in <span class=\"ast-node\" id=\"student_code_only_844cfbba-0fdd-4e07-8c9c-52afaf9823c4\" data-node-id=\"844cfbba-0fdd-4e07-8c9c-52afaf9823c4\" data-node-name=\"Load identifier lower\" data-key=0 data-parent-list-id=\"15b07f0f-4cd8-4ef0-a7f4-e6633319e658\">lower</span></span>:\n            <span class=\"ast-node\" id=\"student_code_only_680b745a-5104-4a03-acd5-098f8bab0f44\" data-node-id=\"680b745a-5104-4a03-acd5-098f8bab0f44\" data-node-name=\"Assign\" data-key=0 data-parent-list-id=\"0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46\"><span class=\"ast-node\" id=\"student_code_only_a60147fd-98d7-4d3c-b419-2c7fc55b1f4d\" data-node-id=\"a60147fd-98d7-4d3c-b419-2c7fc55b1f4d\" data-node-name=\"Store identifier good\" data-key=0 data-parent-list-id=\"1a5d4980-7ec2-4ef7-ab5e-2162e0b7fbdd\">good</span> = <span class=\"ast-node\" id=\"student_code_only_82aeb01e-a146-460c-9391-52565e38b0df\" data-node-id=\"82aeb01e-a146-460c-9391-52565e38b0df\" data-node-name=\"NameConstant(value = False)\" data-key=value>False</span></span>\n            <span class=\"ast-node\" id=\"student_code_only_d02745e1-b9ab-4050-9002-aeeb2d7d5c1c\" data-node-id=\"d02745e1-b9ab-4050-9002-aeeb2d7d5c1c\" data-node-name=\"Break\" data-key=1 data-parent-list-id=\"0e8001a1-2ffb-4a91-a61f-a2cdc51dbd46\">break</span></span></span>\n    <span class=\"ast-node\" id=\"student_code_only_f116d894-5414-4363-80c9-43cc1f17169a\" data-node-id=\"f116d894-5414-4363-80c9-43cc1f17169a\" data-node-name=\"Return\" data-key=3 data-parent-list-id=\"9cf3b2e1-cae0-43e9-92e0-3c983653fec0\">return <span class=\"ast-node\" id=\"student_code_only_5eb85bcf-f2d1-499a-9932-150c715a4b0a\" data-node-id=\"5eb85bcf-f2d1-499a-9932-150c715a4b0a\" data-node-name=\"Load identifier good\" data-key=value>good</span></span></span></span>",
+  "dest_string": "import string\n\n\ndef anyLowercase(s):\n    lower = string.ascii_lowercase\n    good = True\n    for c in s:\n        if c in lower:\n            return True\n            good = False\n            break\n    return False\n",
+  "source_string": "import string\n\n\ndef anyLowercase(s):\n    lower = string.ascii_lowercase\n    good = True\n    for c in s:\n        if c in lower:\n            good = False\n            break\n    return good\n",
+  "unit_test_string": "anyLowercase(\"abcde\") == True",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "fee00f1f-1716-4bab-9086-6af2bdc308f6",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "fee00f1f-1716-4bab-9086-6af2bdc308f6",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "fee00f1f-1716-4bab-9086-6af2bdc308f6",
+        "values": [
+          "None"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "fee00f1f-1716-4bab-9086-6af2bdc308f6",
+        "values": [
+          "None"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c",
+        "values": [
+          "<module 'string' from '/Users/yanamal/.pyenv/versions/3.7.0/lib/python3.7/string.py'>"
+        ],
+        "op": "IMPORT_NAME string",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) IMPORT_NAME 0"
+      },
+      "after": {
+        "node": "c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c",
+        "values": [
+          "<module 'string' from '/Users/yanamal/.pyenv/versions/3.7.0/lib/python3.7/string.py'>"
+        ],
+        "op": "IMPORT_NAME string",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) IMPORT_NAME 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c",
+        "values": [],
+        "op": "STORE_NAME string",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "c971aeaf-15d2-4dd4-a5f2-e9f9b6cc458c",
+        "values": [],
+        "op": "STORE_NAME string",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "anyLowercase"
+        ],
+        "op": "LOAD_CONST anyLowercase",
+        "op_id": [
+          "<module>",
+          10
+        ],
+        "actual_op": "('<module>', 10) LOAD_CONST 3"
+      },
+      "after": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "anyLowercase"
+        ],
+        "op": "LOAD_CONST anyLowercase",
+        "op_id": [
+          "<module>",
+          10
+        ],
+        "actual_op": "('<module>', 10) LOAD_CONST 3"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "<function anyLowercase>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          12
+        ],
+        "actual_op": "('<module>', 12) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "<function anyLowercase>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          12
+        ],
+        "actual_op": "('<module>', 12) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [],
+        "op": "STORE_NAME anyLowercase",
+        "op_id": [
+          "<module>",
+          14
+        ],
+        "actual_op": "('<module>', 14) STORE_NAME 1"
+      },
+      "after": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [],
+        "op": "STORE_NAME anyLowercase",
+        "op_id": [
+          "<module>",
+          14
+        ],
+        "actual_op": "('<module>', 14) STORE_NAME 1"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "<function anyLowercase>"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          16
+        ],
+        "actual_op": "('<module>', 16) LOAD_NAME 1"
+      },
+      "after": {
+        "node": "32e8a4d0-41fb-40b5-9532-0443691c94ce",
+        "values": [
+          "<function anyLowercase>"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          16
+        ],
+        "actual_op": "('<module>', 16) LOAD_NAME 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a",
+        "values": [
+          "<module 'string' from '/Users/yanamal/.pyenv/versions/3.7.0/lib/python3.7/string.py'>"
+        ],
+        "op": "LOAD_GLOBAL string",
+        "op_id": [
+          "anyLowercase",
+          0
+        ],
+        "actual_op": "('anyLowercase', 0) LOAD_GLOBAL 0"
+      },
+      "after": {
+        "node": "f0ffe4eb-76b3-4aeb-bdbe-5034b101b46a",
+        "values": [
+          "<module 'string' from '/Users/yanamal/.pyenv/versions/3.7.0/lib/python3.7/string.py'>"
+        ],
+        "op": "LOAD_GLOBAL string",
+        "op_id": [
+          "anyLowercase",
+          0
+        ],
+        "actual_op": "('anyLowercase', 0) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "0710bde2-46ef-411f-84f0-5ffef81a7618",
+        "values": [
+          "abcdefghijklmnopqrstuvwxyz"
+        ],
+        "op": "LOAD_ATTR ascii_lowercase",
+        "op_id": [
+          "anyLowercase",
+          2
+        ],
+        "actual_op": "('anyLowercase', 2) LOAD_ATTR 1"
+      },
+      "after": {
+        "node": "0710bde2-46ef-411f-84f0-5ffef81a7618",
+        "values": [
+          "abcdefghijklmnopqrstuvwxyz"
+        ],
+        "op": "LOAD_ATTR ascii_lowercase",
+        "op_id": [
+          "anyLowercase",
+          2
+        ],
+        "actual_op": "('anyLowercase', 2) LOAD_ATTR 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "0c4d1ebf-04a6-4c62-b3fa-31904bb5d890",
+        "values": [],
+        "op": "STORE_FAST lower",
+        "op_id": [
+          "anyLowercase",
+          4
+        ],
+        "actual_op": "('anyLowercase', 4) STORE_FAST 2"
+      },
+      "after": {
+        "node": "0c4d1ebf-04a6-4c62-b3fa-31904bb5d890",
+        "values": [],
+        "op": "STORE_FAST lower",
+        "op_id": [
+          "anyLowercase",
+          4
+        ],
+        "actual_op": "('anyLowercase', 4) STORE_FAST 2"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "49cb22af-6d2f-4acf-89ff-082a928b9d7b",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_CONST True",
+        "op_id": [
+          "anyLowercase",
+          6
+        ],
+        "actual_op": "('anyLowercase', 6) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "49cb22af-6d2f-4acf-89ff-082a928b9d7b",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_CONST True",
+        "op_id": [
+          "anyLowercase",
+          6
+        ],
+        "actual_op": "('anyLowercase', 6) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "b39bd341-fee4-455f-be4a-4adcde3905fc",
+        "values": [],
+        "op": "STORE_FAST good",
+        "op_id": [
+          "anyLowercase",
+          8
+        ],
+        "actual_op": "('anyLowercase', 8) STORE_FAST 3"
+      },
+      "after": {
+        "node": "b39bd341-fee4-455f-be4a-4adcde3905fc",
+        "values": [],
+        "op": "STORE_FAST good",
+        "op_id": [
+          "anyLowercase",
+          8
+        ],
+        "actual_op": "('anyLowercase', 8) STORE_FAST 3"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [],
+        "op": "SETUP_LOOP 38",
+        "op_id": [
+          "anyLowercase",
+          10
+        ],
+        "actual_op": "('anyLowercase', 10) SETUP_LOOP 42"
+      },
+      "after": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [],
+        "op": "SETUP_LOOP 36",
+        "op_id": [
+          "anyLowercase",
+          10
+        ],
+        "actual_op": "('anyLowercase', 10) SETUP_LOOP 40"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "423274c4-b06a-4405-97bf-4f1d848e0fd7",
+        "values": [
+          "abcde"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "anyLowercase",
+          12
+        ],
+        "actual_op": "('anyLowercase', 12) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "423274c4-b06a-4405-97bf-4f1d848e0fd7",
+        "values": [
+          "abcde"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "anyLowercase",
+          12
+        ],
+        "actual_op": "('anyLowercase', 12) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [
+          "<str_iterator object>"
+        ],
+        "op": "GET_ITER",
+        "op_id": [
+          "anyLowercase",
+          14
+        ],
+        "actual_op": "('anyLowercase', 14) GET_ITER 0"
+      },
+      "after": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [
+          "<str_iterator object>"
+        ],
+        "op": "GET_ITER",
+        "op_id": [
+          "anyLowercase",
+          14
+        ],
+        "actual_op": "('anyLowercase', 14) GET_ITER 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [
+          "<str_iterator object>",
+          "a"
+        ],
+        "op": "FOR_ITER 36",
+        "op_id": [
+          "anyLowercase",
+          16
+        ],
+        "actual_op": "('anyLowercase', 16) FOR_ITER 30"
+      },
+      "after": {
+        "node": "f3020741-59db-442e-85b4-70efb28d1ec2",
+        "values": [
+          "<str_iterator object>",
+          "a"
+        ],
+        "op": "FOR_ITER 34",
+        "op_id": [
+          "anyLowercase",
+          16
+        ],
+        "actual_op": "('anyLowercase', 16) FOR_ITER 28"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "aedd91ac-fd44-4253-ba2b-125e87168d10",
+        "values": [],
+        "op": "STORE_FAST c",
+        "op_id": [
+          "anyLowercase",
+          18
+        ],
+        "actual_op": "('anyLowercase', 18) STORE_FAST 5"
+      },
+      "after": {
+        "node": "aedd91ac-fd44-4253-ba2b-125e87168d10",
+        "values": [],
+        "op": "STORE_FAST c",
+        "op_id": [
+          "anyLowercase",
+          18
+        ],
+        "actual_op": "('anyLowercase', 18) STORE_FAST 5"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "aedd91ac-fd44-4253-ba2b-125e87168d10",
+        "values": [
+          "a"
+        ],
+        "op": "LOAD_FAST c",
+        "op_id": [
+          "anyLowercase",
+          20
+        ],
+        "actual_op": "('anyLowercase', 20) LOAD_FAST 5"
+      },
+      "after": {
+        "node": "aedd91ac-fd44-4253-ba2b-125e87168d10",
+        "values": [
+          "a"
+        ],
+        "op": "LOAD_FAST c",
+        "op_id": [
+          "anyLowercase",
+          20
+        ],
+        "actual_op": "('anyLowercase', 20) LOAD_FAST 5"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "844cfbba-0fdd-4e07-8c9c-52afaf9823c4",
+        "values": [
+          "abcdefghijklmnopqrstuvwxyz"
+        ],
+        "op": "LOAD_FAST lower",
+        "op_id": [
+          "anyLowercase",
+          22
+        ],
+        "actual_op": "('anyLowercase', 22) LOAD_FAST 2"
+      },
+      "after": {
+        "node": "844cfbba-0fdd-4e07-8c9c-52afaf9823c4",
+        "values": [
+          "abcdefghijklmnopqrstuvwxyz"
+        ],
+        "op": "LOAD_FAST lower",
+        "op_id": [
+          "anyLowercase",
+          22
+        ],
+        "actual_op": "('anyLowercase', 22) LOAD_FAST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "995f36b1-28b9-4e17-9360-9f68e33f4d33",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP in",
+        "op_id": [
+          "anyLowercase",
+          24
+        ],
+        "actual_op": "('anyLowercase', 24) COMPARE_OP 6"
+      },
+      "after": {
+        "node": "995f36b1-28b9-4e17-9360-9f68e33f4d33",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP in",
+        "op_id": [
+          "anyLowercase",
+          24
+        ],
+        "actual_op": "('anyLowercase', 24) COMPARE_OP 6"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "a6822fa5-f0f3-454b-8e15-94d8b4434b9d",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 16",
+        "op_id": [
+          "anyLowercase",
+          26
+        ],
+        "actual_op": "('anyLowercase', 26) POP_JUMP_IF_FALSE 28"
+      },
+      "after": {
+        "node": "a6822fa5-f0f3-454b-8e15-94d8b4434b9d",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 16",
+        "op_id": [
+          "anyLowercase",
+          26
+        ],
+        "actual_op": "('anyLowercase', 26) POP_JUMP_IF_FALSE 28"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "82aeb01e-a146-460c-9391-52565e38b0df",
+        "values": [
+          "False"
+        ],
+        "op": "LOAD_CONST False",
+        "op_id": [
+          "anyLowercase",
+          28
+        ],
+        "actual_op": "('anyLowercase', 28) LOAD_CONST 2"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "a60147fd-98d7-4d3c-b419-2c7fc55b1f4d",
+        "values": [],
+        "op": "STORE_FAST good",
+        "op_id": [
+          "anyLowercase",
+          30
+        ],
+        "actual_op": "('anyLowercase', 30) STORE_FAST 3"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "d02745e1-b9ab-4050-9002-aeeb2d7d5c1c",
+        "values": [],
+        "op": "BREAK_LOOP",
+        "op_id": [
+          "anyLowercase",
+          32
+        ],
+        "actual_op": "('anyLowercase', 32) BREAK_LOOP 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "5eb85bcf-f2d1-499a-9932-150c715a4b0a",
+        "values": [
+          "False"
+        ],
+        "op": "LOAD_FAST good",
+        "op_id": [
+          "anyLowercase",
+          38
+        ],
+        "actual_op": "('anyLowercase', 38) LOAD_FAST 3"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "f116d894-5414-4363-80c9-43cc1f17169a",
+        "values": [
+          "False"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "anyLowercase",
+          40
+        ],
+        "actual_op": "('anyLowercase', 40) RETURN_VALUE 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "314ff1d0-a083-46d4-8278-ea6ae662bbf8",
+        "values": [
+          "True"
+        ],
+        "op": "LOAD_CONST True",
+        "op_id": [
+          "anyLowercase",
+          28
+        ],
+        "actual_op": "('anyLowercase', 28) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "7e3c9867-2f08-4de4-b4e1-90c999fd0885",
+        "values": [
+          "True"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "anyLowercase",
+          30
+        ],
+        "actual_op": "('anyLowercase', 30) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 20,
+    "last_matching_after_fix": 28
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version.",
+  "edits": [
+    "Action.INSERT_Stage.INSERT_e2648655-ae9e-43a9-80fe-a2236cf9d87e",
+    "Action.INSERT_Stage.INSERT_7e3c9867-2f08-4de4-b4e1-90c999fd0885",
+    "Action.INSERT_Stage.INSERT_314ff1d0-a083-46d4-8278-ea6ae662bbf8",
+    "Action.DELETE_Stage.DELETE_5eb85bcf-f2d1-499a-9932-150c715a4b0a"
+  ]
+}
+    </script>
+
+</body>

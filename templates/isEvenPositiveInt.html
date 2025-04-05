@@ -1,0 +1,333 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec" data-node-id="5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec" data-node-name="Module"><span class="ast-node" id="student_code_5bbaa9c1-a66f-4768-b5a8-41b6c0920f25" data-node-id="5bbaa9c1-a66f-4768-b5a8-41b6c0920f25" data-node-name="FunctionDef name: isEvenPositiveInt" data-key=0 data-parent-list-id="70926d71-b2da-4095-8e14-226244b08601">def isEvenPositiveInt(<span class="ast-node" id="student_code_9b911f6c-d3f5-48a9-ac89-12ed419ea229" data-node-id="9b911f6c-d3f5-48a9-ac89-12ed419ea229" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_67c2b112-cba9-4b47-af9f-93ca3cc31f88" data-node-id="67c2b112-cba9-4b47-af9f-93ca3cc31f88" data-node-name="arg(arg = x)" data-key=0 data-parent-list-id="e017b4b8-e41c-44d6-b85c-77a7b883b20a">x</span></span>):
+    <span class="ast-node" id="student_code_ec91a708-31d5-4a9c-9194-60aa2f878724" data-node-id="ec91a708-31d5-4a9c-9194-60aa2f878724" data-node-name="If" data-key=0 data-parent-list-id="d86d4aa0-eb22-4324-bbff-ef3198293602">if <span class="ast-node" id="student_code_75da1818-3e6c-4e31-922c-f982a0a3236a" data-node-id="75da1818-3e6c-4e31-922c-f982a0a3236a" data-node-name="BoolOp and" data-key=test><span class="ast-node move-node" id="student_code_a1668fe0-9b0a-4485-b97a-c23f9d0208ec" data-node-id="a1668fe0-9b0a-4485-b97a-c23f9d0208ec" data-node-name="Compare operators: ['Gt']" data-key=0 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="student_code_6f7f22b4-94f1-43b6-a93e-48a566a5031a" data-node-id="6f7f22b4-94f1-43b6-a93e-48a566a5031a" data-node-name="Load identifier x" data-key=left>x</span> > <span class="ast-node" id="student_code_705a8959-9afb-4d8d-8860-a9f838ee62fe" data-node-id="705a8959-9afb-4d8d-8860-a9f838ee62fe" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="f2288b36-c56b-482a-9113-0adb42727f52">0</span></span> and <span class="ast-node" id="student_code_f0c21a38-2c0f-4f54-909a-f536bf990ebd" data-node-id="f0c21a38-2c0f-4f54-909a-f536bf990ebd" data-node-name="Compare operators: ['Eq']" data-key=1 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="student_code_64ce76df-ae55-4398-b276-72ecda493bb8" data-node-id="64ce76df-ae55-4398-b276-72ecda493bb8" data-node-name="Call" data-key=left><span class="ast-node" id="student_code_ef7b1938-1f00-486d-ba8f-8c346269c911" data-node-id="ef7b1938-1f00-486d-ba8f-8c346269c911" data-node-name="Load identifier type" data-key=func>type</span>(<span class="ast-node" id="student_code_a0391f63-ca84-497c-83ac-534c43f4c61b" data-node-id="a0391f63-ca84-497c-83ac-534c43f4c61b" data-node-name="Load identifier x" data-key=0 data-parent-list-id="d89589c0-75f6-4160-8654-8a2d09a61ab5">x</span>)</span> == <span class="ast-node" id="student_code_e67cb67d-e51b-4c70-895a-2761ffd20740" data-node-id="e67cb67d-e51b-4c70-895a-2761ffd20740" data-node-name="Load identifier int" data-key=0 data-parent-list-id="afd15d20-9af4-45ab-b75f-8291ad5148ed">int</span></span> and <span class="ast-node" id="student_code_70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b" data-node-id="70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b" data-node-name="Compare operators: ['Eq']" data-key=2 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="student_code_d21cf95d-b7cd-40b1-89b8-5067277572da" data-node-id="d21cf95d-b7cd-40b1-89b8-5067277572da" data-node-name="BinOp %" data-key=left><span class="ast-node" id="student_code_ff043393-6f27-474a-ad0c-f9cdeffbc3b7" data-node-id="ff043393-6f27-474a-ad0c-f9cdeffbc3b7" data-node-name="Load identifier x" data-key=left>x</span> % <span class="ast-node" id="student_code_00560406-4e64-4436-b012-c2ca735c6dd0" data-node-id="00560406-4e64-4436-b012-c2ca735c6dd0" data-node-name="Num(n = 2)" data-key=right>2</span></span> == <span class="ast-node" id="student_code_9febd682-e3b6-4274-8d57-5e9aac67239f" data-node-id="9febd682-e3b6-4274-8d57-5e9aac67239f" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="849d712f-6625-4bd5-bcd3-b762004f3bd4">0</span></span></span>:
+        <span class="ast-node" id="student_code_40f47914-792c-41f9-8ac0-269d10d03e41" data-node-id="40f47914-792c-41f9-8ac0-269d10d03e41" data-node-name="Return" data-key=0 data-parent-list-id="2738d114-7166-40e6-8369-a913d3b22173">return <span class="ast-node" id="student_code_7f03330e-d3aa-4a43-8986-61fde4276196" data-node-id="7f03330e-d3aa-4a43-8986-61fde4276196" data-node-name="NameConstant(value = True)" data-key=value>True</span></span></span>
+    <span class="ast-node" id="student_code_63872620-ecac-46b2-8853-7f27dc218730" data-node-id="63872620-ecac-46b2-8853-7f27dc218730" data-node-name="Return" data-key=1 data-parent-list-id="d86d4aa0-eb22-4324-bbff-ef3198293602">return <span class="ast-node" id="student_code_0c45fd35-d092-46d5-8723-8e885935eef9" data-node-id="0c45fd35-d092-46d5-8723-8e885935eef9" data-node-name="NameConstant(value = False)" data-key=value>False</span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec" data-node-id="5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec" data-node-name="Module"><span class="ast-node" id="corrected_code_5bbaa9c1-a66f-4768-b5a8-41b6c0920f25" data-node-id="5bbaa9c1-a66f-4768-b5a8-41b6c0920f25" data-node-name="FunctionDef name: isEvenPositiveInt" data-key=0 data-parent-list-id="70926d71-b2da-4095-8e14-226244b08601">def isEvenPositiveInt(<span class="ast-node" id="corrected_code_9b911f6c-d3f5-48a9-ac89-12ed419ea229" data-node-id="9b911f6c-d3f5-48a9-ac89-12ed419ea229" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_67c2b112-cba9-4b47-af9f-93ca3cc31f88" data-node-id="67c2b112-cba9-4b47-af9f-93ca3cc31f88" data-node-name="arg(arg = x)" data-key=0 data-parent-list-id="e017b4b8-e41c-44d6-b85c-77a7b883b20a">x</span></span>):
+    <span class="ast-node" id="corrected_code_ec91a708-31d5-4a9c-9194-60aa2f878724" data-node-id="ec91a708-31d5-4a9c-9194-60aa2f878724" data-node-name="If" data-key=0 data-parent-list-id="d86d4aa0-eb22-4324-bbff-ef3198293602">if <span class="ast-node" id="corrected_code_75da1818-3e6c-4e31-922c-f982a0a3236a" data-node-id="75da1818-3e6c-4e31-922c-f982a0a3236a" data-node-name="BoolOp and" data-key=test><span class="ast-node" id="corrected_code_f0c21a38-2c0f-4f54-909a-f536bf990ebd" data-node-id="f0c21a38-2c0f-4f54-909a-f536bf990ebd" data-node-name="Compare operators: ['Eq']" data-key=0 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="corrected_code_64ce76df-ae55-4398-b276-72ecda493bb8" data-node-id="64ce76df-ae55-4398-b276-72ecda493bb8" data-node-name="Call" data-key=left><span class="ast-node" id="corrected_code_ef7b1938-1f00-486d-ba8f-8c346269c911" data-node-id="ef7b1938-1f00-486d-ba8f-8c346269c911" data-node-name="Load identifier type" data-key=func>type</span>(<span class="ast-node" id="corrected_code_a0391f63-ca84-497c-83ac-534c43f4c61b" data-node-id="a0391f63-ca84-497c-83ac-534c43f4c61b" data-node-name="Load identifier x" data-key=0 data-parent-list-id="d89589c0-75f6-4160-8654-8a2d09a61ab5">x</span>)</span> == <span class="ast-node" id="corrected_code_e67cb67d-e51b-4c70-895a-2761ffd20740" data-node-id="e67cb67d-e51b-4c70-895a-2761ffd20740" data-node-name="Load identifier int" data-key=0 data-parent-list-id="afd15d20-9af4-45ab-b75f-8291ad5148ed">int</span></span> and <span class="ast-node" id="corrected_code_70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b" data-node-id="70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b" data-node-name="Compare operators: ['Eq']" data-key=1 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="corrected_code_d21cf95d-b7cd-40b1-89b8-5067277572da" data-node-id="d21cf95d-b7cd-40b1-89b8-5067277572da" data-node-name="BinOp %" data-key=left><span class="ast-node" id="corrected_code_ff043393-6f27-474a-ad0c-f9cdeffbc3b7" data-node-id="ff043393-6f27-474a-ad0c-f9cdeffbc3b7" data-node-name="Load identifier x" data-key=left>x</span> % <span class="ast-node" id="corrected_code_00560406-4e64-4436-b012-c2ca735c6dd0" data-node-id="00560406-4e64-4436-b012-c2ca735c6dd0" data-node-name="Num(n = 2)" data-key=right>2</span></span> == <span class="ast-node" id="corrected_code_9febd682-e3b6-4274-8d57-5e9aac67239f" data-node-id="9febd682-e3b6-4274-8d57-5e9aac67239f" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="849d712f-6625-4bd5-bcd3-b762004f3bd4">0</span></span> and <span class="ast-node move-node" id="corrected_code_a1668fe0-9b0a-4485-b97a-c23f9d0208ec" data-node-id="a1668fe0-9b0a-4485-b97a-c23f9d0208ec" data-node-name="Compare operators: ['Gt']" data-key=2 data-parent-list-id="87305d4d-c212-445d-a244-102a16600b85"><span class="ast-node" id="corrected_code_6f7f22b4-94f1-43b6-a93e-48a566a5031a" data-node-id="6f7f22b4-94f1-43b6-a93e-48a566a5031a" data-node-name="Load identifier x" data-key=left>x</span> > <span class="ast-node" id="corrected_code_705a8959-9afb-4d8d-8860-a9f838ee62fe" data-node-id="705a8959-9afb-4d8d-8860-a9f838ee62fe" data-node-name="Num(n = 0)" data-key=0 data-parent-list-id="f2288b36-c56b-482a-9113-0adb42727f52">0</span></span></span>:
+        <span class="ast-node" id="corrected_code_40f47914-792c-41f9-8ac0-269d10d03e41" data-node-id="40f47914-792c-41f9-8ac0-269d10d03e41" data-node-name="Return" data-key=0 data-parent-list-id="2738d114-7166-40e6-8369-a913d3b22173">return <span class="ast-node" id="corrected_code_7f03330e-d3aa-4a43-8986-61fde4276196" data-node-id="7f03330e-d3aa-4a43-8986-61fde4276196" data-node-name="NameConstant(value = True)" data-key=value>True</span></span></span>
+    <span class="ast-node" id="corrected_code_63872620-ecac-46b2-8853-7f27dc218730" data-node-id="63872620-ecac-46b2-8853-7f27dc218730" data-node-name="Return" data-key=1 data-parent-list-id="d86d4aa0-eb22-4324-bbff-ef3198293602">return <span class="ast-node" id="corrected_code_0c45fd35-d092-46d5-8723-8e885935eef9" data-node-id="0c45fd35-d092-46d5-8723-8e885935eef9" data-node-name="NameConstant(value = False)" data-key=value>False</span></span></span></span></pre></div>
+    <script>
+    problem_statement = "Write a function, isEvenPositiveInt(x), which returns true if the input, x, is an integer, and it is both positive and even. Return False otherwise."
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec\" data-node-id=\"5f9d0ec4-be5e-4ccf-b230-59d21ff8f3ec\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_5bbaa9c1-a66f-4768-b5a8-41b6c0920f25\" data-node-id=\"5bbaa9c1-a66f-4768-b5a8-41b6c0920f25\" data-node-name=\"FunctionDef name: isEvenPositiveInt\" data-key=0 data-parent-list-id=\"70926d71-b2da-4095-8e14-226244b08601\">def isEvenPositiveInt(<span class=\"ast-node\" id=\"student_code_only_9b911f6c-d3f5-48a9-ac89-12ed419ea229\" data-node-id=\"9b911f6c-d3f5-48a9-ac89-12ed419ea229\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_67c2b112-cba9-4b47-af9f-93ca3cc31f88\" data-node-id=\"67c2b112-cba9-4b47-af9f-93ca3cc31f88\" data-node-name=\"arg(arg = x)\" data-key=0 data-parent-list-id=\"e017b4b8-e41c-44d6-b85c-77a7b883b20a\">x</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_ec91a708-31d5-4a9c-9194-60aa2f878724\" data-node-id=\"ec91a708-31d5-4a9c-9194-60aa2f878724\" data-node-name=\"If\" data-key=0 data-parent-list-id=\"d86d4aa0-eb22-4324-bbff-ef3198293602\">if <span class=\"ast-node\" id=\"student_code_only_75da1818-3e6c-4e31-922c-f982a0a3236a\" data-node-id=\"75da1818-3e6c-4e31-922c-f982a0a3236a\" data-node-name=\"BoolOp and\" data-key=test><span class=\"ast-node\" id=\"student_code_only_a1668fe0-9b0a-4485-b97a-c23f9d0208ec\" data-node-id=\"a1668fe0-9b0a-4485-b97a-c23f9d0208ec\" data-node-name=\"Compare operators: ['Gt']\" data-key=0 data-parent-list-id=\"87305d4d-c212-445d-a244-102a16600b85\"><span class=\"ast-node\" id=\"student_code_only_6f7f22b4-94f1-43b6-a93e-48a566a5031a\" data-node-id=\"6f7f22b4-94f1-43b6-a93e-48a566a5031a\" data-node-name=\"Load identifier x\" data-key=left>x</span> > <span class=\"ast-node\" id=\"student_code_only_705a8959-9afb-4d8d-8860-a9f838ee62fe\" data-node-id=\"705a8959-9afb-4d8d-8860-a9f838ee62fe\" data-node-name=\"Num(n = 0)\" data-key=0 data-parent-list-id=\"f2288b36-c56b-482a-9113-0adb42727f52\">0</span></span> and <span class=\"ast-node\" id=\"student_code_only_f0c21a38-2c0f-4f54-909a-f536bf990ebd\" data-node-id=\"f0c21a38-2c0f-4f54-909a-f536bf990ebd\" data-node-name=\"Compare operators: ['Eq']\" data-key=1 data-parent-list-id=\"87305d4d-c212-445d-a244-102a16600b85\"><span class=\"ast-node\" id=\"student_code_only_64ce76df-ae55-4398-b276-72ecda493bb8\" data-node-id=\"64ce76df-ae55-4398-b276-72ecda493bb8\" data-node-name=\"Call\" data-key=left><span class=\"ast-node\" id=\"student_code_only_ef7b1938-1f00-486d-ba8f-8c346269c911\" data-node-id=\"ef7b1938-1f00-486d-ba8f-8c346269c911\" data-node-name=\"Load identifier type\" data-key=func>type</span>(<span class=\"ast-node\" id=\"student_code_only_a0391f63-ca84-497c-83ac-534c43f4c61b\" data-node-id=\"a0391f63-ca84-497c-83ac-534c43f4c61b\" data-node-name=\"Load identifier x\" data-key=0 data-parent-list-id=\"d89589c0-75f6-4160-8654-8a2d09a61ab5\">x</span>)</span> == <span class=\"ast-node\" id=\"student_code_only_e67cb67d-e51b-4c70-895a-2761ffd20740\" data-node-id=\"e67cb67d-e51b-4c70-895a-2761ffd20740\" data-node-name=\"Load identifier int\" data-key=0 data-parent-list-id=\"afd15d20-9af4-45ab-b75f-8291ad5148ed\">int</span></span> and <span class=\"ast-node\" id=\"student_code_only_70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b\" data-node-id=\"70fde3c5-d59c-44ba-8ed1-dbee7ed0b46b\" data-node-name=\"Compare operators: ['Eq']\" data-key=2 data-parent-list-id=\"87305d4d-c212-445d-a244-102a16600b85\"><span class=\"ast-node\" id=\"student_code_only_d21cf95d-b7cd-40b1-89b8-5067277572da\" data-node-id=\"d21cf95d-b7cd-40b1-89b8-5067277572da\" data-node-name=\"BinOp %\" data-key=left><span class=\"ast-node\" id=\"student_code_only_ff043393-6f27-474a-ad0c-f9cdeffbc3b7\" data-node-id=\"ff043393-6f27-474a-ad0c-f9cdeffbc3b7\" data-node-name=\"Load identifier x\" data-key=left>x</span> % <span class=\"ast-node\" id=\"student_code_only_00560406-4e64-4436-b012-c2ca735c6dd0\" data-node-id=\"00560406-4e64-4436-b012-c2ca735c6dd0\" data-node-name=\"Num(n = 2)\" data-key=right>2</span></span> == <span class=\"ast-node\" id=\"student_code_only_9febd682-e3b6-4274-8d57-5e9aac67239f\" data-node-id=\"9febd682-e3b6-4274-8d57-5e9aac67239f\" data-node-name=\"Num(n = 0)\" data-key=0 data-parent-list-id=\"849d712f-6625-4bd5-bcd3-b762004f3bd4\">0</span></span></span>:\n        <span class=\"ast-node\" id=\"student_code_only_40f47914-792c-41f9-8ac0-269d10d03e41\" data-node-id=\"40f47914-792c-41f9-8ac0-269d10d03e41\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"2738d114-7166-40e6-8369-a913d3b22173\">return <span class=\"ast-node\" id=\"student_code_only_7f03330e-d3aa-4a43-8986-61fde4276196\" data-node-id=\"7f03330e-d3aa-4a43-8986-61fde4276196\" data-node-name=\"NameConstant(value = True)\" data-key=value>True</span></span></span>\n    <span class=\"ast-node\" id=\"student_code_only_63872620-ecac-46b2-8853-7f27dc218730\" data-node-id=\"63872620-ecac-46b2-8853-7f27dc218730\" data-node-name=\"Return\" data-key=1 data-parent-list-id=\"d86d4aa0-eb22-4324-bbff-ef3198293602\">return <span class=\"ast-node\" id=\"student_code_only_0c45fd35-d092-46d5-8723-8e885935eef9\" data-node-id=\"0c45fd35-d092-46d5-8723-8e885935eef9\" data-node-name=\"NameConstant(value = False)\" data-key=value>False</span></span></span></span>",
+  "dest_string": "def isEvenPositiveInt(x):\n    if type(x) == int and x % 2 == 0 and x > 0:\n        return True\n    return False\n",
+  "source_string": "def isEvenPositiveInt(x):\n    if x > 0 and type(x) == int and x % 2 == 0:\n        return True\n    return False\n",
+  "unit_test_string": "isEvenPositiveInt(\"yikes!\") == False",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "<code object isEvenPositiveInt>"
+        ],
+        "op": "LOAD_CONST <code object isEvenPositiveInt at 0x12a3058a0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "<code object isEvenPositiveInt>"
+        ],
+        "op": "LOAD_CONST <code object isEvenPositiveInt at 0x12a309db0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "isEvenPositiveInt"
+        ],
+        "op": "LOAD_CONST isEvenPositiveInt",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "isEvenPositiveInt"
+        ],
+        "op": "LOAD_CONST isEvenPositiveInt",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "<function isEvenPositiveInt>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [
+          "<function isEvenPositiveInt>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [],
+        "op": "STORE_NAME isEvenPositiveInt",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "5bbaa9c1-a66f-4768-b5a8-41b6c0920f25",
+        "values": [],
+        "op": "STORE_NAME isEvenPositiveInt",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "6f7f22b4-94f1-43b6-a93e-48a566a5031a",
+        "values": [
+          "yikes!"
+        ],
+        "op": "LOAD_FAST x",
+        "op_id": [
+          "isEvenPositiveInt",
+          0
+        ],
+        "actual_op": "('isEvenPositiveInt', 0) LOAD_FAST 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "705a8959-9afb-4d8d-8860-a9f838ee62fe",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "isEvenPositiveInt",
+          2
+        ],
+        "actual_op": "('isEvenPositiveInt', 2) LOAD_CONST 1"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "a1668fe0-9b0a-4485-b97a-c23f9d0208ec",
+        "values": [
+          "Exception: '>' not supported between instances of 'str' and 'int'"
+        ],
+        "op": "COMPARE_OP >",
+        "op_id": [
+          "isEvenPositiveInt",
+          4
+        ],
+        "actual_op": "('isEvenPositiveInt', 4) COMPARE_OP 4"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "ef7b1938-1f00-486d-ba8f-8c346269c911",
+        "values": [
+          "<class 'type'>"
+        ],
+        "op": "LOAD_GLOBAL type",
+        "op_id": [
+          "isEvenPositiveInt",
+          0
+        ],
+        "actual_op": "('isEvenPositiveInt', 0) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "a0391f63-ca84-497c-83ac-534c43f4c61b",
+        "values": [
+          "yikes!"
+        ],
+        "op": "LOAD_FAST x",
+        "op_id": [
+          "isEvenPositiveInt",
+          2
+        ],
+        "actual_op": "('isEvenPositiveInt', 2) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "64ce76df-ae55-4398-b276-72ecda493bb8",
+        "values": [
+          "<class 'str'>"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "isEvenPositiveInt",
+          4
+        ],
+        "actual_op": "('isEvenPositiveInt', 4) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "e67cb67d-e51b-4c70-895a-2761ffd20740",
+        "values": [
+          "<class 'int'>"
+        ],
+        "op": "LOAD_GLOBAL int",
+        "op_id": [
+          "isEvenPositiveInt",
+          6
+        ],
+        "actual_op": "('isEvenPositiveInt', 6) LOAD_GLOBAL 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f0c21a38-2c0f-4f54-909a-f536bf990ebd",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP ==",
+        "op_id": [
+          "isEvenPositiveInt",
+          8
+        ],
+        "actual_op": "('isEvenPositiveInt', 8) COMPARE_OP 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "ec91a708-31d5-4a9c-9194-60aa2f878724",
+        "values": [],
+        "op": "POP_JUMP_IF_FALSE 36",
+        "op_id": [
+          "isEvenPositiveInt",
+          10
+        ],
+        "actual_op": "('isEvenPositiveInt', 10) POP_JUMP_IF_FALSE 64"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "0c45fd35-d092-46d5-8723-8e885935eef9",
+        "values": [
+          "False"
+        ],
+        "op": "LOAD_CONST False",
+        "op_id": [
+          "isEvenPositiveInt",
+          36
+        ],
+        "actual_op": "('isEvenPositiveInt', 36) LOAD_CONST 4"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "63872620-ecac-46b2-8853-7f27dc218730",
+        "values": [
+          "False"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "isEvenPositiveInt",
+          38
+        ],
+        "actual_op": "('isEvenPositiveInt', 38) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 2,
+    "exception_before_fix": 6,
+    "last_matching_after_fix": 14
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe run completed in the fixed version, but did not complete in the old version ('>' not supported between instances of 'str' and 'int').",
+  "edits": [
+    "Action.MOVE_Stage.ALIGN_a1668fe0-9b0a-4485-b97a-c23f9d0208ec"
+  ]
+}
+    </script>
+
+</body>

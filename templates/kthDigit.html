@@ -1,0 +1,461 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab" data-node-id="cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab" data-node-name="Module"><span class="ast-node" id="student_code_5f138e88-ee6a-438b-a06f-499e039c1134" data-node-id="5f138e88-ee6a-438b-a06f-499e039c1134" data-node-name="FunctionDef name: kthDigit" data-key=0 data-parent-list-id="e7b3d025-83c8-4988-be25-e1f1625ac239">def kthDigit(<span class="ast-node" id="student_code_0714ff15-cfe0-427d-b19d-5625aadfdc1f" data-node-id="0714ff15-cfe0-427d-b19d-5625aadfdc1f" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_eda648b7-e92c-465d-bfdc-206a0a73c2a8" data-node-id="eda648b7-e92c-465d-bfdc-206a0a73c2a8" data-node-name="arg(arg = x)" data-key=0 data-parent-list-id="eba9b119-5172-4254-9802-d6602523573b">x</span>, <span class="ast-node" id="student_code_47f28c9a-92ca-4bf0-928e-06a6b004c894" data-node-id="47f28c9a-92ca-4bf0-928e-06a6b004c894" data-node-name="arg(arg = k)" data-key=1 data-parent-list-id="eba9b119-5172-4254-9802-d6602523573b">k</span></span>):
+    <span class="ast-node" id="student_code_9ada3f44-3d5a-4317-bb8a-4c01fd942ce6" data-node-id="9ada3f44-3d5a-4317-bb8a-4c01fd942ce6" data-node-name="Return" data-key=0 data-parent-list-id="afac40b7-f010-4ebf-b1e8-0aa5a6e48203">return <span class="ast-node" id="student_code_190d06cc-0c1f-4364-9c31-0b842cc2506d" data-node-id="190d06cc-0c1f-4364-9c31-0b842cc2506d" data-node-name="BinOp %" data-key=value><span class="ast-node" id="student_code_779b02b2-c5c5-4592-be62-4ad13e8ee002" data-node-id="779b02b2-c5c5-4592-be62-4ad13e8ee002" data-node-name="BinOp //" data-key=left><span class="ast-node" id="student_code_ce5f8f83-13db-4c3f-bcec-71c22f717f48" data-node-id="ce5f8f83-13db-4c3f-bcec-71c22f717f48" data-node-name="Call" data-key=left><span class="ast-node" id="student_code_5eee4918-150e-489c-a8c7-d31ee917e70a" data-node-id="5eee4918-150e-489c-a8c7-d31ee917e70a" data-node-name="Load identifier abs" data-key=func>abs</span>(<span class="ast-node" id="student_code_4251adee-bdf1-4cdf-8fa3-482f7a53eee1" data-node-id="4251adee-bdf1-4cdf-8fa3-482f7a53eee1" data-node-name="Load identifier x" data-key=0 data-parent-list-id="8586b8c9-1d75-4cdf-9ece-67b4cd2e2676">x</span>)</span> // <span class="ast-node" id="student_code_33f5b132-2aaa-41c8-9d2b-40cdc258824c" data-node-id="33f5b132-2aaa-41c8-9d2b-40cdc258824c" data-node-name="BinOp **" data-key=right><span class="ast-node" id="student_code_d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773" data-node-id="d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773" data-node-name="Num(n = 10)" data-key=left>10</span> ** <span class="ast-node move-node" id="student_code_5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81" data-node-id="5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81" data-node-name="Load identifier k" data-key=right>k</span></span></span> % <span class="ast-node" id="student_code_2a3b5f3a-7d9d-4872-9cc1-3f80b3828481" data-node-id="2a3b5f3a-7d9d-4872-9cc1-3f80b3828481" data-node-name="Num(n = 10)" data-key=right>10</span></span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab" data-node-id="cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab" data-node-name="Module"><span class="ast-node" id="corrected_code_5f138e88-ee6a-438b-a06f-499e039c1134" data-node-id="5f138e88-ee6a-438b-a06f-499e039c1134" data-node-name="FunctionDef name: kthDigit" data-key=0 data-parent-list-id="e7b3d025-83c8-4988-be25-e1f1625ac239">def kthDigit(<span class="ast-node" id="corrected_code_0714ff15-cfe0-427d-b19d-5625aadfdc1f" data-node-id="0714ff15-cfe0-427d-b19d-5625aadfdc1f" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_eda648b7-e92c-465d-bfdc-206a0a73c2a8" data-node-id="eda648b7-e92c-465d-bfdc-206a0a73c2a8" data-node-name="arg(arg = x)" data-key=0 data-parent-list-id="eba9b119-5172-4254-9802-d6602523573b">x</span>, <span class="ast-node" id="corrected_code_47f28c9a-92ca-4bf0-928e-06a6b004c894" data-node-id="47f28c9a-92ca-4bf0-928e-06a6b004c894" data-node-name="arg(arg = k)" data-key=1 data-parent-list-id="eba9b119-5172-4254-9802-d6602523573b">k</span></span>):
+    <span class="ast-node" id="corrected_code_9ada3f44-3d5a-4317-bb8a-4c01fd942ce6" data-node-id="9ada3f44-3d5a-4317-bb8a-4c01fd942ce6" data-node-name="Return" data-key=0 data-parent-list-id="afac40b7-f010-4ebf-b1e8-0aa5a6e48203">return <span class="ast-node" id="corrected_code_190d06cc-0c1f-4364-9c31-0b842cc2506d" data-node-id="190d06cc-0c1f-4364-9c31-0b842cc2506d" data-node-name="BinOp %" data-key=value><span class="ast-node" id="corrected_code_779b02b2-c5c5-4592-be62-4ad13e8ee002" data-node-id="779b02b2-c5c5-4592-be62-4ad13e8ee002" data-node-name="BinOp //" data-key=left><span class="ast-node" id="corrected_code_ce5f8f83-13db-4c3f-bcec-71c22f717f48" data-node-id="ce5f8f83-13db-4c3f-bcec-71c22f717f48" data-node-name="Call" data-key=left><span class="ast-node" id="corrected_code_5eee4918-150e-489c-a8c7-d31ee917e70a" data-node-id="5eee4918-150e-489c-a8c7-d31ee917e70a" data-node-name="Load identifier abs" data-key=func>abs</span>(<span class="ast-node" id="corrected_code_4251adee-bdf1-4cdf-8fa3-482f7a53eee1" data-node-id="4251adee-bdf1-4cdf-8fa3-482f7a53eee1" data-node-name="Load identifier x" data-key=0 data-parent-list-id="8586b8c9-1d75-4cdf-9ece-67b4cd2e2676">x</span>)</span> // <span class="ast-node" id="corrected_code_33f5b132-2aaa-41c8-9d2b-40cdc258824c" data-node-id="33f5b132-2aaa-41c8-9d2b-40cdc258824c" data-node-name="BinOp **" data-key=right><span class="ast-node" id="corrected_code_d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773" data-node-id="d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773" data-node-name="Num(n = 10)" data-key=left>10</span> ** (<span class="ast-node insert-node" id="corrected_code_f7d0b71e-8e6f-479b-a71e-95b32c34030a" data-node-id="f7d0b71e-8e6f-479b-a71e-95b32c34030a" data-node-name="BinOp -" data-key=right><span class="ast-node move-node" id="corrected_code_5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81" data-node-id="5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81" data-node-name="Load identifier k" data-key=left>k</span> - <span class="ast-node insert-node" id="corrected_code_7a031835-deb5-4821-bbfe-ae48c302434a" data-node-id="7a031835-deb5-4821-bbfe-ae48c302434a" data-node-name="Num(n = 1)" data-key=right>1</span></span>)</span></span> % <span class="ast-node" id="corrected_code_2a3b5f3a-7d9d-4872-9cc1-3f80b3828481" data-node-id="2a3b5f3a-7d9d-4872-9cc1-3f80b3828481" data-node-name="Num(n = 10)" data-key=right>10</span></span></span></span></span></pre></div>
+    <script>
+    problem_statement = `<span>Write a function, kthDigit(x, k),</span> <span>which returns the kth digit of x:</span> <span class="expected">the first digit of a number is the ones digit</span>, <span>the second digit is the tens digit, etc.</span>
+<span>For example, if x=1024, then the 1st digit is 4, the 2nd digit is 2, the 3rd digit is 0, the 4th digit is 1.</span>`
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab\" data-node-id=\"cf4b7f1f-8b2d-4c1b-8b36-8f6c355263ab\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_5f138e88-ee6a-438b-a06f-499e039c1134\" data-node-id=\"5f138e88-ee6a-438b-a06f-499e039c1134\" data-node-name=\"FunctionDef name: kthDigit\" data-key=0 data-parent-list-id=\"e7b3d025-83c8-4988-be25-e1f1625ac239\">def kthDigit(<span class=\"ast-node\" id=\"student_code_only_0714ff15-cfe0-427d-b19d-5625aadfdc1f\" data-node-id=\"0714ff15-cfe0-427d-b19d-5625aadfdc1f\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_eda648b7-e92c-465d-bfdc-206a0a73c2a8\" data-node-id=\"eda648b7-e92c-465d-bfdc-206a0a73c2a8\" data-node-name=\"arg(arg = x)\" data-key=0 data-parent-list-id=\"eba9b119-5172-4254-9802-d6602523573b\">x</span>, <span class=\"ast-node\" id=\"student_code_only_47f28c9a-92ca-4bf0-928e-06a6b004c894\" data-node-id=\"47f28c9a-92ca-4bf0-928e-06a6b004c894\" data-node-name=\"arg(arg = k)\" data-key=1 data-parent-list-id=\"eba9b119-5172-4254-9802-d6602523573b\">k</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_9ada3f44-3d5a-4317-bb8a-4c01fd942ce6\" data-node-id=\"9ada3f44-3d5a-4317-bb8a-4c01fd942ce6\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"afac40b7-f010-4ebf-b1e8-0aa5a6e48203\">return <span class=\"ast-node\" id=\"student_code_only_190d06cc-0c1f-4364-9c31-0b842cc2506d\" data-node-id=\"190d06cc-0c1f-4364-9c31-0b842cc2506d\" data-node-name=\"BinOp %\" data-key=value><span class=\"ast-node\" id=\"student_code_only_779b02b2-c5c5-4592-be62-4ad13e8ee002\" data-node-id=\"779b02b2-c5c5-4592-be62-4ad13e8ee002\" data-node-name=\"BinOp //\" data-key=left><span class=\"ast-node\" id=\"student_code_only_ce5f8f83-13db-4c3f-bcec-71c22f717f48\" data-node-id=\"ce5f8f83-13db-4c3f-bcec-71c22f717f48\" data-node-name=\"Call\" data-key=left><span class=\"ast-node\" id=\"student_code_only_5eee4918-150e-489c-a8c7-d31ee917e70a\" data-node-id=\"5eee4918-150e-489c-a8c7-d31ee917e70a\" data-node-name=\"Load identifier abs\" data-key=func>abs</span>(<span class=\"ast-node\" id=\"student_code_only_4251adee-bdf1-4cdf-8fa3-482f7a53eee1\" data-node-id=\"4251adee-bdf1-4cdf-8fa3-482f7a53eee1\" data-node-name=\"Load identifier x\" data-key=0 data-parent-list-id=\"8586b8c9-1d75-4cdf-9ece-67b4cd2e2676\">x</span>)</span> // <span class=\"ast-node\" id=\"student_code_only_33f5b132-2aaa-41c8-9d2b-40cdc258824c\" data-node-id=\"33f5b132-2aaa-41c8-9d2b-40cdc258824c\" data-node-name=\"BinOp **\" data-key=right><span class=\"ast-node\" id=\"student_code_only_d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773\" data-node-id=\"d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773\" data-node-name=\"Num(n = 10)\" data-key=left>10</span> ** <span class=\"ast-node\" id=\"student_code_only_5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81\" data-node-id=\"5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81\" data-node-name=\"Load identifier k\" data-key=right>k</span></span></span> % <span class=\"ast-node\" id=\"student_code_only_2a3b5f3a-7d9d-4872-9cc1-3f80b3828481\" data-node-id=\"2a3b5f3a-7d9d-4872-9cc1-3f80b3828481\" data-node-name=\"Num(n = 10)\" data-key=right>10</span></span></span></span></span>",
+  "dest_string": "def kthDigit(x, k):\n    return abs(x) // 10 ** (k - 1) % 10\n",
+  "source_string": "def kthDigit(x, k):\n    return abs(x) // 10 ** k % 10\n",
+  "unit_test_string": "kthDigit(4,1) == 4",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "<code object kthDigit>"
+        ],
+        "op": "LOAD_CONST <code object kthDigit at 0x1324c2930, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "<code object kthDigit>"
+        ],
+        "op": "LOAD_CONST <code object kthDigit at 0x1324c6e40, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "kthDigit"
+        ],
+        "op": "LOAD_CONST kthDigit",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "kthDigit"
+        ],
+        "op": "LOAD_CONST kthDigit",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "<function kthDigit>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [
+          "<function kthDigit>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [],
+        "op": "STORE_NAME kthDigit",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "5f138e88-ee6a-438b-a06f-499e039c1134",
+        "values": [],
+        "op": "STORE_NAME kthDigit",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "5eee4918-150e-489c-a8c7-d31ee917e70a",
+        "values": [
+          "<built-in function abs>"
+        ],
+        "op": "LOAD_GLOBAL abs",
+        "op_id": [
+          "kthDigit",
+          0
+        ],
+        "actual_op": "('kthDigit', 0) LOAD_GLOBAL 0"
+      },
+      "after": {
+        "node": "5eee4918-150e-489c-a8c7-d31ee917e70a",
+        "values": [
+          "<built-in function abs>"
+        ],
+        "op": "LOAD_GLOBAL abs",
+        "op_id": [
+          "kthDigit",
+          0
+        ],
+        "actual_op": "('kthDigit', 0) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "4251adee-bdf1-4cdf-8fa3-482f7a53eee1",
+        "values": [
+          "4"
+        ],
+        "op": "LOAD_FAST x",
+        "op_id": [
+          "kthDigit",
+          2
+        ],
+        "actual_op": "('kthDigit', 2) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "4251adee-bdf1-4cdf-8fa3-482f7a53eee1",
+        "values": [
+          "4"
+        ],
+        "op": "LOAD_FAST x",
+        "op_id": [
+          "kthDigit",
+          2
+        ],
+        "actual_op": "('kthDigit', 2) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "ce5f8f83-13db-4c3f-bcec-71c22f717f48",
+        "values": [
+          "4"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "kthDigit",
+          4
+        ],
+        "actual_op": "('kthDigit', 4) CALL_FUNCTION 1"
+      },
+      "after": {
+        "node": "ce5f8f83-13db-4c3f-bcec-71c22f717f48",
+        "values": [
+          "4"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "kthDigit",
+          4
+        ],
+        "actual_op": "('kthDigit', 4) CALL_FUNCTION 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773",
+        "values": [
+          "10"
+        ],
+        "op": "LOAD_CONST 10",
+        "op_id": [
+          "kthDigit",
+          6
+        ],
+        "actual_op": "('kthDigit', 6) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "d0c2c6ba-5dc4-40ff-b6ca-cd51d3b9b773",
+        "values": [
+          "10"
+        ],
+        "op": "LOAD_CONST 10",
+        "op_id": [
+          "kthDigit",
+          6
+        ],
+        "actual_op": "('kthDigit', 6) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST k",
+        "op_id": [
+          "kthDigit",
+          8
+        ],
+        "actual_op": "('kthDigit', 8) LOAD_FAST 1"
+      },
+      "after": {
+        "node": "5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST k",
+        "op_id": [
+          "kthDigit",
+          8
+        ],
+        "actual_op": "('kthDigit', 8) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "7a031835-deb5-4821-bbfe-ae48c302434a",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "kthDigit",
+          10
+        ],
+        "actual_op": "('kthDigit', 10) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f7d0b71e-8e6f-479b-a71e-95b32c34030a",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_SUBTRACT",
+        "op_id": [
+          "kthDigit",
+          12
+        ],
+        "actual_op": "('kthDigit', 12) BINARY_SUBTRACT 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "33f5b132-2aaa-41c8-9d2b-40cdc258824c",
+        "values": [
+          "10"
+        ],
+        "op": "BINARY_POWER",
+        "op_id": [
+          "kthDigit",
+          10
+        ],
+        "actual_op": "('kthDigit', 10) BINARY_POWER 0"
+      },
+      "after": {
+        "node": "33f5b132-2aaa-41c8-9d2b-40cdc258824c",
+        "values": [
+          "1"
+        ],
+        "op": "BINARY_POWER",
+        "op_id": [
+          "kthDigit",
+          14
+        ],
+        "actual_op": "('kthDigit', 14) BINARY_POWER 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "779b02b2-c5c5-4592-be62-4ad13e8ee002",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_FLOOR_DIVIDE",
+        "op_id": [
+          "kthDigit",
+          12
+        ],
+        "actual_op": "('kthDigit', 12) BINARY_FLOOR_DIVIDE 0"
+      },
+      "after": {
+        "node": "779b02b2-c5c5-4592-be62-4ad13e8ee002",
+        "values": [
+          "4"
+        ],
+        "op": "BINARY_FLOOR_DIVIDE",
+        "op_id": [
+          "kthDigit",
+          16
+        ],
+        "actual_op": "('kthDigit', 16) BINARY_FLOOR_DIVIDE 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "2a3b5f3a-7d9d-4872-9cc1-3f80b3828481",
+        "values": [
+          "10"
+        ],
+        "op": "LOAD_CONST 10",
+        "op_id": [
+          "kthDigit",
+          14
+        ],
+        "actual_op": "('kthDigit', 14) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "2a3b5f3a-7d9d-4872-9cc1-3f80b3828481",
+        "values": [
+          "10"
+        ],
+        "op": "LOAD_CONST 10",
+        "op_id": [
+          "kthDigit",
+          18
+        ],
+        "actual_op": "('kthDigit', 18) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "190d06cc-0c1f-4364-9c31-0b842cc2506d",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_MODULO",
+        "op_id": [
+          "kthDigit",
+          16
+        ],
+        "actual_op": "('kthDigit', 16) BINARY_MODULO 0"
+      },
+      "after": {
+        "node": "190d06cc-0c1f-4364-9c31-0b842cc2506d",
+        "values": [
+          "4"
+        ],
+        "op": "BINARY_MODULO",
+        "op_id": [
+          "kthDigit",
+          20
+        ],
+        "actual_op": "('kthDigit', 20) BINARY_MODULO 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "9ada3f44-3d5a-4317-bb8a-4c01fd942ce6",
+        "values": [
+          "0"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "kthDigit",
+          18
+        ],
+        "actual_op": "('kthDigit', 18) RETURN_VALUE 0"
+      },
+      "after": {
+        "node": "9ada3f44-3d5a-4317-bb8a-4c01fd942ce6",
+        "values": [
+          "4"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "kthDigit",
+          22
+        ],
+        "actual_op": "('kthDigit', 22) RETURN_VALUE 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 13,
+    "first_wrong_before_fix": 14,
+    "last_matching_after_fix": 15
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version.",
+  "edits": [
+    "Action.INSERT_Stage.INSERT_f7d0b71e-8e6f-479b-a71e-95b32c34030a",
+    "Action.INSERT_Stage.INSERT_7a031835-deb5-4821-bbfe-ae48c302434a",
+    "Action.MOVE_Stage.MOVE_5bdbc1a9-e5ca-4b9e-b5e4-f173a35a0e81"
+  ]
+}
+    </script>
+
+</body>
