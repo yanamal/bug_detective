@@ -120,6 +120,7 @@ function start_direction_check(){
     )
 
     $('#follow_slider').removeClass('hidden')
+    $('.trace-slider').slider("value", $('.trace-slider').slider("value"));
 }
 
 function start_action_check(){
@@ -356,9 +357,6 @@ function request_diagnostics(){
         // Return combined results
         return output_data;
     })
-    .catch(error => {
-        console.error('Error:', error);
-    });
 }
 
 function request_direction_question(diagnostic_responses, descriptive_synced_trace){
@@ -544,10 +542,6 @@ function request_full_trace_analysis() {
         descriptive_trace = data.results.trace_with_descs
         return data.results.trace_with_descs
     })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
 }
 
 function request_trace_slice(diagnostic_responses, descriptive_synced_trace){

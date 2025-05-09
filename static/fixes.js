@@ -349,6 +349,14 @@ function get_correct_code_trace(){
 let full_synced_trace, student_trace;
 
 $(document).ready(function() {
+    
+
+    // add path-data-polyfill library
+    const polyfillScript = document.createElement('script');
+    polyfillScript.src = 'https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js';
+    polyfillScript.async = true;
+    document.head.appendChild(polyfillScript);
+    
     // add leaderline library
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js';
@@ -442,7 +450,8 @@ $(document).ready(function() {
 $(document).keydown(function(event) {
     if (event.key === '`') {
       $('.comparison-div').toggleClass('full-view');
-      // TODO: values sets *selected* values; can't change actual values, need to manually map back.
+      $('body').css('height', 'auto') // hack - remove the constraint that it should all be on one page if we turn on debugging mode
+        // (note that this is never put back)
       update_slider_indices()
     }
 });
@@ -486,7 +495,9 @@ function activate_next_step(){
 
 function drawTransientArrow(startElement, endElement, path="magnet"){
 
-
+    // add class to pulse border
+    endElement.classList.add('active-check');
+    
     // scroll end element into view
     endElement.scrollIntoView({behavior:'smooth'})
     setTimeout(function() {
@@ -507,8 +518,6 @@ function drawTransientArrow(startElement, endElement, path="magnet"){
             hide: true // Create the line hidden initially
             }
         );
-        // add class to pulse border
-        endElement.classList.add('active-check');
         
         // Show with draw animation
         line.show('draw', {

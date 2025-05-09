@@ -397,28 +397,28 @@ $(document).ready(function() {
 
     add_step(`<h4>Step 2. What should we look into?</h4>
         <div id="direction-conversation">
-        <div class="tutor initial">Before we jump into analyzing the code, let's make sure we have a good plan about what to investigate. Looking over the code, what values or calcuations <b>might have contributed</b> to the incorrect output? Or, what questions should we be asking about <b>what happened when the code ran</b> with this particular unit test?</div>
+        <div class="tutor initial">Before we jump into analyzing the code, let's make sure we have a good plan about what to investigate. Looking over the code, <b>what questions should we be asking</b> to figure out what happened when the code ran with this particular unit test? Or, what values or calcuations <b>might have contributed</b> to the incorrect output?</div>
         </div>
 
         <span id="student-direction-input">
-        <textarea id="student-direction-box" name="direction" rows="3" cols="80"></textarea> 
+        <textarea id="student-direction-box" name="direction" rows="3" cols="80">We should try to find out...</textarea> 
         <button onclick="request_direction_response()">Send</button>
         </span>
         `, step_name="direction", show_next_button = false)
 
     direction_chat_history.push({
         "role": "model",
-        "parts": [{text: "Before we jump into analyzing the code, let's make sure we have a good plan about what to investigate. Looking over the code, what values or calcuations **might have contributed** to the incorrect output? Or, what questions should we be asking about **what happened when the code ran** with this particular unit test?"}]
+        "parts": [{text: "Before we jump into analyzing the code, let's make sure we have a good plan about what to investigate. Looking over the code, **what questions should we be asking** to figure out what happened when the code ran with this particular unit test? Or, what values or calcuations **might have contributed** to the incorrect output?"}]
     })
 
     add_step(`<h4>Step 3. Let's investigate!</h4>
         <div id="action-conversation">
         Now, let's investigate using the execution trace! Use the trace slider below the code to step through what your program did when it ran this unit test.
         <div class="tutor initial"><b>What do you think?</b> Can you explain why your code didn't do the right thing?</div>
-
+        </div>
         <span id="student-action-input">
         <textarea id="student-action-box" name="action" rows="3" cols="80"></textarea> 
-        <button>Send</button>
+        <button onclick="request_action_response()">Send</button>
         </span>
         </div>
         
