@@ -1,5 +1,9 @@
 This is a Flask app demo of a debugging assistant app.
 
+[Three-minute video demo](https://youtu.be/pttyR2AF0NU)
+
+[![Bug Detective screenshot](BD_screenshot.png)](https://youtu.be/pttyR2AF0NU)
+
 Before running it, you will need to get a Gemini API key and save it in api_key.txt at the top directory level.
 
 To run the app, you should be able to simply use `python app.py` in a terminal.
