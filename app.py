@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import os
 import google.generativeai as genai
 import json
@@ -72,7 +72,9 @@ Rubric:
     return json.loads(response.text)
 
 
-with open('api_key.txt', 'r') as apifile:
+project_root = os.path.dirname(os.path.abspath(__file__))
+
+with open(os.path.join(project_root, 'api_key.txt'), 'r') as apifile:
     api_key = apifile.read().strip()
 genai.configure(api_key=api_key)
 
@@ -128,7 +130,7 @@ Here is the context for the current debugging session:
 
 Your task is to provide a brief, observation-style message that describes how the student's code output is incorrect. This message should be phrased as something the student could think or say while debugging their own code, assuming they don't already know what the issue is. It's crucial that you focus solely on describing the incorrect output without suggesting any debugging steps or solutions.
 
-  - If an exception is thrown, this message should describe what the exception is saying in plain English. 
+  - If an exception is thrown, this message should describe what the exception is saying in plain English.
   - If the student code returned an incorrect value, this message should describe the returned value in the context of the problem statement, touching on what value was expected and why.
 
 Output Format:
@@ -153,17 +155,17 @@ Remember, your role is to describe the discrepancy between expected and actual o
             frequency_penalty = 0.5
         )
     )
-    
+
     # Extract the candidate observations
     candidate_observations = []
     for candidate in response_candidates.candidates:
         candidate_observations.append(candidate.content.parts[0].text)
-    
+
     rubric = '''
 1. The message must sound like something you would say if you were debugging the problem and did not yet know what exactly is wrong. It must not sound like a tutor leading the student toward a particilar answer.
 2. The message must be specific to the particular problem. It must not sound generic or applicable to any problem.
 3. Depending on the output type:
-  - If the output is an exception, the message should describe what the exception is saying. 
+  - If the output is an exception, the message should describe what the exception is saying.
   - If the output is an incorrect value, the message should describe the incorrect value in the context of the problem statement, connecting what we got to what the problem statement expects (not just to what the unit test expected).
 4. The message must only provide the description. It must not give any additional speculation or suggestions to the student.
     '''
@@ -173,7 +175,7 @@ Remember, your role is to describe the discrepancy between expected and actual o
     chosen_observation = evaluation_results['step2_best_message']
 
     result = {
-        "message": "Observation processed", 
+        "message": "Observation processed",
         "candidate_observations": candidate_observations,
         "observation": chosen_observation,
         "candidate_evaluation": evaluation_results
@@ -255,7 +257,7 @@ Remember, your role is to describe the investigation direction, not to guide the
             frequency_penalty = 0.5
         )
     )
-    
+
     candidates = []
     for candidate in response_candidates.candidates:
         candidates.append(candidate.content.parts[0].text)
@@ -268,7 +270,7 @@ Remember, your role is to describe the investigation direction, not to guide the
     '''
 
     evaluation_results = evaluate_candidates(candidates, rubric, problem_prompt_data)
-    
+
     chosen_direction = evaluation_results['step2_best_message']
 
     result = {
@@ -288,157 +290,172 @@ def gen_full_trace_description():
 
     synced_trace = data['synced_trace']
 
-    ### step 1 - generate canonical descriptions of trace through correct code
-    correct_trace = []
-    correct_orig_indices = []
-    for i in range(len(synced_trace)):
-        if synced_trace[i]['after']:
-            correct_trace.append(synced_trace[i]['after'])
-            correct_orig_indices.append(i)
-    
-    correct_trace_prompt_data = f"""
-Programming problem:
-{data['problem_statement']}
+    problem_url = request.referrer
+    # problem_name = data['unit_test'].split('(')[0]  # TODO: this is a horrible hack, put problem name into template explicitly instead
+    problem_name = problem_url.split('/')[-1].split('?')[0]  # slightly less horrible hack
 
-Solution code:
-{data['corrected_code']}
+    if os.path.exists(f'{problem_name}_trace.json'):
+        with open(f'{problem_name}_trace.json') as tracef:
+            synced_trace = json.load(tracef)
 
-Unit test:
-{data['unit_test']}
+    else:
+        ### step 1 - generate canonical descriptions of trace through correct code
+        correct_trace = []
+        correct_orig_indices = []
+        for i in range(len(synced_trace)):
+            if synced_trace[i]['after']:
+                correct_trace.append(synced_trace[i]['after'])
+                correct_orig_indices.append(i)
 
-Execution trace of running this unit test on this solution code:
-{ json.dumps(correct_trace, indent=2)}
-    """
+        correct_trace_prompt_data = f"""
+        Programming problem:
+        {data['problem_statement']}
 
-        
-    trace_model = genai.GenerativeModel('gemini-2.0-flash',
-        system_instruction="""You are part of an educational system which assists beginner programmers in debugging their own Python code.
-Your task is to generate short user-facing messages that describe each step in the execution trace of a program. The goal of these messages is to connect what happens in the code with the overall goal of the code, as described by the problem statement. These messages should be accessible to a beginner programmer."""
-    )
+        Solution code:
+        {data['corrected_code']}
 
+        Unit test:
+        {data['unit_test']}
 
-    correct_trace_response_format = {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "code": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-        },
-        "required": ["values", "code", "description"]
-      }
-    }
+        Execution trace of running this unit test on this solution code:
+        { json.dumps(correct_trace, indent=2)}
+        """
 
 
-    correct_trace_response = trace_model.generate_content(f'''
-    {correct_trace_prompt_data}
-
-    For each step in the execution trace, generate a short description of what that step is doing. Note that the execution trace starts **within** the function, skipping the function definition and invocation. Thus, the first step in the execution trace describes the first thing that happens **after** the function is called with the given parameters, and your descriptions do not need to describe the initial function call.
-    
-    This description should connect the evaluated expression, and its resulting value(if any), back to the programming problem that the code is solving: it should describe both what is happening, and how this fits into the purpose of the function. Return a JSON object that is the same as the execution trace, but with an additional "description" field in each step.
-
-    ''',
-        generation_config=genai.GenerationConfig(
-            response_mime_type="application/json",
-            response_schema = correct_trace_response_format
+        trace_model = genai.GenerativeModel('gemini-2.0-flash',
+            system_instruction="""You are part of an educational system which assists beginner programmers in debugging their own Python code.
+        Your task is to generate short user-facing messages that describe each step in the execution trace of a program. The goal of these messages is to connect what happens in the code with the overall goal of the code, as described by the problem statement. These messages should be accessible to a beginner programmer."""
         )
-    )
 
-    # print(correct_trace_response.text)
-    correct_trace_with_desc = json.loads(correct_trace_response.text)
 
-    #### Step 2 - generate descriptions for buggy student code (using correlated correct descriptions as guidance)
-    # add correct/intended descriptions to synced trace (on both sides)
-    for orig_i, step_data in zip(correct_orig_indices, correct_trace_with_desc):
-        orig_step = synced_trace[orig_i]
-        orig_step['after']['description'] = step_data['description']
-        if orig_step['before']:
-            # corresponding student node exists
-            orig_step['before']['intent_description'] = step_data['description']
+        correct_trace_response_format = {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "code": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+            },
+            "required": ["values", "code", "description"]
+          }
+        }
 
-    student_trace = []
-    student_orig_indices = []
-    for i in range(len(synced_trace)):
-        if synced_trace[i]['before']:
-            student_trace.append(synced_trace[i]['before'])
-            student_orig_indices.append(i)
 
-    student_trace_response_format = {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "code": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "intent_description": {
-            "type": "string"
-          },
-        },
-        "required": ["values", "code", "description"]
-      }
-    }
+        correct_trace_response = trace_model.generate_content(f'''
+        {correct_trace_prompt_data}
 
-    student_trace_prompt_data = f"""
-Programming problem:
-{data['problem_statement']}
+        For each step in the execution trace, generate a short description of what that step is doing. Note that the execution trace starts **within** the function, skipping the function definition and invocation. Thus, the first step in the execution trace describes the first thing that happens **after** the function is called with the given parameters, and your descriptions do not need to describe the initial function call.
 
-Buggy solution code:
-{data['corrected_code']}
+        This description should connect the evaluated expression, and its resulting value(if any), back to the programming problem that the code is solving: it should describe both what is happening, and how this fits into the purpose of the function. Return a JSON object that is the same as the execution trace, but with an additional "description" field in each step.
 
-Unit test:
-{data['unit_test']}
-
-Execution trace of running this unit test on this buggy solution code:
-{ json.dumps(student_trace, indent=2)}
-    """
-
-    student_trace_response = trace_model.generate_content(f'''
-    The data below describes a buggy student solution to a programming problem.
-    
-    {student_trace_prompt_data}
-
-    For each step in the execution trace, generate a short description of what that step is doing. Note that the execution trace starts **within** the function, skipping the function definition and invocation. Thus, the first step in the execution trace describes the first thing that happens **after** the function is called with the given parameters.
-
-    Some steps in the execution trace have an "intent_description" field, which is a short description of what that step may have **intended** to do. If the intent_description exists, consider whether it is applicable: does it accurately describe what actually happens and what value is generated? If yes, reuse it for the description. If not, change the description to make it accurate and applicable to what actually happens in the code.
-    If the current step does not have an intent_description, generate a description from scratch. If this step makes sense in the context of the problem statement, the description should connect what the step does to the problem statement.
-
-    Each description should only describe what the step is doing. It should not comment on why this is correct or wrong.
-    
-    Return a JSON object that is the same as the execution trace, but with an additional "description" field in each step. Ensure that each description is correct with respect to what is happening in the code.
-
-    ''',
-        generation_config=genai.GenerationConfig(
-            response_mime_type="application/json",
-            response_schema = student_trace_response_format
+        ''',
+            generation_config=genai.GenerationConfig(
+                response_mime_type="application/json",
+                response_schema = correct_trace_response_format
+            )
         )
-    )
 
-    # print(student_trace_response.text)
+        # print(correct_trace_response.text)
+        correct_trace_with_desc = json.loads(correct_trace_response.text)
 
-    student_trace_desc = json.loads(student_trace_response.text)
+        #### Step 2 - generate descriptions for buggy student code (using correlated correct descriptions as guidance)
+        # add correct/intended descriptions to synced trace (on both sides)
+        for orig_i, step_data in zip(correct_orig_indices, correct_trace_with_desc):
+            orig_step = synced_trace[orig_i]
+            orig_step['after']['description'] = step_data['description']
+            if orig_step['before']:
+                # corresponding student node exists
+                orig_step['before']['intent_description'] = step_data['description']
 
-    for orig_i, student_step in zip(student_orig_indices, student_trace_desc):
-        synced_trace[orig_i]["before"]["description"] = student_step["description"]
+        student_trace = []
+        student_orig_indices = []
+        for i in range(len(synced_trace)):
+            if synced_trace[i]['before']:
+                student_trace.append(synced_trace[i]['before'])
+                student_orig_indices.append(i)
+
+        student_trace_response_format = {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "code": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "intent_description": {
+                "type": "string"
+              },
+            },
+            "required": ["values", "code", "description"]
+          }
+        }
+
+        student_trace_prompt_data = f"""
+        Programming problem:
+        {data['problem_statement']}
+
+        Buggy solution code:
+        {data['corrected_code']}
+
+        Unit test:
+        {data['unit_test']}
+
+        Execution trace of running this unit test on this buggy solution code:
+        { json.dumps(student_trace, indent=2)}
+        """
+
+        student_trace_response = trace_model.generate_content(f'''
+        The data below describes a buggy student solution to a programming problem.
+
+        {student_trace_prompt_data}
+
+        For each step in the execution trace, generate a short description of what that step is doing. Note that the execution trace starts **within** the function, skipping the function definition and invocation. Thus, the first step in the execution trace describes the first thing that happens **after** the function is called with the given parameters.
+
+        Some steps in the execution trace have an "intent_description" field, which is a short description of what that step may have **intended** to do. If the intent_description exists, consider whether it is applicable: does it accurately describe what actually happens and what value is generated? If yes, reuse it for the description. If not, change the description to make it accurate and applicable to what actually happens in the code.
+        If the current step does not have an intent_description, generate a description from scratch. If this step makes sense in the context of the problem statement, the description should connect what the step does to the problem statement.
+
+        Each description should only describe what the step is doing. It should not comment on why this is correct or wrong.
+
+        Return a JSON object that is the same as the execution trace, but with an additional "description" field in each step. Ensure that each description is correct with respect to what is happening in the code.
+
+        ''',
+            generation_config=genai.GenerationConfig(
+                response_mime_type="application/json",
+                response_schema = student_trace_response_format
+            )
+        )
+
+        # print(student_trace_response.text)
+
+        student_trace_desc = json.loads(student_trace_response.text)
+
+        for orig_i, student_step in zip(student_orig_indices, student_trace_desc):
+            synced_trace[orig_i]["before"]["description"] = student_step["description"]
+
+
+        # write synced trace to file
+        with open(f'{problem_name}_trace.json', 'w') as tracef:
+            json.dump(synced_trace, tracef, indent=2)
+
 
     result = {"message": "Processed", "results": {
             "input_data": data['synced_trace'],
@@ -536,7 +553,7 @@ Provide the following, in the order they are listed:
     # print(slice_response.text)
 
     result = {
-        "message": "Processed", 
+        "message": "Processed",
         "results": {
             "input_data": data,
             "slice_data": json.loads(slice_response.text)
@@ -546,16 +563,42 @@ Provide the following, in the order they are listed:
     return jsonify(result)
 
 
+# Route for tutor flow/sequence
+@app.route('/sequence')
+def tutorial_sequence():
+    page_sequence = [
+        'explanation?',  # 0
+        'explanation?which_step=step1', # 1
+        'roll_die?',
+        'convo/is_first_bigger?',
+        'explanation?which_step=step2',  # 4
+        'convo/perimeter?',
+        'explanation?which_step=step3',  # 6
+        'perimeter_2?',
+        'convo/roll_die_2?',
+        'convo/only_even?',
+    ]
+    last_completed = request.values.get('completed', -1)
+
+    next_i = int(last_completed)+1
+    if len(page_sequence) > next_i:
+        return redirect(f'{page_sequence[next_i]}&step={next_i}')
+
+    return 'done'
+
+
 # Generic catch-all route comes last
 @app.route('/<path:page>')
 def serve_pages(page):
     # This handles any other URL not handled above
     # e.g., /about becomes page="about"
-    
+
     # Add .html extension if not already present
     template_name = page if page.endswith('.html') else page + '.html'
-    
-    template_path = os.path.join(app.template_folder, template_name)
+
+    project_root = os.path.dirname(os.path.abspath(__file__))
+
+    template_path = os.path.join(project_root, app.template_folder, template_name)
     if os.path.exists(template_path):
         return render_template(template_name)
     else:

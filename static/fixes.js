@@ -44,7 +44,7 @@ function update_values_shown(before_pre, after_pre, trace, new_i) {
         let value_span = $('<span>', {class: "value"}).text(trace[new_i]['before']['values'])
         before_node.prepend(value_span)
 
-        
+
 
         if(trace[new_i]['before']['description']){
             let desc_span = $('<span>', {class: "op-description"}).text(trace[new_i]['before']['description'])
@@ -88,12 +88,12 @@ function generate_view(step_data) {
         <div style="text-align: center;margin-bottom: 20px;"><i>It is a capital mistake to theorize before you have all the evidence</i> - Sherlock Holmes</div>
         <br/></span>
         `))
-    
+
     if(typeof problem_statement !== 'undefined'){
         trace_contents.append($(`<div class="problem-statement animate-fade-in"><div><b>Problem statement:</b></div> <div id="problem_statement_div"> ${problem_statement} </div></div><br/>`))
     }
 
-    
+
     let unit_test = correction_data['unit_test_string']
     let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
 
@@ -256,12 +256,12 @@ function simplify_trace(){
     correction_data['synced_trace'] = trace
 }
 
-// Flatten the nested AST representation of the code to just the text, 
+// Flatten the nested AST representation of the code to just the text,
 // except add "evaluated_expression" tag to the specific node requested
 function flatten_code_retain_node(code_selector, node_selector){
     // Clone the container to avoid modifying the original during processing
     const $clone = $(`${code_selector}`).clone();
-    
+
     $clone.find('.value').remove();  // remove the value text from the trace
 
     // Find and temporarily remove the element to preserve
@@ -275,14 +275,14 @@ function flatten_code_retain_node(code_selector, node_selector){
 
     // Get text content of everything else
     const textContent = $clone.text();
-    
+
     // If we had a preserved element, put it back
     if ($preserveElement.length) {
         return textContent.replace('__PRESERVE_ELEMENT_PLACEHOLDER__', `<evaluated_expression>${preserveElementText}</evaluated_expression>`);
     } else {
         return textContent;
     }
-        
+
 }
 
 function get_short_trace_info(){
@@ -338,7 +338,7 @@ function get_correct_code_trace(){
             trace_node = all_trace_data['trace'][i]['after']
             correct_code_trace.push(trace_node)
             original_indices.push(i)
-        } 
+        }
     }
     return {
         trace: correct_code_trace,
@@ -349,14 +349,14 @@ function get_correct_code_trace(){
 let full_synced_trace, student_trace;
 
 $(document).ready(function() {
-    
+
 
     // add path-data-polyfill library
     const polyfillScript = document.createElement('script');
     polyfillScript.src = 'https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js';
     polyfillScript.async = true;
     document.head.appendChild(polyfillScript);
-    
+
     // add leaderline library
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js';
@@ -364,11 +364,11 @@ $(document).ready(function() {
     document.head.appendChild(script);
 
     simplify_trace()
-    
+
     full_synced_trace = correction_data.synced_trace
 
     student_trace = correction_data.synced_trace.filter(step => step.before !== null)
-    
+
     wrap_text_in_spans($('pre'), 'text-span')
     let trace_div = generate_view(correction_data)
     $('body').append(trace_div)
@@ -376,17 +376,20 @@ $(document).ready(function() {
 
 
     update_slider_indices()
-    
+
     $('.trace-slider').each(function(){
         $(this).slider("value", $(this).slider("value"));
         //$(this).height($(this).parent().height()-10)
     })
-    
+
 
     highlight_nodes()
 
     let correct_output = correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
     let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
+
+    // capture the sequence step parameter:
+    sequence_step = (new URLSearchParams(window.location.search)).get('step')
 
     // add the debugging steps:
 
@@ -411,13 +414,15 @@ $(document).ready(function() {
         <div class="understanding_check">
         <span id="explanation_question_span">
         <div><b>What do you think?</b> Can you explain why your code didn't do the right thing?</div>
-        <textarea id="student-explanation" name="explanation" rows="3" cols="80"></textarea> 
+        <textarea id="student-explanation" name="explanation" rows="3" cols="80"></textarea>
         <button onclick="request_explanation_feedback()">Send</button>
         </span>
         <br/>
         <div id="step3_check_feedback"></div>
         <div id="improve_explanation" class="hidden">Edit your explanation to incorporate this feedback</div>
-        <div id="sufficient_explanation" class="hidden">Nice job!</div>
+        <div id="sufficient_explanation" class="hidden"><a href="sequence?completed=${sequence_step}">Nice job! Click here to continue</a>
+
+        </div>
         </div>
         `, step_name = "action")
 
@@ -432,7 +437,7 @@ $(document).ready(function() {
     else {
         diagnostic_promise = request_diagnostics()
     }
-    
+
     // create promise chain of generating guidance strings that depend on each other:
     Promise.all([diagnostic_promise, request_full_trace_analysis()])
     .then(([diagnostic_responses, descriptive_synced_trace]) => {
@@ -444,7 +449,7 @@ $(document).ready(function() {
     .catch(error => {
         console.error('One of the fetches failed:', error);
     });
-    
+
 })
 
 $(document).keydown(function(event) {
@@ -497,7 +502,7 @@ function drawTransientArrow(startElement, endElement, path="magnet"){
 
     // add class to pulse border
     endElement.classList.add('active-check');
-    
+
     // scroll end element into view
     endElement.scrollIntoView({behavior:'smooth'})
     setTimeout(function() {
@@ -518,13 +523,13 @@ function drawTransientArrow(startElement, endElement, path="magnet"){
             hide: true // Create the line hidden initially
             }
         );
-        
+
         // Show with draw animation
         line.show('draw', {
             duration: 1000,
             timing: 'linear'
         });
-        
+
         // Wait for draw animation to complete, then fade out
         setTimeout(function() {
             // Hide with fade animation
@@ -532,15 +537,15 @@ function drawTransientArrow(startElement, endElement, path="magnet"){
             duration: 800,
             timing: 'linear'
             });
-            
+
             // Wait for fade animation to complete, then remove
             setTimeout(function() {
             line.remove();
             }, 800); // Same as the fade duration
-            
+
         }, 1500); // Draw duration (1000ms) + small buffer (500ms)
     }, 1500); // Delay: don't start drawing until element starts fading in
-    
+
   // return line;
-  
+
 }
