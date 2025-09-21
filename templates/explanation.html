@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/explanation.css">
+</head>
+<body>
+    <h1>Bug Detective</h1>
+    <img style="height: 300px;width: 300px;object-fit: cover;object-position: left top;" src="static/sherlock.png">
+    <div><i>It is a capital mistake to theorize before you have all the evidence</i> - Sherlock Holmes</div>
+
+    <div>Bug Detective guides you through three steps to help you find and <b>understand</b> a bug: </div>
+    <ol>
+        <li id="step1">How is the output wrong?
+            <div>Sometimes, just understanding the output makes everything else easy.</div>
+            <div><a id="next_1" href="https://bugdetective.pythonanywhere.com/sequence?completed=1"><button>Next</button></a></div>
+        </li>
+        <li id="step2">What should we look into?
+        <div>Sometimes, asking the right question is the key.</div>
+            <div><a id="next_2" href="https://bugdetective.pythonanywhere.com/sequence?completed=4"><button>Next</button></a></div>
+        </li>
+        <li id="step3">Let's investigate!
+        <div>Sometimes, you  need to dig a little deeper to really understand where things went wrong.</div>
+            <div><a id="next_2" href="https://bugdetective.pythonanywhere.com/sequence?completed=6"><button>Next</button></a></div>
+        </li>
+    </ol>
+    <div>Let's work through some practice problems that focus on each of these steps, one at a time.</div>
+
+    <a id="global_next" href="https://bugdetective.pythonanywhere.com/sequence?completed=0"><button>Next</button></a>
+
+
+    <script>
+        highlight_step = (new URLSearchParams(window.location.search)).get('which_step')
+        if(highlight_step) {
+            document.querySelector(`#${highlight_step}`).classList.add('highlighted')
+            document.querySelector(`#global_next`).classList.add('hidden')
+        }
+    </script>
+</body>

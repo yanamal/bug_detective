@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 80%;
+    margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body > * {
+    margin: 15px;
+}
+
+.highlighted {
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+ol>li>div {
+    margin: 10px;
+    visibility: hidden;
+}
+
+ol>li.highlighted>div{
+    visibility: visible;
+}

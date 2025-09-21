@@ -1,0 +1,306 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_ba381c47-11e6-43a1-bd4c-68c264d5e055" data-node-id="ba381c47-11e6-43a1-bd4c-68c264d5e055" data-node-name="Module"><span class="ast-node" id="student_code_fe1a7094-7e61-415c-9f8b-c647cdf92188" data-node-id="fe1a7094-7e61-415c-9f8b-c647cdf92188" data-node-name="FunctionDef name: rectangle_perimeter" data-key=0 data-parent-list-id="81a15d52-3dca-4731-99f9-805810f8550e">def rectangle_perimeter(<span class="ast-node" id="student_code_4264e70e-5871-4a02-b2de-a2350b4de9f4" data-node-id="4264e70e-5871-4a02-b2de-a2350b4de9f4" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_01bc084b-ec64-4ca3-8859-d87e1cab9542" data-node-id="01bc084b-ec64-4ca3-8859-d87e1cab9542" data-node-name="arg(arg = width)" data-key=0 data-parent-list-id="169cad7e-0313-46b5-9216-fc9d0efc4e8c">width</span>, <span class="ast-node" id="student_code_cc40a4d1-505f-4dd2-b17b-def880ade55b" data-node-id="cc40a4d1-505f-4dd2-b17b-def880ade55b" data-node-name="arg(arg = height)" data-key=1 data-parent-list-id="169cad7e-0313-46b5-9216-fc9d0efc4e8c">height</span></span>):
+    <span class="ast-node" id="student_code_737004ad-6e2c-4e06-b402-d2523b60f357" data-node-id="737004ad-6e2c-4e06-b402-d2523b60f357" data-node-name="Return" data-key=0 data-parent-list-id="3d3a0569-67a9-4efc-b900-c7714619f30b">return <span class="ast-node delete-node" id="student_code_8d503a9a-f7d0-44e0-9865-dcb966b9faa5" data-node-id="8d503a9a-f7d0-44e0-9865-dcb966b9faa5" data-node-name="Call" data-key=value><span class="ast-node move-node" id="student_code_17d6959d-2d32-4926-8e20-67686c93318e" data-node-id="17d6959d-2d32-4926-8e20-67686c93318e" data-node-name="Num(n = 2)" data-key=func>2</span>(<span class="ast-node move-node" id="student_code_4d89f566-3aeb-4cc5-9c44-bde57c104601" data-node-id="4d89f566-3aeb-4cc5-9c44-bde57c104601" data-node-name="BinOp +" data-key=0 data-parent-list-id="52b8daf1-ede7-4709-84ae-b1ebde475106"><span class="ast-node" id="student_code_92e67209-22ca-4a4d-93d3-95e748d1a24f" data-node-id="92e67209-22ca-4a4d-93d3-95e748d1a24f" data-node-name="Load identifier width" data-key=left>width</span> + <span class="ast-node" id="student_code_6e1fc041-9184-4f31-8f3f-967d4fadf51a" data-node-id="6e1fc041-9184-4f31-8f3f-967d4fadf51a" data-node-name="Load identifier height" data-key=right>height</span></span>)</span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_ba381c47-11e6-43a1-bd4c-68c264d5e055" data-node-id="ba381c47-11e6-43a1-bd4c-68c264d5e055" data-node-name="Module"><span class="ast-node" id="corrected_code_fe1a7094-7e61-415c-9f8b-c647cdf92188" data-node-id="fe1a7094-7e61-415c-9f8b-c647cdf92188" data-node-name="FunctionDef name: rectangle_perimeter" data-key=0 data-parent-list-id="81a15d52-3dca-4731-99f9-805810f8550e">def rectangle_perimeter(<span class="ast-node" id="corrected_code_4264e70e-5871-4a02-b2de-a2350b4de9f4" data-node-id="4264e70e-5871-4a02-b2de-a2350b4de9f4" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_01bc084b-ec64-4ca3-8859-d87e1cab9542" data-node-id="01bc084b-ec64-4ca3-8859-d87e1cab9542" data-node-name="arg(arg = width)" data-key=0 data-parent-list-id="169cad7e-0313-46b5-9216-fc9d0efc4e8c">width</span>, <span class="ast-node" id="corrected_code_cc40a4d1-505f-4dd2-b17b-def880ade55b" data-node-id="cc40a4d1-505f-4dd2-b17b-def880ade55b" data-node-name="arg(arg = height)" data-key=1 data-parent-list-id="169cad7e-0313-46b5-9216-fc9d0efc4e8c">height</span></span>):
+    <span class="ast-node" id="corrected_code_737004ad-6e2c-4e06-b402-d2523b60f357" data-node-id="737004ad-6e2c-4e06-b402-d2523b60f357" data-node-name="Return" data-key=0 data-parent-list-id="3d3a0569-67a9-4efc-b900-c7714619f30b">return <span class="ast-node insert-node" id="corrected_code_7f4b7f65-bc77-443f-9e00-1528683fecae" data-node-id="7f4b7f65-bc77-443f-9e00-1528683fecae" data-node-name="BinOp *" data-key=value><span class="ast-node move-node" id="corrected_code_17d6959d-2d32-4926-8e20-67686c93318e" data-node-id="17d6959d-2d32-4926-8e20-67686c93318e" data-node-name="Num(n = 2)" data-key=left>2</span> * (<span class="ast-node move-node" id="corrected_code_4d89f566-3aeb-4cc5-9c44-bde57c104601" data-node-id="4d89f566-3aeb-4cc5-9c44-bde57c104601" data-node-name="BinOp +" data-key=right><span class="ast-node" id="corrected_code_92e67209-22ca-4a4d-93d3-95e748d1a24f" data-node-id="92e67209-22ca-4a4d-93d3-95e748d1a24f" data-node-name="Load identifier width" data-key=left>width</span> + <span class="ast-node" id="corrected_code_6e1fc041-9184-4f31-8f3f-967d4fadf51a" data-node-id="6e1fc041-9184-4f31-8f3f-967d4fadf51a" data-node-name="Load identifier height" data-key=right>height</span></span>)</span></span></span></span></pre></div>
+    <script>
+      problem_statement = '<span class="">Write a function, rectangle_perimeter </span><span class="">which takes in the width and height of a rectangle </span><span class="">and returns the perimeter of that rectangle. </span>'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_ba381c47-11e6-43a1-bd4c-68c264d5e055\" data-node-id=\"ba381c47-11e6-43a1-bd4c-68c264d5e055\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_fe1a7094-7e61-415c-9f8b-c647cdf92188\" data-node-id=\"fe1a7094-7e61-415c-9f8b-c647cdf92188\" data-node-name=\"FunctionDef name: rectangle_perimeter\" data-key=0 data-parent-list-id=\"81a15d52-3dca-4731-99f9-805810f8550e\">def rectangle_perimeter(<span class=\"ast-node\" id=\"student_code_only_4264e70e-5871-4a02-b2de-a2350b4de9f4\" data-node-id=\"4264e70e-5871-4a02-b2de-a2350b4de9f4\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_01bc084b-ec64-4ca3-8859-d87e1cab9542\" data-node-id=\"01bc084b-ec64-4ca3-8859-d87e1cab9542\" data-node-name=\"arg(arg = width)\" data-key=0 data-parent-list-id=\"169cad7e-0313-46b5-9216-fc9d0efc4e8c\">width</span>, <span class=\"ast-node\" id=\"student_code_only_cc40a4d1-505f-4dd2-b17b-def880ade55b\" data-node-id=\"cc40a4d1-505f-4dd2-b17b-def880ade55b\" data-node-name=\"arg(arg = height)\" data-key=1 data-parent-list-id=\"169cad7e-0313-46b5-9216-fc9d0efc4e8c\">height</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_737004ad-6e2c-4e06-b402-d2523b60f357\" data-node-id=\"737004ad-6e2c-4e06-b402-d2523b60f357\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"3d3a0569-67a9-4efc-b900-c7714619f30b\">return <span class=\"ast-node\" id=\"student_code_only_8d503a9a-f7d0-44e0-9865-dcb966b9faa5\" data-node-id=\"8d503a9a-f7d0-44e0-9865-dcb966b9faa5\" data-node-name=\"Call\" data-key=value><span class=\"ast-node\" id=\"student_code_only_17d6959d-2d32-4926-8e20-67686c93318e\" data-node-id=\"17d6959d-2d32-4926-8e20-67686c93318e\" data-node-name=\"Num(n = 2)\" data-key=func>2</span>(<span class=\"ast-node\" id=\"student_code_only_4d89f566-3aeb-4cc5-9c44-bde57c104601\" data-node-id=\"4d89f566-3aeb-4cc5-9c44-bde57c104601\" data-node-name=\"BinOp +\" data-key=0 data-parent-list-id=\"52b8daf1-ede7-4709-84ae-b1ebde475106\"><span class=\"ast-node\" id=\"student_code_only_92e67209-22ca-4a4d-93d3-95e748d1a24f\" data-node-id=\"92e67209-22ca-4a4d-93d3-95e748d1a24f\" data-node-name=\"Load identifier width\" data-key=left>width</span> + <span class=\"ast-node\" id=\"student_code_only_6e1fc041-9184-4f31-8f3f-967d4fadf51a\" data-node-id=\"6e1fc041-9184-4f31-8f3f-967d4fadf51a\" data-node-name=\"Load identifier height\" data-key=right>height</span></span>)</span></span></span></span>",
+  "dest_string": "def rectangle_perimeter(width, height):\n    return 2 * (width + height)\n",
+  "source_string": "def rectangle_perimeter(width, height):\n    return 2(width + height)\n",
+  "unit_test_string": "rectangle_perimeter(2,3) == 10",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "<code object rectangle_perimeter>"
+        ],
+        "op": "LOAD_CONST <code object rectangle_perimeter at 0x74d23e2e2780, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "<code object rectangle_perimeter>"
+        ],
+        "op": "LOAD_CONST <code object rectangle_perimeter at 0x74d23e2f4420, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "rectangle_perimeter"
+        ],
+        "op": "LOAD_CONST rectangle_perimeter",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "rectangle_perimeter"
+        ],
+        "op": "LOAD_CONST rectangle_perimeter",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "<function rectangle_perimeter>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [
+          "<function rectangle_perimeter>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [],
+        "op": "STORE_NAME rectangle_perimeter",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "fe1a7094-7e61-415c-9f8b-c647cdf92188",
+        "values": [],
+        "op": "STORE_NAME rectangle_perimeter",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "17d6959d-2d32-4926-8e20-67686c93318e",
+        "values": [
+          "2"
+        ],
+        "op": "LOAD_CONST 2",
+        "op_id": [
+          "rectangle_perimeter",
+          0
+        ],
+        "actual_op": "('rectangle_perimeter', 0) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "17d6959d-2d32-4926-8e20-67686c93318e",
+        "values": [
+          "2"
+        ],
+        "op": "LOAD_CONST 2",
+        "op_id": [
+          "rectangle_perimeter",
+          0
+        ],
+        "actual_op": "('rectangle_perimeter', 0) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "92e67209-22ca-4a4d-93d3-95e748d1a24f",
+        "values": [
+          "2"
+        ],
+        "op": "LOAD_FAST width",
+        "op_id": [
+          "rectangle_perimeter",
+          2
+        ],
+        "actual_op": "('rectangle_perimeter', 2) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "92e67209-22ca-4a4d-93d3-95e748d1a24f",
+        "values": [
+          "2"
+        ],
+        "op": "LOAD_FAST width",
+        "op_id": [
+          "rectangle_perimeter",
+          2
+        ],
+        "actual_op": "('rectangle_perimeter', 2) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "6e1fc041-9184-4f31-8f3f-967d4fadf51a",
+        "values": [
+          "3"
+        ],
+        "op": "LOAD_FAST height",
+        "op_id": [
+          "rectangle_perimeter",
+          4
+        ],
+        "actual_op": "('rectangle_perimeter', 4) LOAD_FAST 1"
+      },
+      "after": {
+        "node": "6e1fc041-9184-4f31-8f3f-967d4fadf51a",
+        "values": [
+          "3"
+        ],
+        "op": "LOAD_FAST height",
+        "op_id": [
+          "rectangle_perimeter",
+          4
+        ],
+        "actual_op": "('rectangle_perimeter', 4) LOAD_FAST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "4d89f566-3aeb-4cc5-9c44-bde57c104601",
+        "values": [
+          "5"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "rectangle_perimeter",
+          6
+        ],
+        "actual_op": "('rectangle_perimeter', 6) BINARY_ADD 0"
+      },
+      "after": {
+        "node": "4d89f566-3aeb-4cc5-9c44-bde57c104601",
+        "values": [
+          "5"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "rectangle_perimeter",
+          6
+        ],
+        "actual_op": "('rectangle_perimeter', 6) BINARY_ADD 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "8d503a9a-f7d0-44e0-9865-dcb966b9faa5",
+        "values": [
+          "Exception: 'int' object is not callable"
+        ],
+        "op": "CALL_FUNCTION 1",
+        "op_id": [
+          "rectangle_perimeter",
+          8
+        ],
+        "actual_op": "('rectangle_perimeter', 8) CALL_FUNCTION 1"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "7f4b7f65-bc77-443f-9e00-1528683fecae",
+        "values": [
+          "10"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "rectangle_perimeter",
+          8
+        ],
+        "actual_op": "('rectangle_perimeter', 8) BINARY_MULTIPLY 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "737004ad-6e2c-4e06-b402-d2523b60f357",
+        "values": [
+          "10"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "rectangle_perimeter",
+          10
+        ],
+        "actual_op": "('rectangle_perimeter', 10) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 7,
+    "exception_before_fix": 8,
+    "last_matching_after_fix": 10
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe run completed in the fixed version, but did not complete in the old version ('int' object is not callable)."
+}
+    </script>
+
+</body>

@@ -1,0 +1,256 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js"></script>
+    <script type="text/javascript" src="../static/llm_handler_convo.js"></script>
+    <script type="text/javascript" src="../static/fixes_convo.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/fixes_convo.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_5f4801e8-7674-47ef-be9e-c28878399005" data-node-id="5f4801e8-7674-47ef-be9e-c28878399005" data-node-name="Module"><span class="ast-node" id="student_code_41e98cfd-eda8-4853-a235-93e3ac82b6c9" data-node-id="41e98cfd-eda8-4853-a235-93e3ac82b6c9" data-node-name="FunctionDef name: is_first_bigger" data-key=0 data-parent-list-id="335e6b79-a160-4fff-bc6e-341cf957699d">def is_first_bigger(<span class="ast-node" id="student_code_551ee10e-85f7-4a6d-b27d-cc00b59c84d5" data-node-id="551ee10e-85f7-4a6d-b27d-cc00b59c84d5" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_49991022-0a3b-4def-bc6b-87f5ca2c95b6" data-node-id="49991022-0a3b-4def-bc6b-87f5ca2c95b6" data-node-name="arg(arg = first)" data-key=0 data-parent-list-id="577b0fc6-ad54-4d7e-b962-102282fb6a85">first</span>, <span class="ast-node" id="student_code_d760bb37-04ad-4ce3-aa0c-460173ba6801" data-node-id="d760bb37-04ad-4ce3-aa0c-460173ba6801" data-node-name="arg(arg = second)" data-key=1 data-parent-list-id="577b0fc6-ad54-4d7e-b962-102282fb6a85">second</span></span>):
+    <span class="ast-node" id="student_code_f2201b23-84df-4d04-ace6-50f39368d21d" data-node-id="f2201b23-84df-4d04-ace6-50f39368d21d" data-node-name="Return" data-key=0 data-parent-list-id="dd653d83-3717-436c-88d0-8044595ca8c5">return <span class="ast-node" id="student_code_bd0a888d-c84d-4e60-b48f-044d1ed99d2d" data-node-id="bd0a888d-c84d-4e60-b48f-044d1ed99d2d" data-node-name="Compare operators: ['Gt']" data-key=value><span class="ast-node rename-node" id="student_code_d67e1233-f000-4c94-83eb-ef179fcd656e" data-node-id="d67e1233-f000-4c94-83eb-ef179fcd656e" data-node-name="Load identifier second" data-key=left>second</span> > <span class="ast-node rename-node" id="student_code_447e6206-178b-4e02-a0d8-8f2a96e65cd1" data-node-id="447e6206-178b-4e02-a0d8-8f2a96e65cd1" data-node-name="Load identifier first" data-key=0 data-parent-list-id="12985d36-702d-4bd6-a307-654890694c20">first</span></span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_5f4801e8-7674-47ef-be9e-c28878399005" data-node-id="5f4801e8-7674-47ef-be9e-c28878399005" data-node-name="Module"><span class="ast-node" id="corrected_code_41e98cfd-eda8-4853-a235-93e3ac82b6c9" data-node-id="41e98cfd-eda8-4853-a235-93e3ac82b6c9" data-node-name="FunctionDef name: is_first_bigger" data-key=0 data-parent-list-id="335e6b79-a160-4fff-bc6e-341cf957699d">def is_first_bigger(<span class="ast-node" id="corrected_code_551ee10e-85f7-4a6d-b27d-cc00b59c84d5" data-node-id="551ee10e-85f7-4a6d-b27d-cc00b59c84d5" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_49991022-0a3b-4def-bc6b-87f5ca2c95b6" data-node-id="49991022-0a3b-4def-bc6b-87f5ca2c95b6" data-node-name="arg(arg = first)" data-key=0 data-parent-list-id="577b0fc6-ad54-4d7e-b962-102282fb6a85">first</span>, <span class="ast-node" id="corrected_code_d760bb37-04ad-4ce3-aa0c-460173ba6801" data-node-id="d760bb37-04ad-4ce3-aa0c-460173ba6801" data-node-name="arg(arg = second)" data-key=1 data-parent-list-id="577b0fc6-ad54-4d7e-b962-102282fb6a85">second</span></span>):
+    <span class="ast-node" id="corrected_code_f2201b23-84df-4d04-ace6-50f39368d21d" data-node-id="f2201b23-84df-4d04-ace6-50f39368d21d" data-node-name="Return" data-key=0 data-parent-list-id="dd653d83-3717-436c-88d0-8044595ca8c5">return <span class="ast-node" id="corrected_code_bd0a888d-c84d-4e60-b48f-044d1ed99d2d" data-node-id="bd0a888d-c84d-4e60-b48f-044d1ed99d2d" data-node-name="Compare operators: ['Gt']" data-key=value><span class="ast-node rename-node" id="corrected_code_d67e1233-f000-4c94-83eb-ef179fcd656e" data-node-id="d67e1233-f000-4c94-83eb-ef179fcd656e" data-node-name="Load identifier first" data-key=left>first</span> > <span class="ast-node rename-node" id="corrected_code_447e6206-178b-4e02-a0d8-8f2a96e65cd1" data-node-id="447e6206-178b-4e02-a0d8-8f2a96e65cd1" data-node-name="Load identifier second" data-key=0 data-parent-list-id="12985d36-702d-4bd6-a307-654890694c20">second</span></span></span></span></span></pre></div>
+    <script>
+      problem_statement = '<span>Write a function, is_first_bigger,</span> <span>which takes in two numbers.</span> <span>It should return True if the first number is bigger,</span> <span>and False otherwise.</span>'
+
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_5f4801e8-7674-47ef-be9e-c28878399005\" data-node-id=\"5f4801e8-7674-47ef-be9e-c28878399005\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_41e98cfd-eda8-4853-a235-93e3ac82b6c9\" data-node-id=\"41e98cfd-eda8-4853-a235-93e3ac82b6c9\" data-node-name=\"FunctionDef name: is_first_bigger\" data-key=0 data-parent-list-id=\"335e6b79-a160-4fff-bc6e-341cf957699d\">def is_first_bigger(<span class=\"ast-node\" id=\"student_code_only_551ee10e-85f7-4a6d-b27d-cc00b59c84d5\" data-node-id=\"551ee10e-85f7-4a6d-b27d-cc00b59c84d5\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_49991022-0a3b-4def-bc6b-87f5ca2c95b6\" data-node-id=\"49991022-0a3b-4def-bc6b-87f5ca2c95b6\" data-node-name=\"arg(arg = first)\" data-key=0 data-parent-list-id=\"577b0fc6-ad54-4d7e-b962-102282fb6a85\">first</span>, <span class=\"ast-node\" id=\"student_code_only_d760bb37-04ad-4ce3-aa0c-460173ba6801\" data-node-id=\"d760bb37-04ad-4ce3-aa0c-460173ba6801\" data-node-name=\"arg(arg = second)\" data-key=1 data-parent-list-id=\"577b0fc6-ad54-4d7e-b962-102282fb6a85\">second</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_f2201b23-84df-4d04-ace6-50f39368d21d\" data-node-id=\"f2201b23-84df-4d04-ace6-50f39368d21d\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"dd653d83-3717-436c-88d0-8044595ca8c5\">return <span class=\"ast-node\" id=\"student_code_only_bd0a888d-c84d-4e60-b48f-044d1ed99d2d\" data-node-id=\"bd0a888d-c84d-4e60-b48f-044d1ed99d2d\" data-node-name=\"Compare operators: ['Gt']\" data-key=value><span class=\"ast-node\" id=\"student_code_only_d67e1233-f000-4c94-83eb-ef179fcd656e\" data-node-id=\"d67e1233-f000-4c94-83eb-ef179fcd656e\" data-node-name=\"Load identifier second\" data-key=left>second</span> > <span class=\"ast-node\" id=\"student_code_only_447e6206-178b-4e02-a0d8-8f2a96e65cd1\" data-node-id=\"447e6206-178b-4e02-a0d8-8f2a96e65cd1\" data-node-name=\"Load identifier first\" data-key=0 data-parent-list-id=\"12985d36-702d-4bd6-a307-654890694c20\">first</span></span></span></span></span>",
+  "dest_string": "def is_first_bigger(first, second):\n    return first > second\n",
+  "source_string": "def is_first_bigger(first, second):\n    return second > first\n",
+  "unit_test_string": "is_first_bigger(3, 1) == True",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "<code object is_first_bigger>"
+        ],
+        "op": "LOAD_CONST <code object is_first_bigger at 0x7c2d9fc350c0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "<code object is_first_bigger>"
+        ],
+        "op": "LOAD_CONST <code object is_first_bigger at 0x7c2d9fc37390, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "is_first_bigger"
+        ],
+        "op": "LOAD_CONST is_first_bigger",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "is_first_bigger"
+        ],
+        "op": "LOAD_CONST is_first_bigger",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "<function is_first_bigger>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [
+          "<function is_first_bigger>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [],
+        "op": "STORE_NAME is_first_bigger",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "41e98cfd-eda8-4853-a235-93e3ac82b6c9",
+        "values": [],
+        "op": "STORE_NAME is_first_bigger",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "d67e1233-f000-4c94-83eb-ef179fcd656e",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST second",
+        "op_id": [
+          "is_first_bigger",
+          0
+        ],
+        "actual_op": "('is_first_bigger', 0) LOAD_FAST 1"
+      },
+      "after": {
+        "node": "d67e1233-f000-4c94-83eb-ef179fcd656e",
+        "values": [
+          "3"
+        ],
+        "op": "LOAD_FAST first",
+        "op_id": [
+          "is_first_bigger",
+          0
+        ],
+        "actual_op": "('is_first_bigger', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "447e6206-178b-4e02-a0d8-8f2a96e65cd1",
+        "values": [
+          "3"
+        ],
+        "op": "LOAD_FAST first",
+        "op_id": [
+          "is_first_bigger",
+          2
+        ],
+        "actual_op": "('is_first_bigger', 2) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "447e6206-178b-4e02-a0d8-8f2a96e65cd1",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST second",
+        "op_id": [
+          "is_first_bigger",
+          2
+        ],
+        "actual_op": "('is_first_bigger', 2) LOAD_FAST 1"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "bd0a888d-c84d-4e60-b48f-044d1ed99d2d",
+        "values": [
+          "False"
+        ],
+        "op": "COMPARE_OP >",
+        "op_id": [
+          "is_first_bigger",
+          4
+        ],
+        "actual_op": "('is_first_bigger', 4) COMPARE_OP 4"
+      },
+      "after": {
+        "node": "bd0a888d-c84d-4e60-b48f-044d1ed99d2d",
+        "values": [
+          "True"
+        ],
+        "op": "COMPARE_OP >",
+        "op_id": [
+          "is_first_bigger",
+          4
+        ],
+        "actual_op": "('is_first_bigger', 4) COMPARE_OP 4"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "f2201b23-84df-4d04-ace6-50f39368d21d",
+        "values": [
+          "False"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "is_first_bigger",
+          6
+        ],
+        "actual_op": "('is_first_bigger', 6) RETURN_VALUE 0"
+      },
+      "after": {
+        "node": "f2201b23-84df-4d04-ace6-50f39368d21d",
+        "values": [
+          "True"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "is_first_bigger",
+          6
+        ],
+        "actual_op": "('is_first_bigger', 6) RETURN_VALUE 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 2,
+    "first_wrong_before_fix": 4,
+    "last_matching_after_fix": 7
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version."
+}
+    </script>
+
+</body>

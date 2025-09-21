@@ -1,0 +1,308 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/path-data-polyfill@1.0.9/path-data-polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leader-line@1.0.7/leader-line.min.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_d35fe666-10f8-4cb4-bf46-e5083738ce1e" data-node-id="d35fe666-10f8-4cb4-bf46-e5083738ce1e" data-node-name="Module"><span class="ast-node" id="student_code_39b69794-1af9-4fb4-9744-eefd13810a9e" data-node-id="39b69794-1af9-4fb4-9744-eefd13810a9e" data-node-name="Import" data-key=0 data-parent-list-id="0a21a460-7bfe-4c72-9f61-97cbd3f89a77"><span class="ast-node rename-node" id="student_code_31528990-b9f7-4c7b-84c4-ad90726d5149" data-node-id="31528990-b9f7-4c7b-84c4-ad90726d5149" data-node-name="alias name: ranom" data-key=0 data-parent-list-id="5d9bf5ae-8f0a-4e9e-8eab-e3ff66b9376a">import</span> ranom</span>
+
+
+<span class="ast-node" id="student_code_f4b35217-7474-411d-be4c-9a3ba40d53ca" data-node-id="f4b35217-7474-411d-be4c-9a3ba40d53ca" data-node-name="FunctionDef name: roll_die" data-key=1 data-parent-list-id="0a21a460-7bfe-4c72-9f61-97cbd3f89a77">def roll_die(<span class="ast-node" id="student_code_49cc7fe4-7e0c-4580-b0d6-39e7f667bee5" data-node-id="49cc7fe4-7e0c-4580-b0d6-39e7f667bee5" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_a89bc6ad-feac-47b6-932e-75d6a3b82683" data-node-id="a89bc6ad-feac-47b6-932e-75d6a3b82683" data-node-name="arg(arg = numsides)" data-key=0 data-parent-list-id="5474ff09-b7f5-405b-9346-6aa83fd46857">numsides</span></span>):
+    <span class="ast-node" id="student_code_e4788a96-0a11-4f22-ba97-2f2ff4aac9b5" data-node-id="e4788a96-0a11-4f22-ba97-2f2ff4aac9b5" data-node-name="Return" data-key=0 data-parent-list-id="8d55f4df-2355-4a56-8c49-0bcf840ca147">return <span class="ast-node" id="student_code_92d21655-5ca3-4fb5-99ba-ecac190e3fe6" data-node-id="92d21655-5ca3-4fb5-99ba-ecac190e3fe6" data-node-name="Call" data-key=value><span class="ast-node" id="student_code_1127eaae-eab7-4546-91af-81f0cd4a92f4" data-node-id="1127eaae-eab7-4546-91af-81f0cd4a92f4" data-node-name="Attribute(ctx=Load)(attr = randint)" data-key=func><span class="ast-node" id="student_code_8d26c0c7-6022-4dfb-9c85-e9aa46b54842" data-node-id="8d26c0c7-6022-4dfb-9c85-e9aa46b54842" data-node-name="Load identifier random" data-key=value>random</span>.randint</span>(<span class="ast-node" id="student_code_ae7f15b2-4edc-4693-89a0-5873350d6ca9" data-node-id="ae7f15b2-4edc-4693-89a0-5873350d6ca9" data-node-name="Num(n = 1)" data-key=0 data-parent-list-id="c5f3d70d-323a-4705-85c7-a588373843fb">1</span>, <span class="ast-node" id="student_code_55c27d05-f77f-480b-a77b-f511f8b9f4b4" data-node-id="55c27d05-f77f-480b-a77b-f511f8b9f4b4" data-node-name="Load identifier numsides" data-key=1 data-parent-list-id="c5f3d70d-323a-4705-85c7-a588373843fb">numsides</span>)</span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_d35fe666-10f8-4cb4-bf46-e5083738ce1e" data-node-id="d35fe666-10f8-4cb4-bf46-e5083738ce1e" data-node-name="Module"><span class="ast-node" id="corrected_code_39b69794-1af9-4fb4-9744-eefd13810a9e" data-node-id="39b69794-1af9-4fb4-9744-eefd13810a9e" data-node-name="Import" data-key=0 data-parent-list-id="0a21a460-7bfe-4c72-9f61-97cbd3f89a77"><span class="ast-node rename-node" id="corrected_code_31528990-b9f7-4c7b-84c4-ad90726d5149" data-node-id="31528990-b9f7-4c7b-84c4-ad90726d5149" data-node-name="alias name: random" data-key=0 data-parent-list-id="5d9bf5ae-8f0a-4e9e-8eab-e3ff66b9376a">import</span> random</span>
+
+
+<span class="ast-node" id="corrected_code_f4b35217-7474-411d-be4c-9a3ba40d53ca" data-node-id="f4b35217-7474-411d-be4c-9a3ba40d53ca" data-node-name="FunctionDef name: roll_die" data-key=1 data-parent-list-id="0a21a460-7bfe-4c72-9f61-97cbd3f89a77">def roll_die(<span class="ast-node" id="corrected_code_49cc7fe4-7e0c-4580-b0d6-39e7f667bee5" data-node-id="49cc7fe4-7e0c-4580-b0d6-39e7f667bee5" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_a89bc6ad-feac-47b6-932e-75d6a3b82683" data-node-id="a89bc6ad-feac-47b6-932e-75d6a3b82683" data-node-name="arg(arg = numsides)" data-key=0 data-parent-list-id="5474ff09-b7f5-405b-9346-6aa83fd46857">numsides</span></span>):
+    <span class="ast-node" id="corrected_code_e4788a96-0a11-4f22-ba97-2f2ff4aac9b5" data-node-id="e4788a96-0a11-4f22-ba97-2f2ff4aac9b5" data-node-name="Return" data-key=0 data-parent-list-id="8d55f4df-2355-4a56-8c49-0bcf840ca147">return <span class="ast-node" id="corrected_code_92d21655-5ca3-4fb5-99ba-ecac190e3fe6" data-node-id="92d21655-5ca3-4fb5-99ba-ecac190e3fe6" data-node-name="Call" data-key=value><span class="ast-node" id="corrected_code_1127eaae-eab7-4546-91af-81f0cd4a92f4" data-node-id="1127eaae-eab7-4546-91af-81f0cd4a92f4" data-node-name="Attribute(ctx=Load)(attr = randint)" data-key=func><span class="ast-node" id="corrected_code_8d26c0c7-6022-4dfb-9c85-e9aa46b54842" data-node-id="8d26c0c7-6022-4dfb-9c85-e9aa46b54842" data-node-name="Load identifier random" data-key=value>random</span>.randint</span>(<span class="ast-node" id="corrected_code_ae7f15b2-4edc-4693-89a0-5873350d6ca9" data-node-id="ae7f15b2-4edc-4693-89a0-5873350d6ca9" data-node-name="Num(n = 1)" data-key=0 data-parent-list-id="c5f3d70d-323a-4705-85c7-a588373843fb">1</span>, <span class="ast-node" id="corrected_code_55c27d05-f77f-480b-a77b-f511f8b9f4b4" data-node-id="55c27d05-f77f-480b-a77b-f511f8b9f4b4" data-node-name="Load identifier numsides" data-key=1 data-parent-list-id="c5f3d70d-323a-4705-85c7-a588373843fb">numsides</span>)</span></span></span></span></pre></div>
+    <script>
+      problem_name = 'roll_die'
+      problem_statement = '<span class="">Write a function, roll_die </span><span class="">which takes in a number, numsides, representing the number of sides in the die to roll, </span><span class="">and returns a random number between 1 </span><span class="">and numsides </span><span class="">(inclusive)</span>'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_d35fe666-10f8-4cb4-bf46-e5083738ce1e\" data-node-id=\"d35fe666-10f8-4cb4-bf46-e5083738ce1e\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_39b69794-1af9-4fb4-9744-eefd13810a9e\" data-node-id=\"39b69794-1af9-4fb4-9744-eefd13810a9e\" data-node-name=\"Import\" data-key=0 data-parent-list-id=\"0a21a460-7bfe-4c72-9f61-97cbd3f89a77\"><span class=\"ast-node\" id=\"student_code_only_31528990-b9f7-4c7b-84c4-ad90726d5149\" data-node-id=\"31528990-b9f7-4c7b-84c4-ad90726d5149\" data-node-name=\"alias name: ranom\" data-key=0 data-parent-list-id=\"5d9bf5ae-8f0a-4e9e-8eab-e3ff66b9376a\">import</span> ranom</span>\n\n\n<span class=\"ast-node\" id=\"student_code_only_f4b35217-7474-411d-be4c-9a3ba40d53ca\" data-node-id=\"f4b35217-7474-411d-be4c-9a3ba40d53ca\" data-node-name=\"FunctionDef name: roll_die\" data-key=1 data-parent-list-id=\"0a21a460-7bfe-4c72-9f61-97cbd3f89a77\">def roll_die(<span class=\"ast-node\" id=\"student_code_only_49cc7fe4-7e0c-4580-b0d6-39e7f667bee5\" data-node-id=\"49cc7fe4-7e0c-4580-b0d6-39e7f667bee5\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_a89bc6ad-feac-47b6-932e-75d6a3b82683\" data-node-id=\"a89bc6ad-feac-47b6-932e-75d6a3b82683\" data-node-name=\"arg(arg = numsides)\" data-key=0 data-parent-list-id=\"5474ff09-b7f5-405b-9346-6aa83fd46857\">numsides</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_e4788a96-0a11-4f22-ba97-2f2ff4aac9b5\" data-node-id=\"e4788a96-0a11-4f22-ba97-2f2ff4aac9b5\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"8d55f4df-2355-4a56-8c49-0bcf840ca147\">return <span class=\"ast-node\" id=\"student_code_only_92d21655-5ca3-4fb5-99ba-ecac190e3fe6\" data-node-id=\"92d21655-5ca3-4fb5-99ba-ecac190e3fe6\" data-node-name=\"Call\" data-key=value><span class=\"ast-node\" id=\"student_code_only_1127eaae-eab7-4546-91af-81f0cd4a92f4\" data-node-id=\"1127eaae-eab7-4546-91af-81f0cd4a92f4\" data-node-name=\"Attribute(ctx=Load)(attr = randint)\" data-key=func><span class=\"ast-node\" id=\"student_code_only_8d26c0c7-6022-4dfb-9c85-e9aa46b54842\" data-node-id=\"8d26c0c7-6022-4dfb-9c85-e9aa46b54842\" data-node-name=\"Load identifier random\" data-key=value>random</span>.randint</span>(<span class=\"ast-node\" id=\"student_code_only_ae7f15b2-4edc-4693-89a0-5873350d6ca9\" data-node-id=\"ae7f15b2-4edc-4693-89a0-5873350d6ca9\" data-node-name=\"Num(n = 1)\" data-key=0 data-parent-list-id=\"c5f3d70d-323a-4705-85c7-a588373843fb\">1</span>, <span class=\"ast-node\" id=\"student_code_only_55c27d05-f77f-480b-a77b-f511f8b9f4b4\" data-node-id=\"55c27d05-f77f-480b-a77b-f511f8b9f4b4\" data-node-name=\"Load identifier numsides\" data-key=1 data-parent-list-id=\"c5f3d70d-323a-4705-85c7-a588373843fb\">numsides</span>)</span></span></span></span>",
+  "dest_string": "import random\n\n\ndef roll_die(numsides):\n    return random.randint(1, numsides)\n",
+  "source_string": "import ranom\n\n\ndef roll_die(numsides):\n    return random.randint(1, numsides)\n",
+  "unit_test_string": "roll_die(1) == 1",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "39b69794-1af9-4fb4-9744-eefd13810a9e",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "39b69794-1af9-4fb4-9744-eefd13810a9e",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "39b69794-1af9-4fb4-9744-eefd13810a9e",
+        "values": [
+          "None"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "39b69794-1af9-4fb4-9744-eefd13810a9e",
+        "values": [
+          "None"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "31528990-b9f7-4c7b-84c4-ad90726d5149",
+        "values": [
+          "Exception: No module named 'ranom'"
+        ],
+        "op": "IMPORT_NAME ranom",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) IMPORT_NAME 0"
+      },
+      "after": {
+        "node": "31528990-b9f7-4c7b-84c4-ad90726d5149",
+        "values": [
+          "<module 'random' from '/usr/local/lib/python3.7/random.py'>"
+        ],
+        "op": "IMPORT_NAME random",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) IMPORT_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "31528990-b9f7-4c7b-84c4-ad90726d5149",
+        "values": [],
+        "op": "STORE_NAME random",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f4b35217-7474-411d-be4c-9a3ba40d53ca",
+        "values": [
+          "roll_die"
+        ],
+        "op": "LOAD_CONST roll_die",
+        "op_id": [
+          "<module>",
+          10
+        ],
+        "actual_op": "('<module>', 10) LOAD_CONST 3"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f4b35217-7474-411d-be4c-9a3ba40d53ca",
+        "values": [
+          "<function roll_die>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          12
+        ],
+        "actual_op": "('<module>', 12) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f4b35217-7474-411d-be4c-9a3ba40d53ca",
+        "values": [],
+        "op": "STORE_NAME roll_die",
+        "op_id": [
+          "<module>",
+          14
+        ],
+        "actual_op": "('<module>', 14) STORE_NAME 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f4b35217-7474-411d-be4c-9a3ba40d53ca",
+        "values": [
+          "<function roll_die>"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "<module>",
+          16
+        ],
+        "actual_op": "('<module>', 16) LOAD_NAME 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "8d26c0c7-6022-4dfb-9c85-e9aa46b54842",
+        "values": [
+          "<module 'random' from '/usr/local/lib/python3.7/random.py'>"
+        ],
+        "op": "LOAD_GLOBAL random",
+        "op_id": [
+          "roll_die",
+          0
+        ],
+        "actual_op": "('roll_die', 0) LOAD_GLOBAL 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "1127eaae-eab7-4546-91af-81f0cd4a92f4",
+        "values": [],
+        "op": "LOAD_METHOD randint",
+        "op_id": [
+          "roll_die",
+          2
+        ],
+        "actual_op": "('roll_die', 2) LOAD_METHOD 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "ae7f15b2-4edc-4693-89a0-5873350d6ca9",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_CONST 1",
+        "op_id": [
+          "roll_die",
+          4
+        ],
+        "actual_op": "('roll_die', 4) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "55c27d05-f77f-480b-a77b-f511f8b9f4b4",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST numsides",
+        "op_id": [
+          "roll_die",
+          6
+        ],
+        "actual_op": "('roll_die', 6) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "1127eaae-eab7-4546-91af-81f0cd4a92f4",
+        "values": [
+          "1"
+        ],
+        "op": "CALL_METHOD 2",
+        "op_id": [
+          "roll_die",
+          8
+        ],
+        "actual_op": "('roll_die', 8) CALL_METHOD 2"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "f4b35217-7474-411d-be4c-9a3ba40d53ca",
+        "values": [
+          "1"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "roll_die",
+          10
+        ],
+        "actual_op": "('roll_die', 10) RETURN_VALUE 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 1,
+    "first_wrong_before_fix": 2,
+    "exception_before_fix": 2,
+    "last_matching_after_fix": 13
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe run completed in the fixed version, but did not complete in the old version (No module named 'ranom')."
+}
+    </script>
+
+</body>
