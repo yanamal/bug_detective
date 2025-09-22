@@ -1,3 +1,5 @@
+// ~~~~ Functions that make LLM calls for "interaction-style" steps/questions ~~~~
+
 function start_problem_statement_check(prob, unit_test, student_output, correct_output){
         // remove initial fade in animation from problem statement so we can mess with its classes 
         $('.problem-statement').removeClass('animate-fade-in')
@@ -492,7 +494,9 @@ function request_direction_feedback(){
     })
 }
 
-let descriptive_trace; // variable to globally store descriptive synced trace (with code context, not bytecode) when it's ready
+// ~~~~ Functions for getting trace step descriptions ~~~~
+
+let descriptive_trace = []; // variable to globally store descriptive synced trace (with code context, not bytecode) when it's ready
 
 function request_full_trace_analysis() {
     
@@ -544,6 +548,7 @@ function request_full_trace_analysis() {
     })
 }
 
+// request selection of a relevant *slice* of the trace
 function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
     let prob = problem_statement || ""
 
@@ -616,3 +621,109 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
     });
 
 }
+
+// ~~~~ Functions for "conversation-style" steps/questions
+
+function request_chat_response(step_name, chat_history,
+    message_box_selector, conversation_div_selector, input_div_selector,
+    api_endpoint) {
+    // Generic function for continuing a coversation within a specific step.
+
+    // get inputs
+    let prob = $('#problem_statement_div').text() // problem_statement || ""
+
+    let unit_test = correction_data['unit_test_string']
+
+    let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
+
+
+    let student_code_block = $('#before_block').clone()
+    student_code_block.find('.value').remove()
+    let student_code = student_code_block.text()
+
+
+    let student_descriptive_trace = []
+    let orig_indices = []
+    for(let i=0; i<descriptive_trace.length; i++)
+    {
+        if(descriptive_trace[i].before !== null) {
+            student_descriptive_trace.push(descriptive_trace[i].before)
+            orig_indices.push(i)
+        }
+    }
+
+
+    let student_message = $(message_box_selector).val()
+    // clear mesage box
+    $(message_box_selector).val('')
+
+    // append message to conversation div
+    $(conversation_div_selector).append(`<div class='student'>${student_message}<div>`)
+
+    // append message to conversation history
+    chat_history.push({
+        "role": "user",
+        "parts": [{text: student_message}]
+    })
+
+    // request response
+    return fetch(api_endpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            problem_statement: prob,
+            unit_test: unit_test,
+            student_output: student_output,
+            chat_history: chat_history,
+            student_code: student_code,
+            execution_trace: student_descriptive_trace
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+
+        response = data.results.response_data.step3_response_to_student
+
+        // append response to conversation div
+        $(conversation_div_selector).append(`<div class='tutor'>${marked.parse(response)}<div>`)
+
+        // append response to chat history
+        observation_chat_history.push({
+            "role": "model",
+            "parts": [{text: response}]
+        })
+
+        if(data.results.response_data.step2_has_question_been_answered){
+            //end conversation
+            $(`[data-step-name="${step_name}"] .next-button`).removeClass('hidden')
+
+            $(input_div_selector).addClass('hidden')
+        }
+
+    })
+}
+
+function request_observation_response(){
+    // This is called when the student presses "send" with a message to the step 1 (observation) assistant.
+
+    return request_chat_response('observation', observation_chat_history,
+        '#student-observation-box', '#observation-conversation', '#student-observation-input',
+        '/api/observation_convo')
+}
+
+function request_direction_response(){
+    return request_chat_response('direction', direction_chat_history,
+        '#student-direction-box', '#direction-conversation', '#student-direction-input',
+    '/api/direction_convo')
+}
+
+function request_action_response(){
+    return request_chat_response('action', action_chat_history,
+        '#student-action-box', '#action-conversation', '#student-action-input',
+        '/api/action_convo'
+    )
+}
+

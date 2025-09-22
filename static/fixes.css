@@ -484,3 +484,9 @@ body {
 .hidden {
     display: none!important;
 }
+
+.explanation .student{
+    background-color: white;
+    border-radius: 5px;
+    margin: 5px;
+}
