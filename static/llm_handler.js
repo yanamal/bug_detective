@@ -1,62 +1,74 @@
 // ~~~~ Functions that make LLM calls for "interaction-style" steps/questions ~~~~
 
 function start_problem_statement_check(prob, unit_test, student_output, correct_output){
-        // remove initial fade in animation from problem statement so we can mess with its classes 
-        $('.problem-statement').removeClass('animate-fade-in')
+    // first, make sure the understanding check exists (it may not if this step is "conversational)
+    if($('[data-step-name="observation"] .understanding_check').length === 0){
+        return;
+    }
 
-        // draw arrow from understanding check text to problem statement
-        // (and activate problem statement)
-        drawTransientArrow(
-            document.querySelector('.understanding_check .arrow-start'),
-            document.querySelector('.problem-statement')
-        )
+    // remove initial fade in animation from problem statement so we can mess with its classes
+    $('.problem-statement').removeClass('animate-fade-in')
 
-        // activate "click on problem statement segment" logic
-        $('#problem_statement_div>span').click(function(){
-            pieces = $('#problem_statement_div>span').map(function(){return $(this).text()})
-            expected_answer = $('#problem_statement_div>.expected').text()
+    // draw arrow from understanding check text to problem statement
+    // (and activate problem statement)
+    // TODO: use more precise selector? (specify observation)
 
-            console.log($(this).text())
-            fetch('/api/problem_statement_feedback', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    problem_statement: prob,
-                    problem_statement_pieces: pieces,
-                    unit_test: unit_test,
-                    student_output: student_output,
-                    correct_output: correct_output,
-                    expected_answer: expected_answer,
-                    clicked_piece: $(this).text()
-                })
+    drawTransientArrow(
+        document.querySelector('.understanding_check .arrow-start'),
+        document.querySelector('.problem-statement')
+    )
+
+    // activate "click on problem statement segment" logic
+    $('#problem_statement_div>span').click(function(){
+        pieces = $('#problem_statement_div>span').map(function(){return $(this).text()})
+        expected_answer = $('#problem_statement_div>.expected').text()
+
+        console.log($(this).text())
+        fetch('/api/problem_statement_feedback', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                problem_statement: prob,
+                problem_statement_pieces: pieces,
+                unit_test: unit_test,
+                student_output: student_output,
+                correct_output: correct_output,
+                expected_answer: expected_answer,
+                clicked_piece: $(this).text()
             })
-            .then(response => response.json())
-            .then(data => {
-                // Feedback loaded - show it, and proceed to next step if necessary
-                console.log(data)
-                feedback_text = data.results.problem_feedback_data.step1_feedback_to_student
-                should_try_again = data.results.problem_feedback_data.step2_asked_to_try_again
-                $('#step1_check_feedback').append(marked.parse(feedback_text)+'<br>')
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Feedback loaded - show it, and proceed to next step if necessary
+            console.log(data)
+            feedback_text = data.results.problem_feedback_data.step1_feedback_to_student
+            should_try_again = data.results.problem_feedback_data.step2_asked_to_try_again
+            $('#step1_check_feedback').append(marked.parse(feedback_text)+'<br>')
 
-                if(!should_try_again) {
-                    // the model told us we are done with this step.
-                    // turn on next step button
-                    $('[data-step-name="observation"] .next-button').removeClass('hidden')
-                    // remove active class from problem statement (added by arrow drawing logic)
-                    $('.problem-statement').removeClass('active-check')
-                    // remove click listener
-                    $('#problem_statement_div>span').off('click');
-                }
-            })
-        });
+            if(!should_try_again) {
+                // the model told us we are done with this step.
+                // turn on next step button
+                $('[data-step-name="observation"] .next-button').removeClass('hidden')
+                // remove active class from problem statement (added by arrow drawing logic)
+                $('.problem-statement').removeClass('active-check')
+                // remove click listener
+                $('#problem_statement_div>span').off('click');
+            }
+        })
+    });
 }
 
 function start_exception_check(prob, unit_test, student_output, correct_output){
-    
+    // first, make sure the understanding check exists (it may not if this step is "conversational)
+    if($('[data-step-name="observation"] .understanding_check').length === 0){
+        return;
+    }
+
     // draw arrow from understanding check text to exception text
     // (and activate exception text)
+    // TODO: use more precise selector? (specify observation)
     drawTransientArrow(
         document.querySelector('.understanding_check .arrow-start'),
         document.querySelector('.student-output-text')
@@ -107,6 +119,11 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
 }
 
 function start_direction_check(){
+    // first, make sure the understanding check exists (it may not if this step is "conversational)
+    if($('[data-step-name="direction"] .understanding_check').length === 0){
+        return;
+    }
+
     // start logic for asking the understanding question in step 2(direction)
     // activate "understanding check" question
     $('[data-step-name="direction"] .understanding_check').addClass('active')
@@ -126,6 +143,10 @@ function start_direction_check(){
 }
 
 function start_action_check(){
+// first, make sure the understanding check exists (it may not if this step is "conversational)
+    if($('[data-step-name="action"] .understanding_check').length === 0){
+        return;
+    }
 
     // deactivate 'active-check' on slider handle (TODO: do after check finishes?)
     $('.ui-slider-handle').removeClass('active-check')
@@ -256,13 +277,100 @@ function request_exception_check(){
     })
 }
 
+// make a request to the server to generate an Observation step message; put it in the expected place on the page once it's generated
+function request_observation() {
+    const obs_request_params = {
+        problem_statement: $('#problem_statement_div').text(),
+        student_code: correction_data['source_string'],
+        corrected_code: correction_data['dest_string'],
+        unit_test: correction_data['unit_test_string'],
+        student_output: correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString(),
+        correct_output: correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
+    };
+
+    // Send AJAX request
+    return fetch('/api/observation', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obs_request_params)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Process and display generated observation step
+        console.log(data.candidate_observations)
+        console.log(data.candidate_evaluation)
+
+        // display observation step
+        $('#observation-text').html(marked.parse(data.observation))
+        $('#observation-text').removeClass()  // no longer loading
+
+        // set up revealing the understanding check
+        $('[data-step-name="observation"] .understanding_check').addClass('active')
+
+        // start understanding check: exception or problem statement, depending on type of output.
+        if (obs_request_params.student_output.startsWith('Exception:')) {
+            start_exception_check(obs_request_params.problem_statement,
+                                  obs_request_params.unit_test,
+                                  obs_request_params.student_output,
+                                  obs_request_params.correct_output)
+        } else {
+            start_problem_statement_check(obs_request_params.problem_statement,
+                                          obs_request_params.unit_test,
+                                          obs_request_params.student_output,
+                                          obs_request_params.correct_output)
+        }
+
+        // return generated step output so far
+        return {
+            observation: data.observation
+        }
+    })
+}
+
+function request_direction(previous_output = {}) {
+    const direction_request_params = {
+        problem_statement: $('#problem_statement_div').text(),
+        student_code: correction_data['source_string'],
+        corrected_code: correction_data['dest_string'],
+        unit_test: correction_data['unit_test_string'],
+        student_output: correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString(),
+        correct_output: correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString(),
+        observation: previous_output.observation
+    };
+
+
+    // Send AJAX request
+    return fetch('/api/direction', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(direction_request_params)
+    })
+    .then(response => response.json())
+    .then(directionData => {
+        // Process and display generated direction step
+        $('#direction-text').html(marked.parse(directionData.direction))
+        $('#direction-text').removeClass()
+
+        console.log(directionData.direction_candidates)
+        console.log(directionData.candidate_evaluation)
+
+        // return generated step output so far
+        previous_output.direction = directionData.direction
+        return previous_output;
+    })
+}
+
 function request_diagnostics(){
     // extract problem data and request diagnostic messages (looks like..., I wonder...)
     let prob = $('#problem_statement_div').text() // problem_statement || ""
 
     let unit_test = correction_data['unit_test_string']
 
-    // TODO: or just use correction_data['source_string'] and correction_data['dest_string']
+    // TODO: or just use correction_data['source_string'] and correction_data['dest_string'] - if it's guaranteed to be canonicalized in the same way?
     let student_code_block = $('#before_block').clone()
     student_code_block.find('.value').remove()
     let student_code = student_code_block.text()
@@ -611,7 +719,8 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
 
         // "let's investigate!"
         $('#action-text').html(marked.parse(data.results.slice_data.student_call_to_action))
-        $('#action-text').removeClass()
+        $('#action-text').removeClass('loading-line')
+        $('#action-text').removeClass('loading-placeholder')
         // add_step(`<h4>Step 4. Let's investigate!</h4><div> ${marked.parse(data.results.slice_data.student_call_to_action)} </div>`)
         //$('#conversation_div').append(`<div class="explanation"><h4>Step 4. Let's investigate!</h4><div> ${marked.parse(data.results.slice_data.student_call_to_action)} </div></div>`)
 
@@ -626,14 +735,12 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
 
 function request_chat_response(step_name, chat_history,
     message_box_selector, conversation_div_selector, input_div_selector,
-    api_endpoint) {
-    // Generic function for continuing a coversation within a specific step.
+    api_endpoint, finish_resolve_func=null, previous_output={}) {
+    // Generic function for continuing a conversation within a specific step.
 
     // get inputs
     let prob = $('#problem_statement_div').text() // problem_statement || ""
-
     let unit_test = correction_data['unit_test_string']
-
     let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
 
 
@@ -654,7 +761,7 @@ function request_chat_response(step_name, chat_history,
 
 
     let student_message = $(message_box_selector).val()
-    // clear mesage box
+    // clear message box
     $(message_box_selector).val('')
 
     // append message to conversation div
@@ -685,13 +792,13 @@ function request_chat_response(step_name, chat_history,
     .then(data => {
         console.log(data)
 
-        response = data.results.response_data.step3_response_to_student
+        let response = data.results.response_data.step3_response_to_student
 
         // append response to conversation div
         $(conversation_div_selector).append(`<div class='tutor'>${marked.parse(response)}<div>`)
 
         // append response to chat history
-        observation_chat_history.push({
+        chat_history.push({
             "role": "model",
             "parts": [{text: response}]
         })
@@ -701,29 +808,39 @@ function request_chat_response(step_name, chat_history,
             $(`[data-step-name="${step_name}"] .next-button`).removeClass('hidden')
 
             $(input_div_selector).addClass('hidden')
+
+            // is there a manual resolve function we need to call when the conversation is over, in order to trigger logic for the next step?
+            // if so, resolve it.
+            // TODO: actually, also take the previous output data that was passed through and add this step's response?..
+            if(finish_resolve_func) {
+                // turn previous output into current output (add output of this step)
+                previous_output[step_name] = response
+                finish_resolve_func(previous_output)
+            }
         }
 
+        // return response
     })
 }
 
-function request_observation_response(){
+function request_observation_response(chat_history, finish_resolve_func){
     // This is called when the student presses "send" with a message to the step 1 (observation) assistant.
 
-    return request_chat_response('observation', observation_chat_history,
+    return request_chat_response('observation', chat_history,
         '#student-observation-box', '#observation-conversation', '#student-observation-input',
-        '/api/observation_convo')
+        '/api/observation_convo', finish_resolve_func) // no previous output - observation is always the first step
 }
 
-function request_direction_response(){
-    return request_chat_response('direction', direction_chat_history,
+function request_direction_response(chat_history, finish_resolve_func, prev_output){
+    return request_chat_response('direction', chat_history,
         '#student-direction-box', '#direction-conversation', '#student-direction-input',
-    '/api/direction_convo')
+    '/api/direction_convo', finish_resolve_func, prev_output)
 }
 
-function request_action_response(){
-    return request_chat_response('action', action_chat_history,
+function request_action_response(chat_history, finish_resolve_func, prev_output){
+    return request_chat_response('action', chat_history,
         '#student-action-box', '#action-conversation', '#student-action-input',
-        '/api/action_convo'
+        '/api/action_convo', finish_resolve_func, prev_output
     )
 }
 

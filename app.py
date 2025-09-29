@@ -188,7 +188,12 @@ Remember, your role is to describe the discrepancy between expected and actual o
 def gen_direction():
     data = request.json
 
-    observation_text = data.get('observation', '')
+    prev_observation = ''
+    if 'observation' in data:
+        prev_observation = f'''
+The student and the system previously generated an observation about the discrepancy between the expected and actual output; the system summarized this observation in the following way:
+"{data['observation']}"
+'''
 
     problem_prompt_data = f'''
 <problem_statement>
@@ -221,8 +226,7 @@ Here is the context for the current debugging session:
 
 {problem_prompt_data}
 
-The system previously provided the student with the following observation about the discrepancy between the expected and actual output:
-"{observation_text}"
+{prev_observation}
 
 Your task is to provide a student-facing suggestion for a fruitful direction to investigate this incorrect output. Specifically, this direction should aim to investigate "What were the intermediate values that contributed to this output?"
 
@@ -476,6 +480,20 @@ def gen_trace_slice():
     for i in range(len(student_trace)):
         student_trace[i]['index'] = i
 
+    prev_observations = ""
+    if 'obervation' in data:
+        prev_observations += f'''
+**Step 1. How is the output wrong?**
+{data['observation']}
+
+'''
+    if 'direction' in data:
+        prev_observations += f'''
+**Step 2. What should we look into?**
+{data['direction']}
+
+'''
+
     problem_prompt_data = f"""
 Problem statement:
 {data['problem_statement']}
@@ -492,13 +510,10 @@ Output of student code after running the unit test (return value or exception me
 Execution trace of running the unit test on the student code:
 {json.dumps(student_trace, indent=2)}
 
-Previously, the system has provided the student with the following observations:
-<previous_system_output>
-**Step 1. How is the output wrong?**
-{data['direction']}
+In the previous steps, the student and the system may have generated some preliminary observations; the system summarized these observations(if any) in the following way:
 
-**Step 2. What should we look into?**
-{data['observation']}
+<previous_system_output>
+{prev_observations}
 </previous_system_output>
 
 
@@ -569,14 +584,14 @@ def tutorial_sequence():
     page_sequence = [
         'explanation?',  # 0
         'explanation?which_step=step1', # 1
-        'roll_die?',
-        'convo/is_first_bigger?',
+        'roll_die?step2=skip&step3=convo',
+        'is_first_bigger?step1=convo&step2=skip&step3=convo',
         'explanation?which_step=step2',  # 4
-        'convo/perimeter?',
-        'explanation?which_step=step3',  # 6
+        'perimeter?step1=inter&step2=convo&step3=inter',
+        'roll_die_2?step1=convo&step2=convo&step3=convo',
+        'explanation?which_step=step3',  # 7
         'perimeter_2?',
-        'convo/roll_die_2?',
-        'convo/only_even?',
+        'only_even?step1=convo&step2=convo&step3=inter',
     ]
     last_completed = request.values.get('completed', -1)
 

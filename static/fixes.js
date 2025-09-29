@@ -348,7 +348,206 @@ function get_correct_code_trace(){
 
 let full_synced_trace, student_trace;
 
+// Functions that set up each type of step: (observation, direction, diagnostic action) x (interactive or conversational)
+// Each function:
+// (1) adds the proper step html using add_step
+// (2) returns a promise which will resolve to key-value pairs of steps so far (to pass on to next step)
+
+function make_observation_inter(){
+
+    let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
+    let correct_output = correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
+
+    // Add the step HTML
+    add_step(`<h4>Step 1. How is the output wrong?</h4>
+        <div id="observation-text" class="loading-placeholder loading-line"> </div>
+
+        <div class="understanding_check"> <b>Do you see what I mean?</b> <span class="understanding-check-text">Click on the part of the problem statement which best explains why we expected the code to return <code>${correct_output}</code>.</span> <span class="arrow-start"></span>
+        <br/><div id="step1_check_feedback"></div>
+        </div>`, "observation", false)
+
+    // Set up and return promise which will resolve to the output of the observation step (i.e. the observation)
+    if (student_output.startsWith('Exception')) {
+        // If this bug results in an exception, we first have to set up the understanding check.
+        // This ensures that the understanding question is already prepared when the observation is displayed.
+        return request_exception_check().then(data => request_observation())
+    }
+    else {
+        // If this is not an exception, then the understanding check is already prepared
+        // (the input data defines it, since it depends on the problem and the failing unit test, and is independent of the bug/student input)
+        return request_observation()
+    }
+}
+
+function make_observation_convo() {
+
+    let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
+    let correct_output = correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
+
+    // Set up manual promise and pipe through access to its resolve/reject functions
+    let fo_resolve, fo_reject;
+    let finish_obs_promise = new Promise((res, rej) =>{
+        fo_resolve = res;
+        fo_reject = rej;
+    })
+
+    // set up chat history variable
+    let observation_chat_history = []
+
+
+    // Add the step HTML (conversation about observation)
+
+    let observation_question =  (student_output.startsWith('Exception:')?"Can you rephrase what the exception message is saying in plain English?":
+    `Can you explain why the problem expects the code to return ${correct_output} and not ${student_output} in this case?`)
+
+    add_step(`<h4>Step 1. How is the output wrong?</h4>
+        <div id="observation-conversation">
+        <div class="tutor initial">Before we start analyzing the code, let's make sure we understand what happens when we run this unit test, and how it's wrong. <span><b>${observation_question}</b></span></div>
+        </div>
+
+        <span id="student-observation-input">
+        <textarea id="student-observation-box" name="observation" rows="3" cols="80"></textarea>
+        <button id="obs-convo-send">Send</button>
+        </span>`
+        , "observation", false)
+
+    $('#obs-convo-send').click(() => {
+          request_observation_response(observation_chat_history, fo_resolve);
+    });
+
+    // start the "chat history" for the observation chat - pick up the intro text fom the step:
+    // TODO: make global observation_chat_history variable, or something else? local to make_* (with closure)?
+    observation_chat_history.push({
+        "role": "model",
+        "parts": [{text: $('[data-step-name="observation"] .tutor.initial').text()}]
+    })
+
+    return finish_obs_promise
+}
+
+function make_direction_inter(obs_promise, trace_promise) {
+    let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
+    let correct_output = correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
+
+    // Add the step HTML (immediately when make function is called)
+    add_step(`<h4>Step 2. What should we look into?</h4>
+        <div id="direction-text" class="loading-placeholder loading-line"> </div>
+        <div class="understanding_check"><span class="understanding-check-text loading-placeholder loading-line"></span> <span class="arrow-start"></span>
+        <br/><div id="step2_check_feedback"></div>
+        </div>
+        `, "direction", false)
+
+    // request generation of the direction statement once the observation resolved
+    let direction_promise = obs_promise.then(obs_output => request_direction(obs_output))
+
+    // once both the direction statement and the trace promise are resolved, use those to generate the understanding question
+    Promise.all([direction_promise, trace_promise])
+    .then(([diagnostic_responses, descriptive_synced_trace]) =>
+        request_direction_question(diagnostic_responses, descriptive_synced_trace)
+    )
+
+    return direction_promise
+}
+
+function make_direction_convo(obs_promise){
+
+    // Set up promise to be manually resolved when the conversation is over
+    let fd_resolve, fd_reject;
+    let finish_dir_promise = new Promise((res, rej) => {
+        fd_resolve = res
+        fd_reject = rej
+    })
+
+    // set up chat history tracking
+    let direction_chat_history = []
+
+    // Add HTML for the step
+    add_step(`<h4>Step 2. What should we look into?</h4>
+        <div id="direction-conversation">
+        <div class="tutor initial">Before we jump into analyzing the code, let's make sure we have a good plan about what to investigate. Looking over the code, <b>what questions should we be asking</b> to figure out what happened when the code ran with this particular unit test? Or, <b>what values or calcuations </b>might have contributed to the incorrect output?</div>
+        </div>
+
+        <span id="student-direction-input">
+        <textarea id="student-direction-box" name="direction" rows="3" cols="80">We should try to find out...</textarea>
+        <button id="dir-convo-send">Send</button>
+        </span>
+        `, "direction", false)
+
+    $('#dir-convo-send').click(() => {
+        // currently, the only reason we need prev_output to start this conversation is in order to pass along the previous output
+        // so we can append to it, and return it when THIS step's promise is resolved, in case subsequent steps want to use that information.
+        // Note that it should never happen that we need to request a response to THIS conversation while the previous step is not finished (and therefore obs_promise is not resolved).
+        // So obs_promise should already be resolved by the time the user triggers this click handler, we just need to know what its output was.
+        obs_promise.then( prev_output => request_direction_response(direction_chat_history, fd_resolve, prev_output));
+    });
+
+    // return the promise which will resolve when the direction conversation is over, and there is output to give.
+    return finish_dir_promise
+}
+
+function make_action(prev_steps_promise, trace_promise, suggest_slice=true){
+    // The "action" step always asks the student to investigate and then explain the bug in their own words;
+    // So in that way, it's always conversational. For the interactive version, we also select and show a relevant slice of the code, and describe it.
+
+    // set up manually-resolved promise
+    let fa_resolve, fa_reject;
+    let finish_action_promise = new Promise((res, rej) =>{
+        fa_resolve = res;
+        fa_reject = rej;
+    })
+
+    // If we are showing the slice, request trace slice once we have trace data AND output from previous steps
+    if (suggest_slice) {
+        Promise.all([prev_steps_promise, trace_promise]).then(([prev_output, full_trace]) =>
+            request_trace_slice(prev_output, full_trace)
+        )
+    }
+
+    // set up chat history tracking
+    let action_chat_history = []
+
+    // capture the sequence step parameter(for redirecting to next step):
+    let sequence_step = (new URLSearchParams(window.location.search)).get('step')
+
+    // TODO: some kind of call to action in "convo" version, without the trace slice?
+    //  it used to say "Now, let's investigate using the execution trace! Use the trace slider below the code to step through what your program did when it ran this unit test."
+    //  but this doesn't work as well when we actually just want them to look at the code in the easiest case, and not bother with the slider.
+    add_step(`<h4>Step 3. Let's investigate!</h4>
+        <div id="action-conversation">
+            <div id="action-text" ${suggest_slice? 'class="loading-placeholder loading-line understanding_check"':''} > 
+                
+            </div>
+
+        <div class="tutor initial"><b>What do you think?</b> Can you explain why your code didn't do the right thing?</div>
+        </div>
+        <span id="student-action-input">
+        <textarea id="student-action-box" name="action" rows="3" cols="80"></textarea>
+        <button id="action-convo-send">Send</button>
+        </span>
+        <div id="sufficient_explanation" class="next-button hidden"><a href="/sequence?completed=${sequence_step}">Nice job! Click here to continue</a>
+        </div>
+
+        `, "action", false)
+
+    $("#action-convo-send").click(() => {
+        prev_steps_promise.then(prev_output => {
+            request_action_response(action_chat_history, fa_resolve, prev_output)
+        })
+    })
+
+    // hacks: remove "next" button or don't have one for step 3
+    $('[data-step-name="action"] button.next-button').remove()
+}
+
 $(document).ready(function() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // get URL parameters for how each step should be configured
+    // (if not specified, assume "inter", i.e. the interactive interface which gives explanations and checks understanding)
+    const step1 = urlParams.get('step1') || 'inter';
+    const step2 = urlParams.get('step2') || 'inter';
+    const step3 = urlParams.get('step3') || 'inter';
 
 
     // add path-data-polyfill library
@@ -389,66 +588,57 @@ $(document).ready(function() {
     let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
 
     // capture the sequence step parameter:
-    sequence_step = (new URLSearchParams(window.location.search)).get('step')
+    let sequence_step = (new URLSearchParams(window.location.search)).get('step')
 
     // add the debugging steps:
 
-    // add_step(`<h4>Step 1. Run the code with one of the broken unit tests</h4> Let's see what happens when we run: <pre>${correction_data['unit_test_string']}</pre>`, add_next_button = true)
+    let obs_result_promise, dir_result_promise;
 
-    add_step(`<h4>Step 1. How is the output wrong?</h4>
-        <div id="observation-text" class="loading-placeholder loading-line"> </div>
-
-        <div class="understanding_check"> <b>Do you see what I mean?</b> <span class="understanding-check-text">Click on the part of the problem statement which best explains why we expected the code to return <code>${correct_output}</code>.</span> <span class="arrow-start"></span>
-        <br/><div id="step1_check_feedback"></div>
-        </div>`, step_name="observation", show_next_button = false)
-
-    add_step(`<h4>Step 2. What should we look into?</h4>
-        <div id="direction-text" class="loading-placeholder loading-line"> </div>
-        <div class="understanding_check"><span class="understanding-check-text loading-placeholder loading-line"></span> <span class="arrow-start"></span>
-        <br/><div id="step2_check_feedback"></div>
-        </div>
-        `, step_name="direction", show_next_button = false)
-
-    add_step(`<h4>Step 3. Let's investigate!</h4>
-        <div id="action-text" class="loading-placeholder loading-line"> </div>
-        <div class="understanding_check">
-        <span id="explanation_question_span">
-        <div><b>What do you think?</b> Can you explain why your code didn't do the right thing?</div>
-        <textarea id="student-explanation" name="explanation" rows="3" cols="80"></textarea>
-        <button onclick="request_explanation_feedback()">Send</button>
-        </span>
-        <br/>
-        <div id="step3_check_feedback"></div>
-        <div id="improve_explanation" class="hidden">Edit your explanation to incorporate this feedback</div>
-        <div id="sufficient_explanation" class="hidden"><a href="sequence?completed=${sequence_step}">Nice job! Click here to continue</a>
-
-        </div>
-        </div>
-        `, step_name = "action")
-
-    activate_next_step()
-
-    // Set up generating diagnostic messages (steps 1 and 2):
-    let diagnostic_promise;
-    if(student_output.startsWith('Exception')){
-        // need to do the exception check loading before diagnostics, otherwise there are no spans to split in the exception message
-        diagnostic_promise = request_exception_check().then(data => request_diagnostics())
+    if (step1 === 'inter') {
+        obs_result_promise = make_observation_inter()
+    }
+    else if (step1 === 'convo') {
+        obs_result_promise = make_observation_convo()
     }
     else {
-        diagnostic_promise = request_diagnostics()
+        // this step's configuration has some other value other than default/inter/convo
+        // we should skip it
+        obs_result_promise = Promise.resolve({})
+    }
+    // if step1 is something else (e.g. "skip"), then don't add a step 1.
+
+    // start generating full trace analysis (we start it *after* step 1 because when the server can only do one thing at a time,
+    // we prefer that it does step 1 first and then moves on to the trace, which won't be needed until the middle of step 2
+    // TODO: are there instances where we don't need the trace analysis at all? probably not, arguably having the trace description available is always important
+    let trace_promise = request_full_trace_analysis()
+
+    // we need obs_result_promise to resolve, and tell us what the output of step 1 is, before we can generate content for step 2.
+    // We also need the trace analysis to resolve before we can generate the direction understanding check (only in the interactive version)
+    // however, we can *make* the (hidden) structure for the step (HTML, listeners) and then call appropriate functions when their prerequisites resolve
+    if (step2 === 'inter') {
+        dir_result_promise = make_direction_inter(obs_result_promise, trace_promise)
+    }
+    else if (step2 === 'convo') {
+        dir_result_promise = make_direction_convo(obs_result_promise)
+    }
+    else {
+        // this step's configuration has some other value other than default/inter/convo
+        // we should skip it
+        dir_result_promise = Promise.resolve({})
     }
 
-    // create promise chain of generating guidance strings that depend on each other:
-    Promise.all([diagnostic_promise, request_full_trace_analysis()])
-    .then(([diagnostic_responses, descriptive_synced_trace]) => {
-        console.log(diagnostic_responses)
-        console.log(descriptive_synced_trace)
-        request_trace_slice(diagnostic_responses, descriptive_synced_trace)
-        request_direction_question(diagnostic_responses, descriptive_synced_trace)
-    })
-    .catch(error => {
-        console.error('One of the fetches failed:', error);
-    });
+    // Add the third (action) step and configure it
+    if(step3 === 'inter') {
+        make_action(dir_result_promise, trace_promise, true)
+    }
+    else if (step3 === 'convo') {
+        make_action(dir_result_promise, trace_promise, false)
+    }
+
+    // start the first step.
+    activate_next_step()
+
+    dir_result_promise.then(data => console.log(data))
 
 })
 
@@ -488,10 +678,10 @@ function activate_next_step(){
     $('.trace-div').attr('data-current-step', step_name)
 
     // start appropriate understanding-check questions:
-    if(step_name == "direction"){
+    if(step_name === "direction"){
         start_direction_check()
     }
-    if(step_name == "action")
+    if(step_name === "action")
     {
         start_action_check()
     }
