@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, Blueprint
 import os
 import google.generativeai as genai
 import json
+from gemini_logger import generate_content_with_logging
 
 convo_bp = Blueprint('conversational', __name__) # , url_prefix='/convo')
 
@@ -35,8 +36,8 @@ def have_conversation(convo_name, instructions, input_data):
     "required": ["step1_conversation_analysis", "step2_has_question_been_answered", "step3_response_to_student"],
     }
 
-    response = model.generate_content(
-        contents=input_data['chat_history'],
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+        input_data['chat_history'],
         generation_config=genai.GenerationConfig(
             response_mime_type="application/json",
             response_schema = response_format

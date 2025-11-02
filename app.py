@@ -5,6 +5,7 @@ import json
 from conversations import convo_bp
 from feedback import feedback_bp
 from questions import question_bp
+from gemini_logger import generate_content_with_logging
 
 app = Flask(__name__)
 app.register_blueprint(convo_bp)
@@ -46,7 +47,7 @@ When several messages are equally good in terms of the rubric, you should prefer
       "required": ["step1_response_evaluations", "step2_best_message"]
     }
 
-    response = model.generate_content(f'''
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 The candidate messages pertain to the following data about a particular buggy solution to a programming problem:
 
 {problem_data}
@@ -107,7 +108,7 @@ def gen_observation():
 You are part of an educational system designed to assist beginner programmers in debugging their Python code. Your primary goal is to model the debugging process by illustrating constructive reasoning without revealing specific solutions or hinting at the answer. This approach encourages critical thinking and independent problem-solving.
 """
     )
-    chat = model.start_chat(history=[])
+    # chat = model.start_chat(history=[])
 
     # TODO: put it in the second prompt.
     ### priming: reason about the problem.
@@ -144,8 +145,8 @@ Remember, your role is to describe the discrepancy between expected and actual o
 """
 
     ## Generate multiple candidates
-    response_candidates = model.generate_content(
-        contents=observation_prompt,
+    response_candidates = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+        observation_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
             temperature=1.5,
@@ -250,8 +251,8 @@ Remember, your role is to describe the investigation direction, not to guide the
     """
 
     # Generate the direction
-    response_candidates = model.generate_content(
-        contents=direction_prompt,
+    response_candidates = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+        direction_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
             temperature=1.5,
@@ -355,7 +356,8 @@ def gen_full_trace_description():
         }
 
 
-        correct_trace_response = trace_model.generate_content(f'''
+        correct_trace_response = generate_content_with_logging(trace_model,  request.endpoint, request.remote_addr,
+                                                               f'''
         {correct_trace_prompt_data}
 
         For each step in the execution trace, generate a short description of what that step is doing. Note that the execution trace starts **within** the function, skipping the function definition and invocation. Thus, the first step in the execution trace describes the first thing that happens **after** the function is called with the given parameters, and your descriptions do not need to describe the initial function call.
@@ -427,7 +429,7 @@ def gen_full_trace_description():
         { json.dumps(student_trace, indent=2)}
         """
 
-        student_trace_response = trace_model.generate_content(f'''
+        student_trace_response = generate_content_with_logging(trace_model, request.endpoint, request.remote_addr, f'''
         The data below describes a buggy student solution to a programming problem.
 
         {student_trace_prompt_data}
@@ -548,7 +550,7 @@ Your task is to direct the student toward specific helpful parts of the executio
         # "propertyOrdering": ["reasoning", "start_index", "end_index", "student_call_to_action"]
       }
 
-    slice_response = model.generate_content(f'''
+    slice_response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
     {problem_prompt_data}
 
 Choose a short (as short as possible) contiguous slice of the execution trace which fits the investigation direction that the system previously suggested, and could help the student understand how the incorrect output happens.

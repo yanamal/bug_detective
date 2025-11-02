@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, Blueprint
 import os
 import google.generativeai as genai
 import json
+from gemini_logger import generate_content_with_logging
 
 feedback_bp = Blueprint('feedback', __name__)
 
@@ -29,11 +30,11 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = model.generate_content(f'''
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['problem_statement_pieces']}
 
-However, when executing the unit test: 
+However, when executing the unit test:
 {data['unit_test']}
 
 The student code returned the incorrect value:
@@ -95,11 +96,11 @@ Your task is to provide feedback to the student based on their response to a que
       }
 
   
-    response = model.generate_content(f'''
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['exception_pieces']}
 
-However, when executing the unit test: 
+However, when executing the unit test:
 {data['unit_test']}
 
 The student code returned the incorrect value:
@@ -111,7 +112,7 @@ The system previously identified this list of potential correct answers: {data['
 
 The student chose to click on the part that said {data['clicked_piece']}.
 
-Provide a feedback message to the student which describes whether the piece they clicked answers the question. Keep in mind that the student does not have control of how the exception message was split into pieces. Therefore, do not penalize or criticize the student if the part they clicked answers the question, but includes too much or too little text compared to the expected answer. 
+Provide a feedback message to the student which describes whether the piece they clicked answers the question. Keep in mind that the student does not have control of how the exception message was split into pieces. Therefore, do not penalize or criticize the student if the part they clicked answers the question, but includes too much or too little text compared to the expected answer.
 
 If the student's response was very far from correct, give them an explanation of what we are looking for and encourage them to try again.
 
@@ -166,7 +167,7 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = model.generate_content(f'''
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 First, review the following information:
 
 <problem_statement>
@@ -262,7 +263,7 @@ When giving feedback and suggestion to the student, assume that they have access
     "required": ["step1_feedback_to_student", "step2_student_explained_sufficiently"],
   }
 
-  response = model.generate_content(f'''
+  response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 First, review the following information about the student code and the problem it was trying to solve:
 
 <problem_statement>
@@ -314,7 +315,7 @@ Provide feedback to this student response. Include the following considerations:
 - If the student asked any explicit questions, try to answer them in a way that describes programming concepts and constructs, but does not explicitly tell the student why their code is wrong or how to fix it.
 - Did the student express any uncertainty or confusion? If so, try to give them a suggestion for how they can think about this question.
 
-Keep in mind that the student was **only** asked why the code didn't do the right thing in this particular execution trace; they are not necessarily trying to explain how the code should be fixed. They are also not trying to reason about other potential problems that did not get triggered in this particular execution trace. If they explain the "why" adequately about this specific execution trace, treat their answer as completely correct. 
+Keep in mind that the student was **only** asked why the code didn't do the right thing in this particular execution trace; they are not necessarily trying to explain how the code should be fixed. They are also not trying to reason about other potential problems that did not get triggered in this particular execution trace. If they explain the "why" adequately about this specific execution trace, treat their answer as completely correct.
 
 After providing the feedback, decide whether the student successfully explained why the code didn't do the right thing, or whether they need to update their explanation to be more complete.
 ''',

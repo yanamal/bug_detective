@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, Blueprint
 import os
 import google.generativeai as genai
 import json
+from gemini_logger import generate_content_with_logging
 
 question_bp = Blueprint('questions', __name__)
 
@@ -34,7 +35,7 @@ def generate_direction_understanding_data():
         }
     }
 
-    response = model.generate_content(f'''
+    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 First, review the following information:
 
 <problem_statement>
@@ -125,7 +126,7 @@ def generate_exception_understanding_data():
     }
 
 
-  response = model.generate_content(f'''
+  response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
 First, review the following information:
 
 <problem_statement>
@@ -144,7 +145,7 @@ Now, please follow these steps to generate the required output:
 
 1. Analyze the exception message in the student_output.
 2. Identify the trickiest part of the exception message for a beginner programmer to understand. This should be a concise, focused portion of the message that represents exactly one part of the core issue.
-3. Split the entire exception message into several small, self-contained but meaningful substrings. Each substring must cover at most one aspect of the exception. One of these substrings MUST be the trickiest part you identified in step 2. Aim for 3-5 substrings in total. Together, these substrings should represent the entirety of the original exception message, including "Exception:". 
+3. Split the entire exception message into several small, self-contained but meaningful substrings. Each substring must cover at most one aspect of the exception. One of these substrings MUST be the trickiest part you identified in step 2. Aim for 3-5 substrings in total. Together, these substrings should represent the entirety of the original exception message, including "Exception:".
 4. Formulate a short, single-sentence question asking the student to click on a specific part of the exception message. The correct answer should be the trickiest part you identified. This question should **only** test the student's understanding of what the error message is saying, not what it might imply about the code.
 
 <split_message_example>
