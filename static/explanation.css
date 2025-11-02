@@ -4,10 +4,20 @@ body {
     margin: 0 auto;
   height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
-body > * {
+.image-container {
+    flex-shrink: 0;
+}
+
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-container > * {
     margin: 15px;
 }
 
