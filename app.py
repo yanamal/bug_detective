@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import os
 import google.generativeai as genai
 import json
+from datetime import datetime
 from conversations import convo_bp
 from feedback import feedback_bp
 from questions import question_bp
@@ -83,6 +84,31 @@ genai.configure(api_key=api_key)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/log_interactions', methods=['POST'])
+def log_interactions():
+    """
+    Endpoint to receive client-side interaction logs and save them to a file.
+    """
+    try:
+        # Get the JSON data from the request
+        log_data = request.json
+
+        # Ensure logs directory exists
+        log_dir = "logs"
+        os.makedirs(log_dir, exist_ok=True)
+
+        # Create timestamp in the same format as gemini_logger.py
+        timestamp = datetime.now()
+        log_file = os.path.join(log_dir, f"client_logs_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}.json")
+
+        # Write the log data to file
+        with open(log_file, 'w') as f:
+            json.dump(log_data, f, indent=2)
+
+        return jsonify({"status": "success", "message": "Logs saved successfully"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 @app.route('/api/observation', methods=['POST'])
 def gen_observation():
