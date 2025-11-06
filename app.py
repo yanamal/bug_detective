@@ -48,7 +48,7 @@ When several messages are equally good in terms of the rubric, you should prefer
       "required": ["step1_response_evaluations", "step2_best_message"]
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 The candidate messages pertain to the following data about a particular buggy solution to a programming problem:
 
 {problem_data}
@@ -93,6 +93,10 @@ def log_interactions():
     try:
         # Get the JSON data from the request
         log_data = request.json
+        log_entry = {
+            'identifier': request.headers['X-Real-IP'],
+            'logs': log_data
+        }
 
         # Ensure logs directory exists
         log_dir = "logs"
@@ -104,7 +108,7 @@ def log_interactions():
 
         # Write the log data to file
         with open(log_file, 'w') as f:
-            json.dump(log_data, f, indent=2)
+            json.dump(log_entry, f, indent=2)
 
         return jsonify({"status": "success", "message": "Logs saved successfully"})
     except Exception as e:
@@ -171,7 +175,7 @@ Remember, your role is to describe the discrepancy between expected and actual o
 """
 
     ## Generate multiple candidates
-    response_candidates = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+    response_candidates = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
         observation_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
@@ -277,7 +281,7 @@ Remember, your role is to describe the investigation direction, not to guide the
     """
 
     # Generate the direction
-    response_candidates = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+    response_candidates = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
         direction_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
@@ -382,7 +386,7 @@ def gen_full_trace_description():
         }
 
 
-        correct_trace_response = generate_content_with_logging(trace_model,  request.endpoint, request.remote_addr,
+        correct_trace_response = generate_content_with_logging(trace_model,  request.endpoint, request.headers['X-Real-IP'],
                                                                f'''
         {correct_trace_prompt_data}
 
@@ -455,7 +459,7 @@ def gen_full_trace_description():
         { json.dumps(student_trace, indent=2)}
         """
 
-        student_trace_response = generate_content_with_logging(trace_model, request.endpoint, request.remote_addr, f'''
+        student_trace_response = generate_content_with_logging(trace_model, request.endpoint, request.headers['X-Real-IP'], f'''
         The data below describes a buggy student solution to a programming problem.
 
         {student_trace_prompt_data}
@@ -576,7 +580,7 @@ Your task is to direct the student toward specific helpful parts of the executio
         # "propertyOrdering": ["reasoning", "start_index", "end_index", "student_call_to_action"]
       }
 
-    slice_response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+    slice_response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
     {problem_prompt_data}
 
 Choose a short (as short as possible) contiguous slice of the execution trace which fits the investigation direction that the system previously suggested, and could help the student understand how the incorrect output happens.
