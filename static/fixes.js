@@ -36,8 +36,7 @@ function update_values_shown(before_pre, after_pre, trace, new_i) {
     $('.code-block .ast-node').removeClass('evaluated-node')
     $('.code-block .ast-node>.value').remove()
     $('.code-block .ast-node>.op-description').remove()
-
-
+    
     if(trace[new_i]['before']) {
         let before_node = $(`[data-node-id="${trace[new_i]['before']['node']}"]`, before_pre)
         before_node.addClass('evaluated-node')
@@ -128,6 +127,12 @@ function generate_view(step_data) {
         update_values_shown(before_pre, after_pre, trace_to_use, op_index)
         console.log( step_data['synced_trace'][op_index])
 
+        
+        log_custom_event('runtime_slider', {
+            'op_index': op_index,
+            'trace_value': trace_to_use[op_index]
+        })
+        
         // move follow_slider div to follow the slider handle
         // (do it with a zero timeout to resolve slider position first)
         setTimeout( function(){
@@ -640,6 +645,10 @@ $(document).ready(function() {
 
     dir_result_promise.then(data => console.log(data))
 
+    // Add listeners for logging
+    
+    log_hovers(".ast-node")
+    log_clicks("button")
 })
 
 $(document).keydown(function(event) {
