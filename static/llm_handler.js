@@ -220,6 +220,7 @@ function request_explanation_feedback(){
         $('#step3_check_feedback').html(marked.parse(data.results.explanation_feedback_data.step1_feedback_to_student))
         if(data.results.explanation_feedback_data.step2_student_explained_sufficiently){
             $('#sufficient_explanation').removeClass('hidden');
+            send_logs();
 
             $('explanation_question_span').addClass('hidden');
             $('#improve_explanation').addClass('hidden');
