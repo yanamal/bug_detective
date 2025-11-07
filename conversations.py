@@ -16,7 +16,7 @@ It is crucial that you keep the conversation focused on the original topic. In p
 '''
 
 def have_conversation(convo_name, instructions, input_data):
-    
+
     model = genai.GenerativeModel('gemini-2.0-flash',
         system_instruction=f"""{generic_role_preamble}{instructions}""")
 
@@ -36,7 +36,7 @@ def have_conversation(convo_name, instructions, input_data):
     "required": ["step1_conversation_analysis", "step2_has_question_been_answered", "step3_response_to_student"],
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr,
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
         input_data['chat_history'],
         generation_config=genai.GenerationConfig(
             response_mime_type="application/json",
@@ -45,7 +45,7 @@ def have_conversation(convo_name, instructions, input_data):
     )
 
     result = {
-        "message": f"{convo_name} turn", 
+        "message": f"{convo_name} turn",
         "results": {
             "input_data": input_data,
             "response_data": json.loads(response.text)
@@ -77,7 +77,7 @@ The following information describes the context of this session:
 First, use the step1_conversation_analysis field to provide a thorough analysis of the conversation so far, explicitly addressing each of the following:
 
 1. Restate, exactly, the original question asked in the first turn of the conversation.
-2. Has the original question already been answered in this conversation, either by the studend or by the assistant? If not, what specifically still needs to be addressed in order to answer the original question? 
+2. Has the original question already been answered in this conversation, either by the studend or by the assistant? If not, what specifically still needs to be addressed in order to answer the original question?
 3. In the most recent turn, has the student said something that is correct - or can be interpreted as correct - with respect to the original question? What was it, specifically?
 4. In the most recent turn, has the student said something that is explicitly incorrect? What was it, specifically?
 
@@ -102,8 +102,8 @@ def direction_conversation():
     data = request.json
 
     direction_instructions = f'''
-In this conversation, you will help the student come up with fruitful ideas on **what they could investigate** in order to understand why their code produced an incorrect output for a particular unit test. Specifically, the investigation directions that you and the student come up with should address **what intermediate values contributed to this incorrect output**. 
-    
+In this conversation, you will help the student come up with fruitful ideas on **what they could investigate** in order to understand why their code produced an incorrect output for a particular unit test. Specifically, the investigation directions that you and the student come up with should address **what intermediate values contributed to this incorrect output**.
+
 The types of possible directions to investigate could include, but are not limited to:
     - what values were involved in triggering the exception (if there was an exception)
     - what values were involved in calculating the return value (if there was no exception)
@@ -160,7 +160,7 @@ def action_conversation():
     action_instructions = f'''
 In this conversation, you will help the student **explain why their code didn't do the right thing** for a particular unit test. When making suggestions to the student, keep in mind what the student can and cannot do within the app's interface:
 - The student is able to use the app's interface to navigate the execution trace, and see the descriptions for each step.
-- The student can also see the problem statement, unit test, and their code's output for this unit test. 
+- The student can also see the problem statement, unit test, and their code's output for this unit test.
 - The student cannot easily modify the code or re-run it with a different input.
 
 

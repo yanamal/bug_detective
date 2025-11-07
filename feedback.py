@@ -30,7 +30,7 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['problem_statement_pieces']}
 
@@ -59,10 +59,10 @@ After generating the feedback message, indicate whether you asked the student to
             response_schema = response_format
         )
     )
-    
-    
+
+
     result = {
-        "message": "problem feedback", 
+        "message": "problem feedback",
         "results": {
             "input_data": data,
             "problem_feedback_data": json.loads(response.text)
@@ -95,8 +95,8 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-  
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['exception_pieces']}
 
@@ -125,10 +125,10 @@ After generating the feedback message, indicate whether you asked the student to
             response_schema = response_format
         )
     )
-    
-    
+
+
     result = {
-        "message": "exception feedback", 
+        "message": "exception feedback",
         "results": {
             "input_data": data,
             "exception_feedback_data": json.loads(response.text)
@@ -167,7 +167,7 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 First, review the following information:
 
 <problem_statement>
@@ -220,10 +220,10 @@ After generating the feedback message, indicate whether you asked the student to
             response_schema = response_format
         )
     )
-    
-    
+
+
     result = {
-        "message": "direction feedback", 
+        "message": "direction feedback",
         "results": {
             "input_data": data,
             "direction_feedback_data": json.loads(response.text)
@@ -246,7 +246,7 @@ def generate_explanation_feedback():
 
   model = genai.GenerativeModel('gemini-2.0-flash',
     system_instruction="""You are part of an educational system which assists beginner programmers in debugging their own Python code. You are a patient Socratic tutor who tries to find and amplify any correct or nearly-correct aspects of what the student has said. You also prefer to help the student come up with the correct answer instead of telling them the answer outright. Your task is to provide feedback to the student based on their description of why their code produced incorrect output.
-    
+
 When giving feedback and suggestion to the student, assume that they have access to the problem statement, the unit test results, their code, as well as a way to navigate through the provided execution trace using a trace slider interface."""
   )
 
@@ -263,7 +263,7 @@ When giving feedback and suggestion to the student, assume that they have access
     "required": ["step1_feedback_to_student", "step2_student_explained_sufficiently"],
   }
 
-  response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+  response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 First, review the following information about the student code and the problem it was trying to solve:
 
 <problem_statement>
@@ -329,7 +329,7 @@ After providing the feedback, decide whether the student successfully explained 
 
 
   result = {
-      "message": "explanation feedback", 
+      "message": "explanation feedback",
       "results": {
           "input_data": data,
           "explanation_feedback_data": json.loads(response.text)

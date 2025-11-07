@@ -10,7 +10,7 @@ question_bp = Blueprint('questions', __name__)
 @question_bp.route('/api/direction_understanding_question', methods=['POST'])
 def generate_direction_understanding_data():
     data = request.json
-  
+
     # add index so the LLM has something concrete to return
     student_trace = data['execution_trace']
     for i in range(len(student_trace)):
@@ -35,7 +35,7 @@ def generate_direction_understanding_data():
         }
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 First, review the following information:
 
 <problem_statement>
@@ -76,7 +76,7 @@ Then, provide a list of indices from the execution trace that are valid answers 
     )
 
     result = {
-        "message": "direction question", 
+        "message": "direction question",
         "results": {
             "input_data": data,
             "direction_question": json.loads(response.text)
@@ -90,7 +90,7 @@ Then, provide a list of indices from the execution trace that are valid answers 
 def generate_exception_understanding_data():
   data = request.json
 
-  
+
   model = genai.GenerativeModel('gemini-2.0-flash',
     system_instruction="""You are part of an educational system which assists beginner programmers in debugging their own Python code. Your task is to analyze a runtime exception from a unit test and create content that will test the student's understanding of the error message."""
   )
@@ -126,7 +126,7 @@ def generate_exception_understanding_data():
     }
 
 
-  response = generate_content_with_logging(model, request.endpoint, request.remote_addr, f'''
+  response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
 First, review the following information:
 
 <problem_statement>
@@ -191,7 +191,7 @@ Remember to split the exception message into very granular parts.
   )
 
   result = {
-      "message": "exception check", 
+      "message": "exception check",
       "results": {
           "input_data": data,
           "exception_check_data": json.loads(response.text)
