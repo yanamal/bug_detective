@@ -69,7 +69,7 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
     os.makedirs(log_dir, exist_ok=True)
 
     # Create path for timestamped log file
-    log_file = os.path.join(log_dir, f"gemini_logs_{start_ts.strftime('%Y.%m.%d.%H.%M.%S.%f')}.json")
+    log_file = os.path.join(log_dir, f"{identifier}_{start_ts.strftime('%Y.%m.%d.%H.%M.%S.%f')}_gemini_logs.json")
 
     with open(log_file, 'w') as f:
         json.dump(log_entry, f, indent=2)

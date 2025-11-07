@@ -91,10 +91,11 @@ def log_interactions():
     Endpoint to receive client-side interaction logs and save them to a file.
     """
     try:
+        identifier = request.headers['X-Real-IP']
         # Get the JSON data from the request
         log_data = request.json
         log_entry = {
-            'identifier': request.headers['X-Real-IP'],
+            'identifier': identifier,
             'logs': log_data
         }
 
@@ -104,7 +105,7 @@ def log_interactions():
 
         # Create timestamp in the same format as gemini_logger.py
         timestamp = datetime.now()
-        log_file = os.path.join(log_dir, f"client_logs_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}.json")
+        log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_clientside_logs.json")
 
         # Write the log data to file
         with open(log_file, 'w') as f:
