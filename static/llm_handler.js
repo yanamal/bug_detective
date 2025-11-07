@@ -39,7 +39,16 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
                 clicked_piece: $(this).text()
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if(response.ok){
+                return response.json()
+            }
+            else {
+                $('#error_dialog').dialog('open');
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+        })
         .then(data => {
             // Feedback loaded - show it, and proceed to next step if necessary
             console.log(data)
@@ -73,13 +82,13 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
         document.querySelector('.understanding_check .arrow-start'),
         document.querySelector('.student-output-text')
     )
-    
+
     // activate "click on segment" logic
     $('.student-output-text>span').click(function(){
         pieces = $('.student-output-text>span').map(function(){return $(this).text()})
         expected_answers = $('.student-output-text').data('expected_click')
         question = $('[data-step-name="observation"] .understanding-check-text').text()
-        
+
         fetch('/api/exception_feedback', {
             method: 'POST',
             headers: {
@@ -96,7 +105,16 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
                 clicked_piece: $(this).text()
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if(response.ok){
+                return response.json()
+            }
+            else {
+                $('#error_dialog').dialog('open');
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+        })
         .then(data => {
             // Feedback loaded - show it, and proceed to next step if necessary
             console.log(data)
@@ -151,7 +169,7 @@ function start_action_check(){
     // deactivate 'active-check' on slider handle (TODO: do after check finishes?)
     $('.ui-slider-handle').removeClass('active-check')
 
-    // activate understanding check 
+    // activate understanding check
     $('[data-step-name="action"] .understanding_check').addClass('active')
 
     // activate arrows pointing at the slice, and start check for asking the student to explain what's going wrong
@@ -196,7 +214,7 @@ function request_explanation_feedback(){
     let observation = $('#observation-text').text()
     let direction = $('#direction-text').text()
     let action = $('#action-text').text()
-    
+
     return fetch('/api/explanation_feedback', {
         method: 'POST',
         headers: {
@@ -208,13 +226,22 @@ function request_explanation_feedback(){
             unit_test: unit_test,
             student_output: student_output,
             execution_trace: student_descriptive_trace,
-            observation: observation, 
+            observation: observation,
             direction: direction,
             action: action,
             student_explanation: explanation
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
         $('#step3_check_feedback').html(marked.parse(data.results.explanation_feedback_data.step1_feedback_to_student))
@@ -233,7 +260,7 @@ function request_explanation_feedback(){
 
 }
 
-function request_exception_check(){    
+function request_exception_check(){
     // request content for a question about the exception (if there was an exception):
     // split exeption message into parts, choose trickiest part, ask a question about it.
 
@@ -257,7 +284,16 @@ function request_exception_check(){
             student_output: student_output
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
 
@@ -297,7 +333,16 @@ function request_observation() {
         },
         body: JSON.stringify(obs_request_params)
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         // Process and display generated observation step
         console.log(data.candidate_observations)
@@ -350,7 +395,16 @@ function request_direction(previous_output = {}) {
         },
         body: JSON.stringify(direction_request_params)
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(directionData => {
         // Process and display generated direction step
         $('#direction-text').html(marked.parse(directionData.direction))
@@ -398,7 +452,7 @@ function request_diagnostics(){
         unit_test: unit_test,
         student_output: student_output
     };
-    
+
     // variables for storing priming and observation, to return with the direction
     let priming_result;
     let observation_result;
@@ -411,7 +465,16 @@ function request_diagnostics(){
         },
         body: JSON.stringify(requestParams)
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data.candidate_observations)
         console.log(data.candidate_evaluation)
@@ -431,7 +494,7 @@ function request_diagnostics(){
             start_problem_statement_check(prob, unit_test, student_output, correct_output)
         }
 
-        
+
 
         // Store variables for later stages (TODO: we don't have/need a priming result anymore)
         observation_result = data.observation
@@ -449,12 +512,21 @@ function request_diagnostics(){
             })
         });
     })
-    .then(response => response.json())
-    .then(directionData => {        
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
+    .then(directionData => {
         // "what should we look into?"
         $('#direction-text').html(marked.parse(directionData.direction))
         $('#direction-text').removeClass()
-        
+
         console.log(directionData.direction_candidates)
         console.log(directionData.candidate_evaluation)
 
@@ -484,7 +556,7 @@ function request_direction_question(diagnostic_responses, descriptive_synced_tra
     let student_code = student_code_block.text()
 
     let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
-    
+
     student_descriptive_trace = []
     orig_indices = []
     for(let i=0; i<descriptive_synced_trace.length; i++)
@@ -506,11 +578,20 @@ function request_direction_question(diagnostic_responses, descriptive_synced_tra
             corrected_code: corrected_code,
             unit_test: unit_test,
             student_output: student_output,
-            execution_trace: student_descriptive_trace, 
+            execution_trace: student_descriptive_trace,
             direction: diagnostic_responses.direction
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
         $('[data-step-name="direction"] .understanding-check-text').removeClass('loading-placeholder')
@@ -552,7 +633,7 @@ function request_direction_feedback(){
         orig_to_student[orig_indices[i]] = i
     }
 
-    
+
     let question = $('#follow_slider').data('direction_question')
     let correct_answers = $('#follow_slider').data('direction_answers')
 
@@ -562,7 +643,7 @@ function request_direction_feedback(){
     //calculate the student trace index from whatever we are currently using in the interface
     let student_trace_index = $('.comparison-div').hasClass('full-view')?orig_to_student[current_op_index]: current_op_index
 
-    
+
     return fetch('/api/direction_feedback', {
         method: 'POST',
         headers: {
@@ -574,7 +655,7 @@ function request_direction_feedback(){
             corrected_code: corrected_code,
             unit_test: unit_test,
             student_output: student_output,
-            execution_trace: student_descriptive_trace, 
+            execution_trace: student_descriptive_trace,
             direction: $('#direction-text').text(),
             question: question,
             chosen_index: student_trace_index,
@@ -582,7 +663,16 @@ function request_direction_feedback(){
             correct_answers: correct_answers
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
 
@@ -596,7 +686,7 @@ function request_direction_feedback(){
             $('[data-step-name="direction"] .next-button').removeClass('hidden')
             // remove active class from problem statement (added by arrow drawing logic)
             $('.ui-slider-handle').removeClass('active-check')
-            
+
             $('#follow_slider').addClass('hidden')
         }
 
@@ -608,7 +698,7 @@ function request_direction_feedback(){
 let descriptive_trace = []; // variable to globally store descriptive synced trace (with code context, not bytecode) when it's ready
 
 function request_full_trace_analysis() {
-    
+
     let prob = problem_statement || ""
 
     let unit_test = correction_data['unit_test_string']
@@ -625,7 +715,7 @@ function request_full_trace_analysis() {
 
     console.log(synced_trace)
 
-    
+
     return fetch('/api/full_trace_description', {
         method: 'POST',
         headers: {
@@ -639,7 +729,16 @@ function request_full_trace_analysis() {
             student_code: student_code
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
 
@@ -687,7 +786,7 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
     console.log(student_descriptive_trace)
 
 
-    
+
     return fetch('/api/trace_slice', {
         method: 'POST',
         headers: {
@@ -705,7 +804,16 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
             direction: diagnostic_responses.direction
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
 
@@ -789,7 +897,16 @@ function request_chat_response(step_name, chat_history,
             execution_trace: student_descriptive_trace
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if(response.ok){
+            return response.json()
+        }
+        else {
+            $('#error_dialog').dialog('open');
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+    })
     .then(data => {
         console.log(data)
 

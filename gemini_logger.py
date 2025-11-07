@@ -1,7 +1,8 @@
 import json
 import os
 from datetime import datetime
-
+from google.api_core.exceptions import GoogleAPIError
+from types import SimpleNamespace
 
 def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs):
     """
@@ -20,15 +21,29 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
     """
     # Generate the response (and record timestamps before/after)
     start_ts = datetime.now()
-    response = model.generate_content(prompt, **kwargs)
+
+    response = None
+    response_text = None
+
+    try:
+        response = model.generate_content(prompt, **kwargs)
+
+    except GoogleAPIError as e:
+        response_text = f'Oops! An API error occurred when the bot tried to generate a response: {e}'
+        response = SimpleNamespace(text = response_text, candidates=[response_text])
+    except Exception as e:
+        response_text = f'Oops! An error occurred when the bot tried to generate a response: {e}'
+        response = SimpleNamespace(text = response_text, candidates = [response_text])
+
     end_ts = datetime.now()
+
 
     # Extract system instruction if available
     system_instruction = getattr(model, '_system_instruction', None)
     if system_instruction:
         system_instruction = str(system_instruction)
 
-    if hasattr(response, 'candidates'):
+    if hasattr(response, 'candidates') and hasattr(response.candidates, 'content'):
         # Gemini responses where multiple candidates were requested have a different format; extract text from each candidate
         response_text = [candidate.content.parts[0].text for candidate in response.candidates]
     elif hasattr(response, 'text'):
