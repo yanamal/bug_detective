@@ -657,6 +657,16 @@ $(document).ready(function() {
 
     log_hovers(".ast-node")
     log_clicks("button")
+
+    // Pass along identifier parameter if it exists
+    // TODO: could make this a function and call it in explanation.html, too.
+    const identifier = urlParams.get('identifier');
+    if (identifier) {
+        document.querySelectorAll('a[href^="/sequence?"]').forEach(link => {
+            const currentHref = link.getAttribute('href');
+            link.setAttribute('href', `${currentHref}&identifier=${encodeURIComponent(identifier)}`);
+        });
+    }
 })
 
 $(document).keydown(function(event) {

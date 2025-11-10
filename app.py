@@ -623,11 +623,19 @@ def tutorial_sequence():
         'perimeter_2?',
         'only_even?step1=convo&step2=convo&step3=inter',
     ]
-    last_completed = request.values.get('completed', -1)
 
+    additional_params = ''
+
+    last_completed = request.values.get('completed', -1)
     next_i = int(last_completed)+1
+    additional_params += f'&step={next_i}'
+
+    identifier = request.values.get('identifier', None)
+    if identifier:
+        additional_params += f'&identifier={identifier}'
+
     if len(page_sequence) > next_i:
-        return redirect(f'{page_sequence[next_i]}&step={next_i}')
+        return redirect(f'{page_sequence[next_i]}{additional_params}')
 
     return 'done'
 

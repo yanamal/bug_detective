@@ -35,10 +35,21 @@
 
 
     <script>
-        highlight_step = (new URLSearchParams(window.location.search)).get('which_step')
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const highlight_step = urlParams.get('which_step')
         if(highlight_step) {
             document.querySelector(`#${highlight_step}`).classList.add('highlighted')
             document.querySelector(`#global_next`).classList.add('hidden')
+        }
+
+        // Pass along identifier parameter if it exists
+        const identifier = urlParams.get('identifier');
+        if (identifier) {
+            document.querySelectorAll('a[href^="/sequence?"]').forEach(link => {
+                const currentHref = link.getAttribute('href');
+                link.setAttribute('href', `${currentHref}&identifier=${encodeURIComponent(identifier)}`);
+            });
         }
     </script>
 </body>
