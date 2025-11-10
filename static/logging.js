@@ -99,6 +99,9 @@ function send_logs(){
     })
 }
 
+
+// Set up certain types of events that should always be logged
+
 // Log copy events
 document.addEventListener('copy', function(e) {
     const selectedText = window.getSelection().toString();
@@ -115,7 +118,7 @@ document.addEventListener('copy', function(e) {
 
 // Log paste events
 document.addEventListener('paste', function(e) {
-    const pastedText = (event.clipboardData || window.clipboardData).getData('text');
+    const pastedText = (e.clipboardData || window.clipboardData).getData('text');
     
     event_cache.push({
         timestamp: new Date().getTime(),
@@ -126,6 +129,20 @@ document.addEventListener('paste', function(e) {
 
     console.log(event_cache.slice(-1)[0]);
 });
+
+// log visibility change events:
+// These seem to be triggered when the user activates/deactivates the particular page in any way.
+// This includes switching to a different tab/window, loading the page the first time, and navigating awa from the page(?)
+document.addEventListener("visibilitychange", function logData() {
+    if (document.visibilityState === "hidden") {
+        log_custom_event("navigate_away", {})
+        send_logs()
+    }
+    else {
+        log_custom_event("navigate_to", {})
+    }
+});
+
 
 // Auto-send logs every minute (only if there are new logs)
 let last_sent_count = 0;
