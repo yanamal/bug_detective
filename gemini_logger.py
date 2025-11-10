@@ -2,7 +2,6 @@ import json
 import os
 from datetime import datetime
 from google.api_core.exceptions import GoogleAPIError
-from types import SimpleNamespace
 
 def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs):
     """
@@ -29,11 +28,9 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
         response = model.generate_content(prompt, **kwargs)
 
     except GoogleAPIError as e:
-        response_text = f'Oops! An API error occurred when the bot tried to generate a response: {e}'
-        response = SimpleNamespace(text = response_text, candidates=[response_text])
+        response = f'Oops! An API error occurred when the bot tried to generate a response: {e}'
     except Exception as e:
-        response_text = f'Oops! An error occurred when the bot tried to generate a response: {e}'
-        response = SimpleNamespace(text = response_text, candidates = [response_text])
+        response = f'Oops! An error occurred when the bot tried to generate a response: {e}'
 
     end_ts = datetime.now()
 
@@ -43,14 +40,17 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
     if system_instruction:
         system_instruction = str(system_instruction)
 
-    if hasattr(response, 'candidates') and hasattr(response.candidates, 'content'):
-        # Gemini responses where multiple candidates were requested have a different format; extract text from each candidate
+    if hasattr(response, 'candidates') and hasattr(response.candidates[0], 'content'):
+        # This condition is true whether or not we asked for more than one candidate response:
+        # all responses have at least one candidate;
+        # if you requested more than one, then there's a list of several candidates.
+        # Otherwise, there is a list of exactly one candidate.
         response_text = [candidate.content.parts[0].text for candidate in response.candidates]
-    elif hasattr(response, 'text'):
-        # We must jut have one response, get its text
-        response_text = response.text
     else:
         # Generic fallback in case something else happens
+        # In particular, this handles the case when there was an exception and the response is just a string
+        # (The response string is still likely to cause errors when the app tries to parse and process the response;
+        # but at least the exact error message will be logged)
         response_text = str(response)
 
     # Prepare log entry
