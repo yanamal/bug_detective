@@ -89,7 +89,9 @@ function send_logs(){
     $.ajax({
     type: "POST",
     url: "/log_interactions",
-    data: JSON.stringify(event_cache),
+    data: JSON.stringify(addIdentifier({
+        logs: event_cache
+    })),
     contentType: "application/json",
     dataType: 'json',
     success: function(result) {
@@ -132,11 +134,12 @@ document.addEventListener('paste', function(e) {
 
 // log visibility change events:
 // These seem to be triggered when the user activates/deactivates the particular page in any way.
-// This includes switching to a different tab/window, loading the page the first time, and navigating awa from the page(?)
+// This includes switching to a different tab/window, loading the page the first time, and navigating away from the page(?)
+// TODO: this seems to cover switching to a new **tab** in the same window, but not switching to a different active **window**
 document.addEventListener("visibilitychange", function logData() {
     if (document.visibilityState === "hidden") {
         log_custom_event("navigate_away", {})
-        send_logs()
+        send_logs() // send the logs right away, in case we're loading a different page and everything will be lost
     }
     else {
         log_custom_event("navigate_to", {})

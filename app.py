@@ -7,6 +7,7 @@ from conversations import convo_bp
 from feedback import feedback_bp
 from questions import question_bp
 from gemini_logger import generate_content_with_logging
+from utils import get_client_identifier
 
 app = Flask(__name__)
 app.register_blueprint(convo_bp)
@@ -48,7 +49,7 @@ When several messages are equally good in terms of the rubric, you should prefer
       "required": ["step1_response_evaluations", "step2_best_message"]
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 The candidate messages pertain to the following data about a particular buggy solution to a programming problem:
 
 {problem_data}
@@ -91,13 +92,9 @@ def log_interactions():
     Endpoint to receive client-side interaction logs and save them to a file.
     """
     try:
-        identifier = request.headers['X-Real-IP']
+        identifier = get_client_identifier()
         # Get the JSON data from the request
-        log_data = request.json
-        log_entry = {
-            'identifier': identifier,
-            'logs': log_data
-        }
+        log_entry = request.json
 
         # Ensure logs directory exists
         log_dir = "logs"
@@ -176,7 +173,7 @@ Remember, your role is to describe the discrepancy between expected and actual o
 """
 
     ## Generate multiple candidates
-    response_candidates = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
+    response_candidates = generate_content_with_logging(model, request.endpoint, get_client_identifier(),
         observation_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
@@ -282,7 +279,7 @@ Remember, your role is to describe the investigation direction, not to guide the
     """
 
     # Generate the direction
-    response_candidates = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
+    response_candidates = generate_content_with_logging(model, request.endpoint, get_client_identifier(),
         direction_prompt,
         generation_config=genai.types.GenerationConfig(
             candidate_count=3,
@@ -387,7 +384,7 @@ def gen_full_trace_description():
         }
 
 
-        correct_trace_response = generate_content_with_logging(trace_model,  request.endpoint, request.headers['X-Real-IP'],
+        correct_trace_response = generate_content_with_logging(trace_model,  request.endpoint, get_client_identifier(),
                                                                f'''
         {correct_trace_prompt_data}
 
@@ -460,7 +457,7 @@ def gen_full_trace_description():
         { json.dumps(student_trace, indent=2)}
         """
 
-        student_trace_response = generate_content_with_logging(trace_model, request.endpoint, request.headers['X-Real-IP'], f'''
+        student_trace_response = generate_content_with_logging(trace_model, request.endpoint, get_client_identifier(), f'''
         The data below describes a buggy student solution to a programming problem.
 
         {student_trace_prompt_data}
@@ -581,7 +578,7 @@ Your task is to direct the student toward specific helpful parts of the executio
         # "propertyOrdering": ["reasoning", "start_index", "end_index", "student_call_to_action"]
       }
 
-    slice_response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    slice_response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
     {problem_prompt_data}
 
 Choose a short (as short as possible) contiguous slice of the execution trace which fits the investigation direction that the system previously suggested, and could help the student understand how the incorrect output happens.

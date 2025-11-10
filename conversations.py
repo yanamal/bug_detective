@@ -3,6 +3,7 @@ import os
 import google.generativeai as genai
 import json
 from gemini_logger import generate_content_with_logging
+from utils import get_client_identifier
 
 convo_bp = Blueprint('conversational', __name__) # , url_prefix='/convo')
 
@@ -36,7 +37,7 @@ def have_conversation(convo_name, instructions, input_data):
     "required": ["step1_conversation_analysis", "step2_has_question_been_answered", "step3_response_to_student"],
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'],
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(),
         input_data['chat_history'],
         generation_config=genai.GenerationConfig(
             response_mime_type="application/json",

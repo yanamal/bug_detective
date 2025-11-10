@@ -1,5 +1,17 @@
 // ~~~~ Functions that make LLM calls for "interaction-style" steps/questions ~~~~
 
+// Extract identifier from URL parameters (if present) to include in API requests
+const urlParams = new URLSearchParams(window.location.search);
+const clientIdentifier = urlParams.get('identifier');
+
+// Helper function to conditionally add identifier to request body
+function addIdentifier(body) {
+    if (clientIdentifier) {
+        return { ...body, identifier: clientIdentifier };
+    }
+    return body;
+}
+
 function start_problem_statement_check(prob, unit_test, student_output, correct_output){
     // first, make sure the understanding check exists (it may not if this step is "conversational)
     if($('[data-step-name="observation"] .understanding_check').length === 0){
@@ -29,7 +41,7 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            body: JSON.stringify(addIdentifier({
                 problem_statement: prob,
                 problem_statement_pieces: pieces,
                 unit_test: unit_test,
@@ -37,7 +49,7 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
                 correct_output: correct_output,
                 expected_answer: expected_answer,
                 clicked_piece: $(this).text()
-            })
+            }))
         })
         .then(response => {
             if(response.ok){
@@ -94,7 +106,7 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            body: JSON.stringify(addIdentifier({
                 problem_statement: prob,
                 exception_pieces: pieces,
                 unit_test: unit_test,
@@ -103,7 +115,7 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
                 expected_answers: expected_answers,
                 exception_question: question,
                 clicked_piece: $(this).text()
-            })
+            }))
         })
         .then(response => {
             if(response.ok){
@@ -220,7 +232,7 @@ function request_explanation_feedback(){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             problem_statement: prob,
             student_code: student_code,
             unit_test: unit_test,
@@ -230,7 +242,7 @@ function request_explanation_feedback(){
             direction: direction,
             action: action,
             student_explanation: explanation
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -278,11 +290,11 @@ function request_exception_check(){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             problem_statement: prob,
             unit_test: unit_test,
             student_output: student_output
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -331,7 +343,7 @@ function request_observation() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(obs_request_params)
+        body: JSON.stringify(addIdentifier(obs_request_params))
     })
     .then(response => {
         if(response.ok){
@@ -393,7 +405,7 @@ function request_direction(previous_output = {}) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(direction_request_params)
+        body: JSON.stringify(addIdentifier(direction_request_params))
     })
     .then(response => {
         if(response.ok){
@@ -463,7 +475,7 @@ function request_diagnostics(){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestParams)
+        body: JSON.stringify(addIdentifier(requestParams))
     })
     .then(response => {
         if(response.ok){
@@ -506,10 +518,10 @@ function request_diagnostics(){
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            body: JSON.stringify(addIdentifier({
                 ...requestParams,
                 chat_history: data.chat_history || [] // TODO: we don't have/need chat history anymore
-            })
+            }))
         });
     })
     .then(response => {
@@ -572,7 +584,7 @@ function request_direction_question(diagnostic_responses, descriptive_synced_tra
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             problem_statement: prob,
             student_code: student_code,
             corrected_code: corrected_code,
@@ -580,7 +592,7 @@ function request_direction_question(diagnostic_responses, descriptive_synced_tra
             student_output: student_output,
             execution_trace: student_descriptive_trace,
             direction: diagnostic_responses.direction
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -649,7 +661,7 @@ function request_direction_feedback(){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             problem_statement: prob,
             student_code: student_code,
             corrected_code: corrected_code,
@@ -661,7 +673,7 @@ function request_direction_feedback(){
             chosen_index: student_trace_index,
             chosen_step: current_op,
             correct_answers: correct_answers
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -721,13 +733,13 @@ function request_full_trace_analysis() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             synced_trace: synced_trace,
             problem_statement: prob,
             unit_test: unit_test,
             corrected_code: corrected_code,
             student_code: student_code
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -792,7 +804,7 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             student_trace: student_descriptive_trace,
             problem_statement: prob,
             unit_test: unit_test,
@@ -802,7 +814,7 @@ function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
             // diagnostic_reasoning: diagnostic_responses.priming,
             observation: diagnostic_responses.observation,
             direction: diagnostic_responses.direction
-        })
+        }))
     })
     .then(response => {
         if(response.ok){
@@ -888,14 +900,14 @@ function request_chat_response(step_name, chat_history,
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
+        body: JSON.stringify(addIdentifier({
             problem_statement: prob,
             unit_test: unit_test,
             student_output: student_output,
             chat_history: chat_history,
             student_code: student_code,
             execution_trace: student_descriptive_trace
-        })
+        }))
     })
     .then(response => {
         if(response.ok){

@@ -3,6 +3,7 @@ import os
 import google.generativeai as genai
 import json
 from gemini_logger import generate_content_with_logging
+from utils import get_client_identifier
 
 feedback_bp = Blueprint('feedback', __name__)
 
@@ -30,7 +31,7 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['problem_statement_pieces']}
 
@@ -96,7 +97,7 @@ Your task is to provide feedback to the student based on their response to a que
       }
 
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 This is problem statement for the problem that the student's code is supposed to solve, split up into several pieces:
 {data['exception_pieces']}
 
@@ -167,7 +168,7 @@ Your task is to provide feedback to the student based on their response to a que
         "required": ["step1_feedback_to_student", "step2_asked_to_try_again"],
       }
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 First, review the following information:
 
 <problem_statement>
@@ -263,7 +264,7 @@ When giving feedback and suggestion to the student, assume that they have access
     "required": ["step1_feedback_to_student", "step2_student_explained_sufficiently"],
   }
 
-  response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+  response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 First, review the following information about the student code and the problem it was trying to solve:
 
 <problem_statement>

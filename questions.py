@@ -3,6 +3,7 @@ import os
 import google.generativeai as genai
 import json
 from gemini_logger import generate_content_with_logging
+from utils import get_client_identifier
 
 question_bp = Blueprint('questions', __name__)
 
@@ -35,7 +36,7 @@ def generate_direction_understanding_data():
         }
     }
 
-    response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+    response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 First, review the following information:
 
 <problem_statement>
@@ -126,7 +127,7 @@ def generate_exception_understanding_data():
     }
 
 
-  response = generate_content_with_logging(model, request.endpoint, request.headers['X-Real-IP'], f'''
+  response = generate_content_with_logging(model, request.endpoint, get_client_identifier(), f'''
 First, review the following information:
 
 <problem_statement>
