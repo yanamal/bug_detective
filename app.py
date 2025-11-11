@@ -5,6 +5,8 @@ import json
 import random
 import multiprocessing
 from datetime import datetime
+from io import StringIO
+from contextlib import redirect_stdout
 
 from conversations import convo_bp
 from feedback import feedback_bp
@@ -732,11 +734,20 @@ def sum_smaller(lst, n):
 
 
 def test_potential_timeout(code_string, unit_test_string):
+    io_handle = StringIO()
     try:
-        exec(code_string, globals())
-        return eval(unit_test_string)
+        with redirect_stdout(io_handle):
+            exec(code_string, globals())
+            result = eval(unit_test_string)
+        return {
+            'return_value': result,
+            'print_output': io_handle.getvalue()
+        }
     except Exception as e:
-        return str(e)
+        return {
+            'return_value': f'Exception: {str(e)}',
+            'print_output': io_handle.getvalue()
+        }
 
 
 def run_unit_test(code_string, unit_test_string):
@@ -745,15 +756,25 @@ def run_unit_test(code_string, unit_test_string):
         try:
             return result.get(timeout=0.1)
         except multiprocessing.TimeoutError:
-            print('timeout')
-            return 'Timeout(infinite loop?)'
+            return {
+                'return_value': 'Timeout(infinite loop?)',
+                'print_output': ''
+            }
 
 
 @app.route('/run_tests', methods=['POST'])
 def run_tests():
     data = request.json
 
-    test_output = [str(run_unit_test(data['code'], test['test'])) for test in data['tests']]
+    test_output = []
+
+    for test in data['tests']:
+        result = run_unit_test(data['code'], test['test'])
+
+        test_output.append({
+            'return_out': str(result['return_value']),
+            'print_out': result['print_output']
+        })
 
     return jsonify(test_output)
 

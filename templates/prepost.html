@@ -34,19 +34,22 @@
             <table id="unit_tests" border=1 style="border-collapse: collapse;">
                 <tr>
                     <th>Test case</th>
-                    <th>Expected output</th>
-                    <th>Actual output</th>
+                    <th>Expected value</th>
+                    <th>Actual value</th>
+                    <th>Print output (if any)</th>
                 </tr>
                 {% for test in tests %}
                 <tr>
                     <td>{{ test.test }}</td>
                     <td>{{ test.expected }}</td>
                     <td></td>
+                    <td></td>
                 </tr>
                 {% endfor %}
             </table>
             <div id="post_debug_questions" style="display: none;">
                 <h2>Step 3. Answer three questions about the bug and your problem-solving process:</h2>
+                <div>Feel free to continue editing and re-running your code above, as needed.</div><br/>
                 <div style="margin-bottom: 15px;">
                     <label for="question1" style="display: block; margin-bottom: 5px;">
                         <b>What was the bug?</b><br>
