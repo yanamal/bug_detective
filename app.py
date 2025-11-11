@@ -795,6 +795,7 @@ def submit_post_debug_questions():
         # Create timestamp for logging
         timestamp = datetime.now()
         log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_post_debug_questions.json")
+        answers['timestamp'] = int(timestamp.timestamp()*1000)
 
         # Write the answers to file
         with open(log_file, 'w') as f:
@@ -821,6 +822,7 @@ def submit_end_questions():
         # Create timestamp for logging
         timestamp = datetime.now()
         log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_end_questions.json")
+        answers['timestamp'] = int(timestamp.timestamp()*1000)
 
         # Write the answers to file
         with open(log_file, 'w') as f:

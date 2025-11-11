@@ -55,8 +55,10 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
 
     # Prepare log entry
     log_entry = {
-        "start_timestamp": start_ts.isoformat(),
-        "end_timestamp": end_ts.isoformat(),
+        "start_time": start_ts.isoformat(),
+        "start_timestamp": int(start_ts.timestamp() * 1000),
+        "end_time": end_ts.isoformat(),
+        "end_timestamp": int(end_ts.timestamp() * 1000),
         "system_instruction": system_instruction,
         "prompt": prompt,
         "response": response_text,
