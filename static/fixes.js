@@ -660,13 +660,15 @@ $(document).ready(function() {
 
     // Pass along identifier parameter if it exists
     // TODO: could make this a function and call it in explanation.html, too.
-    const identifier = urlParams.get('identifier');
-    if (identifier) {
-        document.querySelectorAll('a[href^="/sequence?"]').forEach(link => {
-            const currentHref = link.getAttribute('href');
-            link.setAttribute('href', `${currentHref}&identifier=${encodeURIComponent(identifier)}`);
-        });
-    }
+    //   (needs to be in a file that explanation also imports)
+    // const identifier = urlParams.get('identifier');
+    // if (identifier) {
+    //     document.querySelectorAll('a[href^="/sequence?"]').forEach(link => {
+    //         const currentHref = link.getAttribute('href');
+    //         link.setAttribute('href', `${currentHref}&identifier=${encodeURIComponent(identifier)}`);
+    //     });
+    // }
+    propagate_sequence_params()
 })
 
 $(document).keydown(function(event) {

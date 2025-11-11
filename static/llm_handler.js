@@ -1,17 +1,5 @@
 // ~~~~ Functions that make LLM calls for "interaction-style" steps/questions ~~~~
 
-// Extract identifier from URL parameters (if present) to include in API requests
-const urlParams = new URLSearchParams(window.location.search);
-const clientIdentifier = urlParams.get('identifier');
-
-// Helper function to conditionally add identifier to request body
-function addIdentifier(body) {
-    if (clientIdentifier) {
-        return { ...body, identifier: clientIdentifier };
-    }
-    return body;
-}
-
 function start_problem_statement_check(prob, unit_test, student_output, correct_output){
     // first, make sure the understanding check exists (it may not if this step is "conversational)
     if($('[data-step-name="observation"] .understanding_check').length === 0){

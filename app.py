@@ -630,10 +630,17 @@ def tutorial_sequence():
     next_i = int(last_completed)+1
     additional_params += f'&step={next_i}'
 
-    identifier = request.values.get('identifier', None)
-    if identifier:
-        additional_params += f'&identifier={identifier}'
 
+    params_to_propagate = [
+        'identifier',
+        'version'
+    ]
+    for param in params_to_propagate:
+        param_value = request.values.get(param, None)
+        if param_value:
+            additional_params += f'&{param}={param_value}'
+
+    # If we still haven't finished the prescribed sequence
     if len(page_sequence) > next_i:
         return redirect(f'{page_sequence[next_i]}{additional_params}')
 
