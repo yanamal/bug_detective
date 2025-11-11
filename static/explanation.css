@@ -39,3 +39,11 @@ ol>li>div {
 ol>li.highlighted>div{
     visibility: visible;
 }
+
+.correct-test {
+    background-color: #ddffdd;
+}
+
+.wrong-test {
+    background-color: #fee8ea
+}

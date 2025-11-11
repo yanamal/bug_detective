@@ -2,7 +2,10 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import os
 import google.generativeai as genai
 import json
+import random
+import multiprocessing
 from datetime import datetime
+
 from conversations import convo_bp
 from feedback import feedback_bp
 from questions import question_bp
@@ -644,7 +647,167 @@ def tutorial_sequence():
     if len(page_sequence) > next_i:
         return redirect(f'{page_sequence[next_i]}{additional_params}')
 
+    # we have finished the prescribed sequence, but is this a prolific study with a pre/post version?
+    version = request.values.get('version')
+    if version is not None:
+        return redirect(f'debug_code?end=end_questions{additional_params}')
+
     return 'done'
+
+@app.route('/debug_code')
+def debug_test():
+    version = request.values.get('version', None)
+    if version:
+        # version provided - convert to int and ensure it's a valid option(0 or 1)
+        version = int(version) % 2
+
+        # also, if this is the end/post-test, flip the version (the version param signifies which version was used in the pre-test)
+        if request.values.get('end'):
+            version = (version+1) %2
+    else:
+        # version not provided - pick a random one (0 or 1)
+        version = random.randint(0,1)
+
+    problems = [
+        {
+            'problem_desc': '''Write a function, first_even(lst), which takes in a list of numbers 
+            and returns the first even number that occurs in that list, i.e. the even number with the lowest index.
+            If there are no even numbers in the list, the function should return None.''',
+            'problem_code': '''
+def first_even(lst):
+    for i in lst:
+        if i % 2 == 0:
+            return lst[i]
+    return None''',
+            'tests': [
+                {
+                    'test': 'first_even([1,3,5])',
+                    'expected': 'None'
+                },
+                {
+                    'test': 'first_even([1,3,2])',
+                    'expected': '2'
+                },
+                {
+                    'test': 'first_even([1,38,24])',
+                    'expected': '38'
+                },
+            ]
+        },
+        {
+            'problem_desc': '''Write a function, sum_smaller(lst, n), where lst is a list of numbers, and n is a number.
+ It should return the sum of all numbers in lst that are smaller than n.''',
+            'problem_code': '''
+def sum_smaller(lst, n):
+    s = 0
+    for x in lst:
+        if x <= n:
+            s += x
+    return s''',
+            'tests': [
+                {
+                    'test': 'sum_smaller([1,3,5], 0)',
+                    'expected': '0'
+                },
+                {
+                    'test': 'sum_smaller([1,3,5], 4)',
+                    'expected': '4'
+                },
+                {
+                    'test': 'sum_smaller([1,3,5], 5)',
+                    'expected': '4'
+                },
+            ]
+        }
+    ]
+
+    prob = problems[version]
+
+    return render_template('prepost.html',
+                           problem_desc = prob['problem_desc'],
+                           problem_code = prob['problem_code'].strip(),
+                           tests = prob['tests'],
+                           version = version
+                           )
+
+
+def test_potential_timeout(code_string, unit_test_string):
+    try:
+        exec(code_string, globals())
+        return eval(unit_test_string)
+    except Exception as e:
+        return str(e)
+
+
+def run_unit_test(code_string, unit_test_string):
+    with multiprocessing.Pool(processes=2) as pool:
+        result = pool.apply_async(test_potential_timeout, (code_string, unit_test_string,))
+        try:
+            return result.get(timeout=0.1)
+        except multiprocessing.TimeoutError:
+            print('timeout')
+            return 'Timeout(infinite loop?)'
+
+
+@app.route('/run_tests', methods=['POST'])
+def run_tests():
+    data = request.json
+
+    test_output = [str(run_unit_test(data['code'], test['test'])) for test in data['tests']]
+
+    return jsonify(test_output)
+
+
+@app.route('/submit_post_debug_questions', methods=['POST'])
+def submit_post_debug_questions():
+    """
+    Endpoint to receive post-debug question answers and log them.
+    """
+    try:
+        identifier = get_client_identifier()
+        answers = request.json
+
+        # Ensure logs directory exists
+        log_dir = "logs"
+        os.makedirs(log_dir, exist_ok=True)
+
+        # Create timestamp for logging
+        timestamp = datetime.now()
+        log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_post_debug_questions.json")
+
+        # Write the answers to file
+        with open(log_file, 'w') as f:
+            json.dump(answers, f, indent=2)
+
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+
+
+@app.route('/submit_end_questions', methods=['POST'])
+def submit_end_questions():
+    """
+    Endpoint to receive end-of-tutorial question answers and log them.
+    """
+    try:
+        identifier = get_client_identifier()
+        answers = request.json
+
+        # Ensure logs directory exists
+        log_dir = "logs"
+        os.makedirs(log_dir, exist_ok=True)
+
+        # Create timestamp for logging
+        timestamp = datetime.now()
+        log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_end_questions.json")
+
+        # Write the answers to file
+        with open(log_file, 'w') as f:
+            json.dump(answers, f, indent=2)
+
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 
 # Generic catch-all route comes last

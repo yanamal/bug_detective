@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Debugging Challenge</title>
+        <link rel="stylesheet" type="text/css" href="static/explanation.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="static/logging.js"></script>
+        <script type="text/javascript" src="static/propagate_params.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" src="static/prepost.js"></script>
+    </head>
+    <body>
+        <div class="content-container">
+            <h3>Problem statement:</h3>
+            <div id='problem'>{{ problem_desc|safe }}</div>
+
+            <details id="orig_buggy" open>
+                <summary><h3 style="display: inline;">Buggy solution:</h3></summary>
+                <div>
+                    <div id="buggycode">{{ problem_code|safe }}</div>
+                </div>
+            </details>
+
+            <h2>Step 1. Fix the buggy solution:</h2>
+            <span>Use the editor below to fix the solution.</span>
+            <div>
+                <div id="usercode">{{ problem_code|safe }}</div>
+            </div>
+
+            <h2>Step 2. Rerun test cases to see if you fixed it:</h2>
+            <span>Repeat steps 1 and 2 until all test cases pass, or until time is up (you have 10 minutes).</span>
+            <button style="width: fit-content;" onclick="test_code()">Rerun test cases</button>
+            <table id="unit_tests" border=1 style="border-collapse: collapse;">
+                <tr>
+                    <th>Test case</th>
+                    <th>Expected output</th>
+                    <th>Actual output</th>
+                </tr>
+                {% for test in tests %}
+                <tr>
+                    <td>{{ test.test }}</td>
+                    <td>{{ test.expected }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div id="post_debug_questions" style="display: none;">
+                <h2>Step 3. Answer three questions about the bug and your problem-solving process:</h2>
+                <div style="margin-bottom: 15px;">
+                    <label for="question1" style="display: block; margin-bottom: 5px;">
+                        <b>What was the bug?</b><br>
+                        What was wrong with the original solution?
+                    </label>
+                    <textarea id="question1" rows="4" style="width: 100%;"></textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="question2" style="display: block; margin-bottom: 5px;">
+                        <b>How did it cause the output?</b><br>
+                        Why did the bug cause the test case: <code>{{ tests[2].test }}</code><br>
+                        to produce the output: <code id="test2_output"></code>
+                    </label>
+                    <textarea id="question2" rows="4" style="width: 100%;"></textarea>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <label for="question3" style="display: block; margin-bottom: 5px;">
+                        <b>What question(s) did you ask yourself when you were looking for this bug?</b>
+                    </label>
+                    <textarea id="question3" rows="4" style="width: 100%;"></textarea>
+                </div>
+                <button id="submit_questions" style="width: fit-content;">Submit Answers</button>
+            </div>
+        </div>
+        <div style="position: fixed;right: 20px;"><h2 id="timer" >10:00</h2></div>
+        <script>
+            let version = {{ version }};
+        </script>
+    </body>
+</html>

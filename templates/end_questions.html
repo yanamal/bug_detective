@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Final Questions - Bug Detective</title>
+        <link rel="stylesheet" type="text/css" href="static/explanation.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="static/logging.js"></script>
+        <script type="text/javascript" src="static/propagate_params.js"></script>
+    </head>
+    <body>
+        <div class="content-container">
+            <h2>Thank you for participating in our study!</h2>
+            <p>Please answer the following questions about your experience with the Bug Detective tutorial sequence:</p>
+
+            <div style="margin-bottom: 15px;">
+                <label for="question1" style="display: block; margin-bottom: 5px;">
+                    <b>After practicing debugging with the Bug Detective, what do you think is the most important thing to focus on when trying to debug code?</b>
+                </label>
+                <textarea id="question1" rows="4" style="width: 100%;"></textarea>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="question2" style="display: block; margin-bottom: 5px;">
+                    <b>What was the most helpful about the Bug Detective tutorial and how did it help?</b>
+                </label>
+                <textarea id="question2" rows="4" style="width: 100%;"></textarea>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label for="question3" style="display: block; margin-bottom: 5px;">
+                    <b>What did you find the most confusing about the Bug Detective tutorial?</b>
+                </label>
+                <textarea id="question3" rows="4" style="width: 100%;"></textarea>
+            </div>
+
+            <button id="submit_questions" style="width: fit-content;">Submit Answers</button>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                $('#submit_questions').click(function() {
+                    const answers = {
+                        important_focus: $('#question1').val(),
+                        most_helpful: $('#question2').val(),
+                        most_confusing: $('#question3').val()
+                    };
+
+                    const urlParams = new URLSearchParams(window.location.search);
+
+                    fetch('/submit_end_questions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(answers)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if(data.status === 'success') {
+                            // Redirect to external URL if provided
+                            // TODO: make sure the cc is correct
+                            const redirectUrl = 'https://app.prolific.com/submissions/complete?cc=C420G5KA';
+                            window.location.href = redirectUrl;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
