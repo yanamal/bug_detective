@@ -1,5 +1,7 @@
 let timer_interval;
 $(document).ready(function() {
+    log_hovers('td')
+
     // Turn read-only buggy code into ace format
     let scode = ace.edit("buggycode", {
         maxLines: 7,
@@ -62,6 +64,8 @@ $(document).ready(function() {
         .then(response => response.json())
         .then(data => {
             if(data.status === 'success') {
+                send_logs()
+
                 // Build redirect URL on client side
                 const urlParams = new URLSearchParams(window.location.search);
                 const params = [];
@@ -109,6 +113,10 @@ function test_code(close_orig=true, insert_actual=false) {
         }
     })
 
+
+    // log code being tested
+    log_custom_event('starting_test', ace.edit($('#usercode')[0]).getValue())
+
     // Run the unit tests and fetch the results
     fetch('/run_tests', {
         method: 'POST',
@@ -123,6 +131,11 @@ function test_code(close_orig=true, insert_actual=false) {
     .then(response => response.json())
     .then(data => {
         console.log(data)
+
+        // log results of running test
+        log_custom_event('ran_test', data)
+        send_logs()
+
         // insert the actual values and add correct/wrong classes
         $('#unit_tests tr').removeClass() // remove classes (indicating correct/wrong) from all rows
         for(let i=0; i<data.length; i++) {

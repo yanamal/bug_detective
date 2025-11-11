@@ -40,10 +40,10 @@
                 </tr>
                 {% for test in tests %}
                 <tr>
-                    <td>{{ test.test }}</td>
-                    <td>{{ test.expected }}</td>
-                    <td></td>
-                    <td></td>
+                    <td id="test_cell_{{ loop.index0 }}">{{ test.test }}</td>
+                    <td id="expected_cell_{{ loop.index0 }}">{{ test.expected }}</td>
+                    <td id="actual_cell_{{ loop.index0 }}"></td>
+                    <td id="print_out_{{ loop.index0 }}"></td>
                 </tr>
                 {% endfor %}
             </table>
