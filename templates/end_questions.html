@@ -34,6 +34,44 @@
                 <textarea id="question3" rows="4" style="width: 100%;"></textarea>
             </div>
 
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 10px;">
+                    <b>How much <u>programming</u> experience do you have?</b>
+                </label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 0.9em;">Very little</span>
+                    <div style="display: flex; gap: 15px;border: 1px gray dotted;padding-right: 5px;">
+                        <label><input type="radio" name="programming_experience" value="1"> 1</label>
+                        <label><input type="radio" name="programming_experience" value="2"> 2</label>
+                        <label><input type="radio" name="programming_experience" value="3"> 3</label>
+                        <label><input type="radio" name="programming_experience" value="4"> 4</label>
+                        <label><input type="radio" name="programming_experience" value="5"> 5</label>
+                        <label><input type="radio" name="programming_experience" value="6"> 6</label>
+                        <label><input type="radio" name="programming_experience" value="7"> 7</label>
+                    </div>
+                    <span style="font-size: 0.9em;">I code for a living</span>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 10px;">
+                    <b>How much experience do you have with <u>Python</u>?</b>
+                </label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-size: 0.9em;">Never used it before</span>
+                    <div style="display: flex; gap: 15px;border: 1px gray dotted;padding-right: 5px;">
+                        <label><input type="radio" name="python_experience" value="1"> 1</label>
+                        <label><input type="radio" name="python_experience" value="2"> 2</label>
+                        <label><input type="radio" name="python_experience" value="3"> 3</label>
+                        <label><input type="radio" name="python_experience" value="4"> 4</label>
+                        <label><input type="radio" name="python_experience" value="5"> 5</label>
+                        <label><input type="radio" name="python_experience" value="6"> 6</label>
+                        <label><input type="radio" name="python_experience" value="7"> 7</label>
+                    </div>
+                    <span style="font-size: 0.9em;">I am a Python expert</span>
+                </div>
+            </div>
+
             <button id="submit_questions" style="width: fit-content;">Submit Answers</button>
         </div>
 
@@ -43,7 +81,9 @@
                     const answers = {
                         important_focus: $('#question1').val(),
                         most_helpful: $('#question2').val(),
-                        most_confusing: $('#question3').val()
+                        most_confusing: $('#question3').val(),
+                        programming_experience: $('input[name="programming_experience"]:checked').val(),
+                        python_experience: $('input[name="python_experience"]:checked').val()
                     };
 
                     const urlParams = new URLSearchParams(window.location.search);
