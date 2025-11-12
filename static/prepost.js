@@ -51,7 +51,8 @@ $(document).ready(function() {
         const answers = {
             bug_desc: $('#question1').val(),
             how_caused_output: $('#question2').val(),
-            questions_asked: $('#question3').val()
+            questions_asked: $('#question3').val(),
+            identifier: clientIdentifier
         };
 
         fetch('/submit_post_debug_questions', {
