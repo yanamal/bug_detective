@@ -47,13 +47,14 @@ $(document).ready(function() {
     }, 1000)
 
     // Handle post-debug questions submission
+    // TODO: only add identifier if it exists (also in end questions)
+    //  use addIdentifier function!
     $('#submit_questions').click(function() {
-        const answers = {
+        const answers = addIdentifier({
             bug_desc: $('#question1').val(),
             how_caused_output: $('#question2').val(),
             questions_asked: $('#question3').val(),
-            identifier: clientIdentifier
-        };
+        });
 
         fetch('/submit_post_debug_questions', {
             method: 'POST',
@@ -149,7 +150,7 @@ function test_code(close_orig=true, insert_actual=false) {
         // if insert_actual is specified, then insert the third (failing) test value into the question about how the bad value happened
         // (hacks - the third one is the wrong one in both cases)
         if(insert_actual) {
-            $('#test2_output').text(data[2])
+            $('#test2_output').text(data[2]['return_out'])
         }
         // if there are no wrong test cases, then reveal the follow-up questions
         if($('.wrong-test').length === 0) {

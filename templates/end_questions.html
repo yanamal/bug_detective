@@ -78,14 +78,13 @@
         <script>
             $(document).ready(function() {
                 $('#submit_questions').click(function() {
-                    const answers = {
+                    const answers = addIdentifier({
                         important_focus: $('#question1').val(),
                         most_helpful: $('#question2').val(),
                         most_confusing: $('#question3').val(),
                         programming_experience: $('input[name="programming_experience"]:checked').val(),
                         python_experience: $('input[name="python_experience"]:checked').val(),
-                        identifier: clientIdentifier
-                    };
+                    });
 
                     const urlParams = new URLSearchParams(window.location.search);
 
