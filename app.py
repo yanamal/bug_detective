@@ -105,9 +105,13 @@ def log_interactions():
         log_dir = "logs"
         os.makedirs(log_dir, exist_ok=True)
 
+        # Get referrer (just the endpoint)
+        page_url = request.referrer
+        page_name = page_url.split('/')[-1].split('?')[0]
+
         # Create timestamp in the same format as gemini_logger.py
         timestamp = datetime.now()
-        log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_clientside_logs.json")
+        log_file = os.path.join(log_dir, f"{identifier}_{timestamp.strftime('%Y.%m.%d.%H.%M.%S.%f')}_clientside_logs_{page_name}.json")
 
         # Write the log data to file
         with open(log_file, 'w') as f:
