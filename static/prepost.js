@@ -42,6 +42,7 @@ $(document).ready(function() {
 
         if(seconds_left <= 0) {
             clearInterval(timer_interval);
+            log_custom_event('debugging_timeout', {})
             reveal_questions()
         }
     }, 1000)
@@ -153,6 +154,7 @@ function test_code(close_orig=true, insert_actual=false) {
         }
         // if there are no wrong test cases, then reveal the follow-up questions
         if($('.wrong-test').length === 0) {
+            log_custom_event('debugging_finished', {})
             reveal_questions()
             clearInterval(timer_interval); // also stop timer
         }

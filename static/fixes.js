@@ -375,7 +375,10 @@ function make_observation_inter(){
     if (student_output.startsWith('Exception')) {
         // If this bug results in an exception, we first have to set up the understanding check.
         // This ensures that the understanding question is already prepared when the observation is displayed.
-        return request_exception_check().then(data => request_observation())
+        return request_exception_check().then(data => {
+            log_hovers(".student-output-text>span") // presumably there are spans in the exception message now, so log them
+            return request_observation()
+        })
     }
     else {
         // If this is not an exception, then the understanding check is already prepared
@@ -656,6 +659,7 @@ $(document).ready(function() {
     // Add listeners for logging
 
     log_hovers(".ast-node")
+    log_hovers("#problem_statement_div>span")
     log_clicks("button")
 
     // Pass along identifier parameter if it exists

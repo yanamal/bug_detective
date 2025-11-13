@@ -61,6 +61,7 @@ function log_hovers(selector) {
                 selector: selector,
                 id: this.id,
                 attributes: get_attrs(this),
+                text: this.textContent,
                 duration: duration,
                 page_data: page_data
             })
