@@ -20,7 +20,7 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
 
     // activate "click on problem statement segment" logic
     $('#problem_statement_div>span').click(function(){
-        pieces = $('#problem_statement_div>span').map(function(){return $(this).text()})
+        pieces = $('#problem_statement_div>span').map(function(){return $(this).text()}).get()
         expected_answer = $('#problem_statement_div>.expected').text()
 
         console.log($(this).text())
@@ -85,7 +85,7 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
 
     // activate "click on segment" logic
     $('.student-output-text>span').click(function(){
-        pieces = $('.student-output-text>span').map(function(){return $(this).text()})
+        pieces = $('.student-output-text>span').map(function(){return $(this).text()}).get()
         expected_answers = $('.student-output-text').data('expected_click')
         question = $('[data-step-name="observation"] .understanding-check-text').text()
 

@@ -111,7 +111,7 @@ The student was asked: "{data['exception_question']}."
 
 The system previously identified this list of potential correct answers: {data['expected_answers']}, although it's possible that other correct answers exist.
 
-The student chose to click on the part that said {data['clicked_piece']}.
+The student chose to click on the part that said: "{data['clicked_piece']}".
 
 Provide a feedback message to the student which describes whether the piece they clicked answers the question. Keep in mind that the student does not have control of how the exception message was split into pieces. Therefore, do not penalize or criticize the student if the part they clicked answers the question, but includes too much or too little text compared to the expected answer.
 
