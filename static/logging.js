@@ -86,6 +86,7 @@ function log_custom_event(event_type, event_data) {
 
 // send event logs to server (and empty cache)
 function send_logs(){
+    flush_keylog();  // ensure that we get all the keystrokes that were logged before this send event
     $.ajax({
     type: "POST",
     url: "/log_interactions",
@@ -144,6 +145,76 @@ document.addEventListener("visibilitychange", function logData() {
     else {
         log_custom_event("navigate_to", {})
     }
+});
+
+// Debounced keylogger
+let keylog_buffer = '';
+let keylog_first_timestamp = null;
+let keylog_last_timestamp = null;
+let keylog_target = null;
+let keylog_timeout = null;
+const KEYLOG_DEBOUNCE_MS = 500;
+
+function flush_keylog() {
+    if (keylog_buffer.length > 0) {
+        const target_info = {};
+        if (keylog_target) {
+            if (keylog_target.id) target_info.id = keylog_target.id;
+            if (keylog_target.className) target_info.class = keylog_target.className;
+            target_info.tag = keylog_target.tagName;
+        }
+
+        event_cache.push({
+            timestamp: keylog_first_timestamp,
+            event_type: 'keylog',
+            typed_text: keylog_buffer,
+            first_keypress: keylog_first_timestamp,
+            last_keypress: keylog_last_timestamp,
+            duration_ms: keylog_last_timestamp - keylog_first_timestamp,
+            target: target_info,
+            page_data: page_data
+        });
+
+        console.log(event_cache.slice(-1)[0]);
+
+        // Reset the buffer
+        keylog_buffer = '';
+        keylog_first_timestamp = null;
+        keylog_last_timestamp = null;
+        keylog_target = null;
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    const timestamp = new Date().getTime();
+
+    // Clear existing timeout
+    if (keylog_timeout) {
+        clearTimeout(keylog_timeout);
+    }
+
+    // Record first timestamp if this is a new sequence
+    if (keylog_buffer.length === 0) {
+        keylog_first_timestamp = timestamp;
+        keylog_target = e.target;
+    }
+
+    // Update last timestamp
+    keylog_last_timestamp = timestamp;
+
+    // Add the key to the buffer (only if it's a printable character)
+    if (e.key.length === 1) {
+        keylog_buffer += e.key;
+    } else if (e.key === 'Backspace') {
+        keylog_buffer += '[Backspace]';
+    } else if (e.key === 'Enter') {
+        keylog_buffer += '[Enter]';
+    } else if (e.key === 'Tab') {
+        keylog_buffer += '[Tab]';
+    }
+
+    // Set new timeout to flush after debounce period
+    keylog_timeout = setTimeout(flush_keylog, KEYLOG_DEBOUNCE_MS);
 });
 
 

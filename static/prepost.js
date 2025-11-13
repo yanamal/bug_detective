@@ -47,9 +47,8 @@ $(document).ready(function() {
     }, 1000)
 
     // Handle post-debug questions submission
-    // TODO: only add identifier if it exists (also in end questions)
-    //  use addIdentifier function!
     $('#submit_questions').click(function() {
+        send_logs();
         const answers = addIdentifier({
             bug_desc: $('#question1').val(),
             how_caused_output: $('#question2').val(),
