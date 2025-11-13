@@ -49,12 +49,15 @@ $(document).ready(function() {
 
     // Handle post-debug questions submission
     $('#submit_questions').click(function() {
-        send_logs();
         const answers = addIdentifier({
             bug_desc: $('#question1').val(),
             how_caused_output: $('#question2').val(),
             questions_asked: $('#question3').val(),
         });
+
+        log_custom_event('submit_post_debug_questions', answers);
+        send_logs();
+        // TODO: don't necessarily need the separate post_debug_questions endpoint?
 
         fetch('/submit_post_debug_questions', {
             method: 'POST',

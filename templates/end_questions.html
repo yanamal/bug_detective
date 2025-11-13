@@ -86,7 +86,9 @@
                         python_experience: $('input[name="python_experience"]:checked').val(),
                     });
 
-                    const urlParams = new URLSearchParams(window.location.search);
+                    log_custom_event("submit_end_questions", answers);
+                    send_logs();
+                    // TODO: don't really need the separate submit_end_questions endpoint anymore?
 
                     fetch('/submit_end_questions', {
                         method: 'POST',
@@ -99,7 +101,6 @@
                     .then(data => {
                         if(data.status === 'success') {
                             // Redirect to external URL if provided
-                            // TODO: make sure the cc is correct
                             const redirectUrl = 'https://app.prolific.com/submissions/complete?cc=C1GZHIJQ';
                             window.location.href = redirectUrl;
                         }
