@@ -600,7 +600,7 @@ $(document).ready(function() {
 
     $('body').append(`
     <div id="error_dialog" title="Error loading response">
-  <p>Oops! An error occurred when trying to load a response from the bot.</p>
+  <p>Oops! The AI failed to generate a response. Please try resending your latest answer or reloading the page.</p>
 </div>`)
     $('#error_dialog').dialog({
         autoOpen: false

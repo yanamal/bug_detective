@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from google.api_core.exceptions import GoogleAPIError
 
-def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs):
+def generate_content_with_logging(model, endpoint, identifier, prompt, is_retry=False, **kwargs):
     """
     Wrapper for model.generate_content that logs all interactions to a JSON file.
 
@@ -21,59 +21,71 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, **kwargs)
     # Generate the response (and record timestamps before/after)
     start_ts = datetime.now()
 
+    # record info we have **before** running the prompt
+    log_entry = {
+        "start_time": start_ts.isoformat(),
+        "start_timestamp": int(start_ts.timestamp() * 1000),
+        "prompt": prompt,
+        "endpoint": endpoint,
+        "identifier": identifier
+    }
+
     response = None
     response_text = None
 
     try:
         response = model.generate_content(prompt, **kwargs)
-
     except GoogleAPIError as e:
         response = f'Oops! An API error occurred when the bot tried to generate a response: {e}'
+        if not is_retry:  # TODO: and e.code == 429  (according to Gemini - but need to test)
+            # If this was not already a retry attempt, then retry once:
+            return generate_content_with_logging(model, endpoint, identifier, prompt, is_retry=True, **kwargs)
     except Exception as e:
         response = f'Oops! An error occurred when the bot tried to generate a response: {e}'
 
-    end_ts = datetime.now()
-
-
-    # Extract system instruction if available
-    system_instruction = getattr(model, '_system_instruction', None)
-    if system_instruction:
-        system_instruction = str(system_instruction)
-
-    if hasattr(response, 'candidates') and hasattr(response.candidates[0], 'content'):
-        # This condition is true whether or not we asked for more than one candidate response:
-        # all responses have at least one candidate;
-        # if you requested more than one, then there's a list of several candidates.
-        # Otherwise, there is a list of exactly one candidate.
-        response_text = [candidate.content.parts[0].text for candidate in response.candidates]
     else:
-        # Generic fallback in case something else happens
-        # In particular, this handles the case when there was an exception and the response is just a string
-        # (The response string is still likely to cause errors when the app tries to parse and process the response;
-        # but at least the exact error message will be logged)
-        response_text = str(response)
+        # if the Google API call succeeded
 
-    # Prepare log entry
-    log_entry = {
-        "start_time": start_ts.isoformat(),
-        "start_timestamp": int(start_ts.timestamp() * 1000),
-        "end_time": end_ts.isoformat(),
-        "end_timestamp": int(end_ts.timestamp() * 1000),
-        "system_instruction": system_instruction,
-        "prompt": prompt,
-        "response": response_text,
-        "endpoint": endpoint,
-        "identifier": identifier
-    }
+        end_ts = datetime.now()
 
-    # Ensure logs directory exists
-    log_dir = "logs"
-    os.makedirs(log_dir, exist_ok=True)
+        # Extract system instruction if available
+        system_instruction = getattr(model, '_system_instruction', None)
+        if system_instruction:
+            system_instruction = str(system_instruction)
 
-    # Create path for timestamped log file
-    log_file = os.path.join(log_dir, f"{identifier}_{start_ts.strftime('%Y.%m.%d.%H.%M.%S.%f')}_gemini_logs_{endpoint}.json")
+        if hasattr(response, 'candidates') and hasattr(response.candidates[0], 'content'):
+            # This condition is true whether or not we asked for more than one candidate response:
+            # all responses have at least one candidate;
+            # if you requested more than one, then there's a list of several candidates.
+            # Otherwise, there is a list of exactly one candidate.
+            response_text = [candidate.content.parts[0].text for candidate in response.candidates]
+        else:
+            # Generic fallback in case something else happens
+            # In particular, this handles the case when there was an exception and the response is just a string
+            # (The response string is still likely to cause errors when the app tries to parse and process the response;
+            # but at least the exact error message will be logged)
+            response_text = str(response)
 
-    with open(log_file, 'w') as f:
-        json.dump(log_entry, f, indent=2)
+        # Prepare log entry
+        # amend log entry with info we only have **after** the gemini call succeeded
+        log_entry.update({
+            "end_time": end_ts.isoformat(),
+            "end_timestamp": int(end_ts.timestamp() * 1000),
+            "system_instruction": system_instruction,
+            "response": response_text,
+        })
+
+    finally:
+        # Write logs to file even if the API call failed
+
+        # Ensure logs directory exists
+        log_dir = "logs"
+        os.makedirs(log_dir, exist_ok=True)
+
+        # Create path for timestamped log file
+        log_file = os.path.join(log_dir, f"{identifier}_{start_ts.strftime('%Y.%m.%d.%H.%M.%S.%f')}_gemini_logs_{endpoint}.json")
+
+        with open(log_file, 'w') as f:
+            json.dump(log_entry, f, indent=2)
 
     return response
