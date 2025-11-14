@@ -37,6 +37,7 @@ def generate_content_with_logging(model, endpoint, identifier, prompt, is_retry=
         response = model.generate_content(prompt, **kwargs)
     except GoogleAPIError as e:
         response = f'Oops! An API error occurred when the bot tried to generate a response: {e}'
+        log_entry['error_message'] = response
         if not is_retry:  # TODO: and e.code == 429  (according to Gemini - but need to test)
             # If this was not already a retry attempt, then retry once:
             return generate_content_with_logging(model, endpoint, identifier, prompt, is_retry=True, **kwargs)
