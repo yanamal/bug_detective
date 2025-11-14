@@ -603,7 +603,16 @@ $(document).ready(function() {
   <p>Oops! The AI failed to generate a response. Please try resending your latest answer or reloading the page.</p>
 </div>`)
     $('#error_dialog').dialog({
-        autoOpen: false
+        autoOpen: false,
+        modal: true,
+        buttons: [
+            {
+                text: "OK",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
     })
 
     // add the debugging steps:

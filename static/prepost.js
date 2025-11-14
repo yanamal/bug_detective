@@ -1,6 +1,26 @@
 let timer_interval;
 $(document).ready(function() {
+    // Crete dialog for "no AI use" warning
+    $('#no_ai').dialog({
+        autoOpen: false,
+        minWidth: 800,
+        modal: true,
+        buttons: [
+            {
+                text: "I will not use external AI tools",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
+    })
+    // If this is not the end test (so this IS the pre-test), open the dialog.
+    if(!urlParams.has('end')) {
+        $('#no_ai').dialog('open');
+    }
+
     log_hovers('td')
+    log_clicks('button')
 
     // Turn read-only buggy code into ace format
     let scode = ace.edit("buggycode", {
@@ -30,7 +50,6 @@ $(document).ready(function() {
     test_code(false, true)
 
     // set up timer
-
     let seconds_left = 10*60
     timer_interval = setInterval(function() {
         seconds_left -= 1

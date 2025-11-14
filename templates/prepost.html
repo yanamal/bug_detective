@@ -4,11 +4,18 @@
         <meta charset="UTF-8">
         <title>Debugging Challenge</title>
         <link rel="stylesheet" type="text/css" href="static/explanation.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
         <script type="text/javascript" src="static/logging.js"></script>
         <script type="text/javascript" src="static/propagate_params.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript" src="static/prepost.js"></script>
+        <style>
+            .ui-dialog .ui-dialog-titlebar-close {
+                display: none;
+            }
+        </style>
     </head>
     <body>
         <div class="content-container">
@@ -75,6 +82,30 @@
             </div>
         </div>
         <div style="position: fixed;right: 20px;"><h2 id="timer" >10:00</h2></div>
+        <div id="no_ai" title = "No external AI use">
+            <h1 style="color: red;">You are not allowed to use external AI tools for this study</h1>
+            This study is about how people interact with our own AI tutoring assistant. Using external AI tools defeats the point of the study.
+            <ul>
+                <li>
+                    <b>You will not be penalized for being wrong or being unsure</b>. Again, the whole point is to see how people learn and become better at debugging with our tool.
+                </li>
+                <li>
+                    If you are unable to complete the independent debugging challenge, <b>you are not stuck</b>. After 10 minutes, you will be asked to take your best guesses about the bug, and move on to the next step.
+                </li>
+                <li>
+                    However, if you cheat and use AI, you do <b>run the risk of having your submission rejected.</b>
+                </li>
+                <li>
+                    When people use AI in this study, they often make egregious mistakes that <b>make their use of AI blatantly obvious</b>.
+                    <ul>
+                        <li>
+                            If you don’t understand what the study is asking of you, how will you be able to guess whether you are making these egregious mistakes?
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            If you don’t actually know how to program at all, please return this study and remove the claim that you “have programming skills” from your profile. Otherwise, <b>just do your best without the use of external AI tools</b>.
+        </div>
         <script>
             let version = {{ version }};
         </script>
