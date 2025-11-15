@@ -30,6 +30,9 @@ def have_conversation(convo_name, instructions, input_data):
         "step2_has_question_been_answered": {
             "type": "boolean"
         },
+        "step2_5_question_been_answered_explanation": {
+            "type": "string"
+        },
         "step3_response_to_student": {
             "type": "string"
         }
@@ -78,7 +81,7 @@ The following information describes the context of this session:
 First, use the step1_conversation_analysis field to provide a thorough analysis of the conversation so far, explicitly addressing each of the following:
 
 1. Restate, exactly, the original question asked in the first turn of the conversation.
-2. Has the original question already been answered in this conversation, either by the studend or by the assistant? If not, what specifically still needs to be addressed in order to answer the original question?
+2. Has the original question already been answered in this conversation, either by the student or by the assistant, **in a way that is specific to the problem at hand**? If not, what specifically still needs to be addressed in order to answer the original question? If yes, quote a specific phrase from the conversation that addresses the problem at hand in a specific, non-generic and non-vague way.
 3. In the most recent turn, has the student said something that is correct - or can be interpreted as correct - with respect to the original question? What was it, specifically?
 4. In the most recent turn, has the student said something that is explicitly incorrect? What was it, specifically?
 
@@ -192,11 +195,13 @@ First, use the step1_conversation_analysis field to provide a thorough analysis 
 
 1. Summarize everything that's been discussed so far that helps answer why the student's code didn't do the right thing in this case.
 2. Is there is any information missing from the discussion so far that is **critical** to explaining why the code didn't do the right thing? If so, what exactly are the pieces of missing information? for each piece, describe why it is critical.
-3. In the most recent turn, has the student said something that is correct - or can be interpreted as correct - with respect to the original question? What was it, specifically?
-4. In the most recent turn, has the student said something that is explicitly incorrect? What was it, specifically?
+3. In the most recent turn, was the student's answer generic and vague - that is, could it be applicable to most debugging problems? or was it specific to the actual code at hand?
+4. If the student has said something tat is specific to the problem at hand, has the student said something that is correct - or can be interpreted as correct - with respect to the original question? What was it, specifically? Quote the student's answer directly.
+5. Directly quote all parts of the conversation between you and the student so far that help address the original question in a **specific** way; that is, help explain **why the code didn't do the right thing**. If nothing in the conversation has addressed the problem, state so. Only things from the conversation itself apply. Do not quote anything else.
+6. In the most recent turn, has the student said something that is explicitly incorrect? What was it, specifically?
 
-Second, use parts 1 and 3 of the previous analysis to determine whether the question posed at the beginning of the conversation has already been answered; that is, whether you and the student have sufficiently explained **why the code didn't do the right thing**. If so, this particular conversation should end. Indicate this in the step2_has_question_been_answered field. Remember that the original question is the **ONLY** thing the student needs to answer. Do not make up additional requirements that are not part of the original question.
-
+Second, use parts 1 and 5 of the previous analysis to determine whether the question posed at the beginning of the conversation has already been answered **within the convesration**; that is, whether you and the student have sufficiently explained **why the code didn't do the right thing**. Indicate this in the step2_has_question_been_answered field. This should be true if and only if the conversation so far contains enough **specific** information to answer the question posed. **NO** information from outside of the conversation (such as the code, traceback, error message, etc.), between you and the student should be used in this decision. Remember that the original question is the **ONLY** thing the student needs to answer. Do not make up additional requirements that are not part of the original question.
+Use the field step2_5_question_been_answered_explanation to justify why you chose "true" or "false" for step2_has_question_been_answered
 
 Third, use the analysis to formulate your response to the student's most recent turn:
 1. If the original question has already been answered, your response should wrap up the conversation, and summarize the answer a final time. It should not ask any follow-up questions, since the conversation will be over and the student will not be able to answer them.
