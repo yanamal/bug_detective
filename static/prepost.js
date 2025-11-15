@@ -163,11 +163,19 @@ function test_code(close_orig=true, insert_actual=false) {
         // insert the actual values and add correct/wrong classes
         $('#unit_tests tr').removeClass() // remove classes (indicating correct/wrong) from all rows
         for(let i=0; i<data.length; i++) {
-            $('#unit_tests tr').eq(i+1).children('td').eq(2).html(data[i]['return_out'])
-            $('#unit_tests tr').eq(i+1).children('td').eq(3).html(`<pre>${data[i]['print_out']}</pre>`)
+            this_row = $('#unit_tests tr').eq(i+1)
+            // for both return and print output, fade old text out/fade new text in
+            this_row.children('td').eq(2).fadeOut(function() {
+              $(this).html(`<pre>${data[i]['return_out']}</pre>`).fadeIn();
+            });
+            this_row.children('td').eq(3).fadeOut(function() {
+              $(this).html(`<pre>${data[i]['print_out']}</pre>`).fadeIn();
+            });
+            //this_row.children('td').eq(2).html(data[i]['return_out'])
+            //this_row.children('td').eq(3).html(`<pre>${data[i]['print_out']}</pre>`)
             // TODO: ideally, we would probably compare it in Python somewhere, to catch things like type mismatches.
             //  But this would require actually tracking which problem we're fixing, etc.
-            $('#unit_tests tr').eq(i+1).addClass(data[i]['return_out'] === unit_tests[i].expected ? 'correct-test': 'wrong-test')
+            this_row.addClass(data[i]['return_out'] === unit_tests[i].expected ? 'correct-test': 'wrong-test')
         }
         // if insert_actual is specified, then insert the third (failing) test value into the question about how the bad value happened
         // (hacks - the third one is the wrong one in both cases)
