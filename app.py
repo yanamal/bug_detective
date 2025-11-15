@@ -681,6 +681,7 @@ def debug_test():
             If there are no even numbers in the list, the function should return None.''',
             'problem_code': '''
 def first_even(lst):
+    print('demo print message')
     for i in lst:
         if i % 2 == 0:
             return lst[i]
@@ -705,6 +706,7 @@ def first_even(lst):
  It should return the sum of all numbers in lst that are smaller than n.''',
             'problem_code': '''
 def sum_smaller(lst, n):
+    print('demo print message')
     s = 0
     for x in lst:
         if x <= n:
