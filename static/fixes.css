@@ -394,18 +394,23 @@ body {
     
 .loading-placeholder {
     background-color: #d0d0d0;
+    color: gray;
     border-radius: 4px;
     margin: 10px 0;
     animation: pulse 1.5s infinite ease-in-out;
   }
-  
-  .loading-line {
+
+.loading-placeholder:before {
+  content: "The AI is thinking...";
+}
+
+.loading-line {
     height: 20px;
     width: 90%;
-  }
+}
 
-  
-  @keyframes pulse {
+
+@keyframes pulse {
     0% {
       opacity: 0.6;
     }
@@ -415,7 +420,7 @@ body {
     100% {
       opacity: 0.6;
     }
-  }
+}
 
   
 .problem-statement.active-check span:hover {
