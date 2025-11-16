@@ -19,6 +19,19 @@ $(document).ready(function() {
         $('#no_ai').dialog('open');
     }
 
+    $('#timeout').dialog({
+        autoOpen: false,
+        modal: true,
+        buttons: [
+            {
+                text: "OK",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ]
+    })
+
     log_hovers('td')
     log_clicks('button')
 
@@ -63,6 +76,7 @@ $(document).ready(function() {
             clearInterval(timer_interval);
             log_custom_event('debugging_timeout', {})
             reveal_questions()
+            $('#timeout').dialog('open');
         }
     }, 1000)
 
