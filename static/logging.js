@@ -220,10 +220,8 @@ document.addEventListener('keydown', function(e) {
 
 
 // Auto-send logs every minute (only if there are new logs)
-let last_sent_count = 0;
 setInterval(function() {
-    if (event_cache.length > 0 && event_cache.length !== last_sent_count) {
-        last_sent_count = event_cache.length;
+    if (event_cache.length > 0) {
         send_logs();
     }
 }, 60000); // 60000ms = 1 minute
