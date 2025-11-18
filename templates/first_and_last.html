@@ -1,0 +1,407 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/logging.js"></script>
+    <script type="text/javascript" src="static/propagate_params.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_8a7caf3a-e911-465c-bcaa-db126fac49d1" data-node-id="8a7caf3a-e911-465c-bcaa-db126fac49d1" data-node-name="Module"><span class="ast-node" id="student_code_15ce9742-9e24-425c-b7dc-af5ad802e6e9" data-node-id="15ce9742-9e24-425c-b7dc-af5ad802e6e9" data-node-name="FunctionDef name: first_and_last" data-key=0 data-parent-list-id="c543dfb0-6ee4-45bc-8fe9-3ce8b6c7fbae">def first_and_last(<span class="ast-node" id="student_code_5cf12b52-9e0b-44d5-903d-25adb5e065b8" data-node-id="5cf12b52-9e0b-44d5-903d-25adb5e065b8" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_8df1775c-4906-4210-887a-fbe051447bfe" data-node-id="8df1775c-4906-4210-887a-fbe051447bfe" data-node-name="arg(arg = s)" data-key=0 data-parent-list-id="129c2148-c81a-4fe0-b30c-a031bbfe2504">s</span></span>):
+    <span class="ast-node" id="student_code_7425da58-25d3-4543-b697-809152c12eda" data-node-id="7425da58-25d3-4543-b697-809152c12eda" data-node-name="Return" data-key=0 data-parent-list-id="390f0d26-0354-4b9e-99b1-cc06eb5e9b75">return <span class="ast-node" id="student_code_ed5705ac-d7b2-430e-91f0-8ef4593b0b32" data-node-id="ed5705ac-d7b2-430e-91f0-8ef4593b0b32" data-node-name="BinOp +" data-key=value><span class="ast-node" id="student_code_8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f" data-node-id="8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f" data-node-name="Subscript(ctx=Load)" data-key=left><span class="ast-node" id="student_code_c77f795b-ad86-476c-9878-ad10ccdc3ad4" data-node-id="c77f795b-ad86-476c-9878-ad10ccdc3ad4" data-node-name="Load identifier s" data-key=value>s</span>[<span class="ast-node" id="student_code_0b60c69f-f952-4f99-8926-bcf812a4abae" data-node-id="0b60c69f-f952-4f99-8926-bcf812a4abae" data-node-name="Index" data-key=slice><span class="ast-node" id="student_code_855f6475-43ef-437a-aaff-c19b3905a7f4" data-node-id="855f6475-43ef-437a-aaff-c19b3905a7f4" data-node-name="Num(n = 0)" data-key=value>0</span></span>]</span> + <span class="ast-node" id="student_code_3ae4d190-4d68-4570-8ed7-ec4d119e1ba2" data-node-id="3ae4d190-4d68-4570-8ed7-ec4d119e1ba2" data-node-name="Subscript(ctx=Load)" data-key=right><span class="ast-node" id="student_code_b917bd97-042c-486b-9e56-262c47eff04f" data-node-id="b917bd97-042c-486b-9e56-262c47eff04f" data-node-name="Load identifier s" data-key=value>s</span>[<span class="ast-node delete-node" id="student_code_5f017c61-6c37-4e24-8d37-7fd5cb48537f" data-node-id="5f017c61-6c37-4e24-8d37-7fd5cb48537f" data-node-name="Slice" data-key=slice>:<span class="ast-node move-node" id="student_code_edf5db4a-a59d-4012-9c0a-4ed87835a46e" data-node-id="edf5db4a-a59d-4012-9c0a-4ed87835a46e" data-node-name="UnaryOp -" data-key=upper>-<span class="ast-node" id="student_code_6e46d015-7a43-493d-bd6e-3f7b02a05a9f" data-node-id="6e46d015-7a43-493d-bd6e-3f7b02a05a9f" data-node-name="Num(n = 1)" data-key=operand>1</span></span></span>]</span></span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_8a7caf3a-e911-465c-bcaa-db126fac49d1" data-node-id="8a7caf3a-e911-465c-bcaa-db126fac49d1" data-node-name="Module"><span class="ast-node" id="corrected_code_15ce9742-9e24-425c-b7dc-af5ad802e6e9" data-node-id="15ce9742-9e24-425c-b7dc-af5ad802e6e9" data-node-name="FunctionDef name: first_and_last" data-key=0 data-parent-list-id="c543dfb0-6ee4-45bc-8fe9-3ce8b6c7fbae">def first_and_last(<span class="ast-node" id="corrected_code_5cf12b52-9e0b-44d5-903d-25adb5e065b8" data-node-id="5cf12b52-9e0b-44d5-903d-25adb5e065b8" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_8df1775c-4906-4210-887a-fbe051447bfe" data-node-id="8df1775c-4906-4210-887a-fbe051447bfe" data-node-name="arg(arg = s)" data-key=0 data-parent-list-id="129c2148-c81a-4fe0-b30c-a031bbfe2504">s</span></span>):
+    <span class="ast-node" id="corrected_code_7425da58-25d3-4543-b697-809152c12eda" data-node-id="7425da58-25d3-4543-b697-809152c12eda" data-node-name="Return" data-key=0 data-parent-list-id="390f0d26-0354-4b9e-99b1-cc06eb5e9b75">return <span class="ast-node" id="corrected_code_ed5705ac-d7b2-430e-91f0-8ef4593b0b32" data-node-id="ed5705ac-d7b2-430e-91f0-8ef4593b0b32" data-node-name="BinOp +" data-key=value><span class="ast-node" id="corrected_code_8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f" data-node-id="8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f" data-node-name="Subscript(ctx=Load)" data-key=left><span class="ast-node" id="corrected_code_c77f795b-ad86-476c-9878-ad10ccdc3ad4" data-node-id="c77f795b-ad86-476c-9878-ad10ccdc3ad4" data-node-name="Load identifier s" data-key=value>s</span>[<span class="ast-node" id="corrected_code_0b60c69f-f952-4f99-8926-bcf812a4abae" data-node-id="0b60c69f-f952-4f99-8926-bcf812a4abae" data-node-name="Index" data-key=slice><span class="ast-node" id="corrected_code_855f6475-43ef-437a-aaff-c19b3905a7f4" data-node-id="855f6475-43ef-437a-aaff-c19b3905a7f4" data-node-name="Num(n = 0)" data-key=value>0</span></span>]</span> + <span class="ast-node" id="corrected_code_3ae4d190-4d68-4570-8ed7-ec4d119e1ba2" data-node-id="3ae4d190-4d68-4570-8ed7-ec4d119e1ba2" data-node-name="Subscript(ctx=Load)" data-key=right><span class="ast-node" id="corrected_code_b917bd97-042c-486b-9e56-262c47eff04f" data-node-id="b917bd97-042c-486b-9e56-262c47eff04f" data-node-name="Load identifier s" data-key=value>s</span>[<span class="ast-node insert-node" id="corrected_code_4b6d6bf9-62a9-4540-8260-40ab6f6a6df5" data-node-id="4b6d6bf9-62a9-4540-8260-40ab6f6a6df5" data-node-name="Index" data-key=slice><span class="ast-node move-node" id="corrected_code_edf5db4a-a59d-4012-9c0a-4ed87835a46e" data-node-id="edf5db4a-a59d-4012-9c0a-4ed87835a46e" data-node-name="UnaryOp -" data-key=value>-<span class="ast-node" id="corrected_code_6e46d015-7a43-493d-bd6e-3f7b02a05a9f" data-node-id="6e46d015-7a43-493d-bd6e-3f7b02a05a9f" data-node-name="Num(n = 1)" data-key=operand>1</span></span></span>]</span></span></span></span></span></pre></div>
+    <script>
+      problem_statement = '<span class="">Write a function, first_and_last, </span><span class="">which takes in a string, s </span><span class="">and returns another string </span><span class="expected">containing only the first and last letter in s</span>'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_8a7caf3a-e911-465c-bcaa-db126fac49d1\" data-node-id=\"8a7caf3a-e911-465c-bcaa-db126fac49d1\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_15ce9742-9e24-425c-b7dc-af5ad802e6e9\" data-node-id=\"15ce9742-9e24-425c-b7dc-af5ad802e6e9\" data-node-name=\"FunctionDef name: first_and_last\" data-key=0 data-parent-list-id=\"c543dfb0-6ee4-45bc-8fe9-3ce8b6c7fbae\">def first_and_last(<span class=\"ast-node\" id=\"student_code_only_5cf12b52-9e0b-44d5-903d-25adb5e065b8\" data-node-id=\"5cf12b52-9e0b-44d5-903d-25adb5e065b8\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_8df1775c-4906-4210-887a-fbe051447bfe\" data-node-id=\"8df1775c-4906-4210-887a-fbe051447bfe\" data-node-name=\"arg(arg = s)\" data-key=0 data-parent-list-id=\"129c2148-c81a-4fe0-b30c-a031bbfe2504\">s</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_7425da58-25d3-4543-b697-809152c12eda\" data-node-id=\"7425da58-25d3-4543-b697-809152c12eda\" data-node-name=\"Return\" data-key=0 data-parent-list-id=\"390f0d26-0354-4b9e-99b1-cc06eb5e9b75\">return <span class=\"ast-node\" id=\"student_code_only_ed5705ac-d7b2-430e-91f0-8ef4593b0b32\" data-node-id=\"ed5705ac-d7b2-430e-91f0-8ef4593b0b32\" data-node-name=\"BinOp +\" data-key=value><span class=\"ast-node\" id=\"student_code_only_8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f\" data-node-id=\"8eec2b69-b1ee-4d5c-b04c-4c1302d9bb6f\" data-node-name=\"Subscript(ctx=Load)\" data-key=left><span class=\"ast-node\" id=\"student_code_only_c77f795b-ad86-476c-9878-ad10ccdc3ad4\" data-node-id=\"c77f795b-ad86-476c-9878-ad10ccdc3ad4\" data-node-name=\"Load identifier s\" data-key=value>s</span>[<span class=\"ast-node\" id=\"student_code_only_0b60c69f-f952-4f99-8926-bcf812a4abae\" data-node-id=\"0b60c69f-f952-4f99-8926-bcf812a4abae\" data-node-name=\"Index\" data-key=slice><span class=\"ast-node\" id=\"student_code_only_855f6475-43ef-437a-aaff-c19b3905a7f4\" data-node-id=\"855f6475-43ef-437a-aaff-c19b3905a7f4\" data-node-name=\"Num(n = 0)\" data-key=value>0</span></span>]</span> + <span class=\"ast-node\" id=\"student_code_only_3ae4d190-4d68-4570-8ed7-ec4d119e1ba2\" data-node-id=\"3ae4d190-4d68-4570-8ed7-ec4d119e1ba2\" data-node-name=\"Subscript(ctx=Load)\" data-key=right><span class=\"ast-node\" id=\"student_code_only_b917bd97-042c-486b-9e56-262c47eff04f\" data-node-id=\"b917bd97-042c-486b-9e56-262c47eff04f\" data-node-name=\"Load identifier s\" data-key=value>s</span>[<span class=\"ast-node\" id=\"student_code_only_5f017c61-6c37-4e24-8d37-7fd5cb48537f\" data-node-id=\"5f017c61-6c37-4e24-8d37-7fd5cb48537f\" data-node-name=\"Slice\" data-key=slice>:<span class=\"ast-node\" id=\"student_code_only_edf5db4a-a59d-4012-9c0a-4ed87835a46e\" data-node-id=\"edf5db4a-a59d-4012-9c0a-4ed87835a46e\" data-node-name=\"UnaryOp -\" data-key=upper>-<span class=\"ast-node\" id=\"student_code_only_6e46d015-7a43-493d-bd6e-3f7b02a05a9f\" data-node-id=\"6e46d015-7a43-493d-bd6e-3f7b02a05a9f\" data-node-name=\"Num(n = 1)\" data-key=operand>1</span></span></span>]</span></span></span></span></span>",
+  "dest_string": "def first_and_last(s):\n    return s[0] + s[-1]\n",
+  "source_string": "def first_and_last(s):\n    return s[0] + s[:-1]\n",
+  "unit_test_string": "first_and_last(\"apple\")==\"ae\"",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "<code object first_and_last>"
+        ],
+        "op": "LOAD_CONST <code object first_and_last at 0x7567b9922ae0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "<code object first_and_last>"
+        ],
+        "op": "LOAD_CONST <code object first_and_last at 0x7567b98bd270, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "first_and_last"
+        ],
+        "op": "LOAD_CONST first_and_last",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "first_and_last"
+        ],
+        "op": "LOAD_CONST first_and_last",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "<function first_and_last>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [
+          "<function first_and_last>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [],
+        "op": "STORE_NAME first_and_last",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "15ce9742-9e24-425c-b7dc-af5ad802e6e9",
+        "values": [],
+        "op": "STORE_NAME first_and_last",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "c77f795b-ad86-476c-9878-ad10ccdc3ad4",
+        "values": [
+          "apple"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "first_and_last",
+          0
+        ],
+        "actual_op": "('first_and_last', 0) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "c77f795b-ad86-476c-9878-ad10ccdc3ad4",
+        "values": [
+          "apple"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "first_and_last",
+          0
+        ],
+        "actual_op": "('first_and_last', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "855f6475-43ef-437a-aaff-c19b3905a7f4",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "first_and_last",
+          2
+        ],
+        "actual_op": "('first_and_last', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "855f6475-43ef-437a-aaff-c19b3905a7f4",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "first_and_last",
+          2
+        ],
+        "actual_op": "('first_and_last', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "0b60c69f-f952-4f99-8926-bcf812a4abae",
+        "values": [
+          "a"
+        ],
+        "op": "BINARY_SUBSCR",
+        "op_id": [
+          "first_and_last",
+          4
+        ],
+        "actual_op": "('first_and_last', 4) BINARY_SUBSCR 0"
+      },
+      "after": {
+        "node": "0b60c69f-f952-4f99-8926-bcf812a4abae",
+        "values": [
+          "a"
+        ],
+        "op": "BINARY_SUBSCR",
+        "op_id": [
+          "first_and_last",
+          4
+        ],
+        "actual_op": "('first_and_last', 4) BINARY_SUBSCR 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "b917bd97-042c-486b-9e56-262c47eff04f",
+        "values": [
+          "apple"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "first_and_last",
+          6
+        ],
+        "actual_op": "('first_and_last', 6) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "b917bd97-042c-486b-9e56-262c47eff04f",
+        "values": [
+          "apple"
+        ],
+        "op": "LOAD_FAST s",
+        "op_id": [
+          "first_and_last",
+          6
+        ],
+        "actual_op": "('first_and_last', 6) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5f017c61-6c37-4e24-8d37-7fd5cb48537f",
+        "values": [
+          "None"
+        ],
+        "op": "LOAD_CONST None",
+        "op_id": [
+          "first_and_last",
+          8
+        ],
+        "actual_op": "('first_and_last', 8) LOAD_CONST 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "6e46d015-7a43-493d-bd6e-3f7b02a05a9f",
+        "values": [
+          "-1"
+        ],
+        "op": "LOAD_CONST -1",
+        "op_id": [
+          "first_and_last",
+          10
+        ],
+        "actual_op": "('first_and_last', 10) LOAD_CONST 2"
+      },
+      "after": {
+        "node": "6e46d015-7a43-493d-bd6e-3f7b02a05a9f",
+        "values": [
+          "-1"
+        ],
+        "op": "LOAD_CONST -1",
+        "op_id": [
+          "first_and_last",
+          8
+        ],
+        "actual_op": "('first_and_last', 8) LOAD_CONST 2"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "5f017c61-6c37-4e24-8d37-7fd5cb48537f",
+        "values": [
+          "slice(None, -1, None)"
+        ],
+        "op": "BUILD_SLICE 2",
+        "op_id": [
+          "first_and_last",
+          12
+        ],
+        "actual_op": "('first_and_last', 12) BUILD_SLICE 2"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "3ae4d190-4d68-4570-8ed7-ec4d119e1ba2",
+        "values": [
+          "appl"
+        ],
+        "op": "BINARY_SUBSCR",
+        "op_id": [
+          "first_and_last",
+          14
+        ],
+        "actual_op": "('first_and_last', 14) BINARY_SUBSCR 0"
+      },
+      "after": null,
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": null,
+      "after": {
+        "node": "4b6d6bf9-62a9-4540-8260-40ab6f6a6df5",
+        "values": [
+          "e"
+        ],
+        "op": "BINARY_SUBSCR",
+        "op_id": [
+          "first_and_last",
+          10
+        ],
+        "actual_op": "('first_and_last', 10) BINARY_SUBSCR 0"
+      },
+      "value_mismatch": false,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "ed5705ac-d7b2-430e-91f0-8ef4593b0b32",
+        "values": [
+          "aappl"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "first_and_last",
+          16
+        ],
+        "actual_op": "('first_and_last', 16) BINARY_ADD 0"
+      },
+      "after": {
+        "node": "ed5705ac-d7b2-430e-91f0-8ef4593b0b32",
+        "values": [
+          "ae"
+        ],
+        "op": "BINARY_ADD",
+        "op_id": [
+          "first_and_last",
+          12
+        ],
+        "actual_op": "('first_and_last', 12) BINARY_ADD 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "7425da58-25d3-4543-b697-809152c12eda",
+        "values": [
+          "aappl"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "first_and_last",
+          18
+        ],
+        "actual_op": "('first_and_last', 18) RETURN_VALUE 0"
+      },
+      "after": {
+        "node": "7425da58-25d3-4543-b697-809152c12eda",
+        "values": [
+          "ae"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "first_and_last",
+          14
+        ],
+        "actual_op": "('first_and_last', 14) RETURN_VALUE 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 9,
+    "first_wrong_before_fix": 13,
+    "last_matching_after_fix": 14
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version."
+}
+    </script>
+                    
+</body>

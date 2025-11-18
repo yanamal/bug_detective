@@ -172,7 +172,8 @@ function test_code(close_orig=true, insert_actual=false) {
 
         // log results of running test
         log_custom_event('ran_test', data)
-        send_logs()
+        // TODO: this might overwrite logs if multiple ran_test events complete in the same millisecond?..
+        // send_logs()
 
         // insert the actual values and add correct/wrong classes
         $('#unit_tests tr').removeClass() // remove classes (indicating correct/wrong) from all rows
