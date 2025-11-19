@@ -507,6 +507,10 @@ body {
     background-color: aliceblue;
 }
 
+.tutorial_modal .ui-dialog-titlebar-close {
+    display: none;
+}
+
 .tutorial_highlight {
     border: 3px dotted #00f!important;
     background-color: aliceblue;
