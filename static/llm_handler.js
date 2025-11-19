@@ -1,7 +1,7 @@
 // ~~~~ Functions that make LLM calls for "interaction-style" steps/questions ~~~~
 
 function start_problem_statement_check(prob, unit_test, student_output, correct_output){
-    // first, make sure the understanding check exists (it may not if this step is "conversational)
+    // first, make sure the understanding check exists (it may not if this step is "conversational")
     if($('[data-step-name="observation"] .understanding_check').length === 0){
         return;
     }
@@ -422,129 +422,6 @@ function request_direction(previous_output = {}) {
         console.log('Output from request_direction')
         console.log(previous_output)
         return previous_output;
-    })
-}
-
-function request_diagnostics(){
-    // extract problem data and request diagnostic messages (looks like..., I wonder...)
-    let prob = $('#problem_statement_div').text() // problem_statement || ""
-
-    let unit_test = correction_data['unit_test_string']
-
-    // TODO: or just use correction_data['source_string'] and correction_data['dest_string'] - if it's guaranteed to be canonicalized in the same way?
-    let student_code_block = $('#before_block').clone()
-    student_code_block.find('.value').remove()
-    let student_code = student_code_block.text()
-
-    let corrected_code_block = $('#after_block').clone()
-    corrected_code_block.find('.value').remove()
-    let corrected_code = corrected_code_block.text()
-
-    let student_output = correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString()
-
-    let correct_output = correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString()
-
-    console.log(prob)
-    console.log(student_code)
-    console.log(corrected_code)
-    console.log(unit_test)
-    console.log(student_output)
-
-    // Create the common request parameters object
-    const requestParams = {
-        problem_statement: prob,
-        student_code: student_code,
-        corrected_code: corrected_code,
-        unit_test: unit_test,
-        student_output: student_output
-    };
-
-    // variables for storing priming and observation, to return with the direction
-    let priming_result;
-    let observation_result;
-
-    // Send AJAX request
-    return fetch('/api/observation', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(addIdentifier(requestParams))
-    })
-    .then(response => {
-        if(response.ok){
-            return response.json()
-        }
-        else {
-            $('#error_dialog').dialog('open');
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-    })
-    .then(data => {
-        console.log(data.candidate_observations)
-        console.log(data.candidate_evaluation)
-
-        // display observation step
-        $('#observation-text').html(marked.parse(data.observation))
-        $('#observation-text').removeClass()  // no longer loading
-
-        // set up revealing the understanding check
-        $('[data-step-name="observation"] .understanding_check').addClass('active')
-
-        // start understanding check: exception or problem statement, depending on type of output.
-        if(student_output.startsWith('Exception:')){
-            start_exception_check(prob, unit_test, student_output, correct_output)
-        }
-        else {
-            start_problem_statement_check(prob, unit_test, student_output, correct_output)
-        }
-
-
-
-        // Store variables for later stages (TODO: we don't have/need a priming result anymore)
-        observation_result = data.observation
-        priming_result = data.priming
-
-        // fetch the next step - investigation direction
-        return fetch('/api/direction', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(addIdentifier({
-                ...requestParams,
-                chat_history: data.chat_history || [] // TODO: we don't have/need chat history anymore
-            }))
-        });
-    })
-    .then(response => {
-        if(response.ok){
-            return response.json()
-        }
-        else {
-            $('#error_dialog').dialog('open');
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-    })
-    .then(directionData => {
-        // "what should we look into?"
-        $('#direction-text').html(marked.parse(directionData.direction))
-        $('#direction-text').removeClass()
-
-        console.log(directionData.direction_candidates)
-        console.log(directionData.candidate_evaluation)
-
-        output_data = {
-            direction: directionData.direction,
-            priming: priming_result,
-            observation: observation_result
-        }
-        console.log(output_data)
-
-        // Return combined results
-        return output_data;
     })
 }
 
