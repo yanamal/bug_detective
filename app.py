@@ -621,14 +621,16 @@ Provide the following, in the order they are listed:
 @app.route('/sequence')
 def tutorial_sequence():
     page_sequence = [
-        'explanation?',  # 0
-        'explanation?which_step=step1', # 1
+        'hours_to_seconds?',
+        'explanation?',  # 1
+        'explanation?which_step=step1', # 2
         'roll_die?step2=skip&step3=convo',
         'is_first_bigger?step1=convo&step2=skip&step3=convo',
-        'explanation?which_step=step2',  # 4
+        'explanation?which_step=step2',  # 5
+        'first_and_last?step1=convo&step3=convo',
         'perimeter?step1=inter&step2=convo&step3=inter',
         'roll_die_2?step1=convo&step2=convo&step3=convo',
-        'explanation?which_step=step3',  # 7
+        'explanation?which_step=step3',  # 9
         'perimeter_2?',
         'only_even?step1=convo&step2=convo&step3=inter',
     ]
