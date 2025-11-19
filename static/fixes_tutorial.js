@@ -141,6 +141,7 @@ function generate_view(step_data) {
             if(tick_elem.hasClass('last-selected-tick')){
                 // This is the last execution step; move on to next phase
                 $('#student-action-box').prop('disabled', false)
+                $('#action-convo-send').prop('disabled', false)
                 $('#student-action-box').val('The code multiplies h by zero, so after that everything turns to zero.')
                 $('.phase4').dialog('close')
                 $('.phase5').dialog('open')
@@ -944,6 +945,7 @@ function activate_next_step(){
         $('.phase4').dialog("open")
         $('.first-selected-tick').addClass('tutorial_highlight stepthrough')
         $('#student-action-box').prop('disabled', true)
+        $('#action-convo-send').prop('disabled', true)
     }
 
 }
