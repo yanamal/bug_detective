@@ -23,6 +23,8 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
         pieces = $('#problem_statement_div>span').map(function(){return $(this).text()}).get()
         expected_answer = $('#problem_statement_div>.expected').text()
 
+        $('#step1_check_feedback').addClass('loading-placeholder loading-line')
+
         console.log($(this).text())
         fetch('/api/problem_statement_feedback', {
             method: 'POST',
@@ -54,12 +56,14 @@ function start_problem_statement_check(prob, unit_test, student_output, correct_
             console.log(data)
             feedback_text = data.results.problem_feedback_data.step1_feedback_to_student
             should_try_again = data.results.problem_feedback_data.step2_asked_to_try_again
+
+            $('#step1_check_feedback').removeClass('loading-placeholder loading-line')
             $('#step1_check_feedback').append(marked.parse(feedback_text)+'<br>')
 
             if(!should_try_again) {
                 // the model told us we are done with this step.
                 // turn on next step button
-                $('[data-step-name="observation"] .next-button').removeClass('hidden')
+                $('[data-step-name="observation"] .next-button').removeClass('hidden').trigger('stepFinished')
                 // remove active class from problem statement (added by arrow drawing logic)
                 $('.problem-statement').removeClass('active-check')
                 // remove click listener
@@ -125,7 +129,7 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
             if(!should_try_again) {
                 // the model told us we are done with this step.
                 // turn on next step button
-                $('[data-step-name="observation"] .next-button').removeClass('hidden')
+                $('[data-step-name="observation"] .next-button').removeClass('hidden').trigger('stepFinished')
                 // remove active class from problem statement (added by arrow drawing logic)
                 $('.student-output-text').removeClass('active-check')
                 // remove click listener
@@ -137,7 +141,7 @@ function start_exception_check(prob, unit_test, student_output, correct_output){
 }
 
 function start_direction_check(){
-    // first, make sure the understanding check exists (it may not if this step is "conversational)
+    // first, make sure the understanding check exists (it may not if this step is "conversational")
     if($('[data-step-name="direction"] .understanding_check').length === 0){
         return;
     }
@@ -161,7 +165,7 @@ function start_direction_check(){
 }
 
 function start_action_check(){
-// first, make sure the understanding check exists (it may not if this step is "conversational)
+// first, make sure the understanding check exists (it may not if this step is "conversational")
     if($('[data-step-name="action"] .understanding_check').length === 0){
         return;
     }
@@ -415,6 +419,8 @@ function request_direction(previous_output = {}) {
 
         // return generated step output so far
         previous_output.direction = directionData.direction
+        console.log('Output from request_direction')
+        console.log(previous_output)
         return previous_output;
     })
 }
@@ -605,6 +611,9 @@ function request_direction_question(diagnostic_responses, descriptive_synced_tra
 }
 
 function request_direction_feedback(){
+
+    $('#step2_check_feedback').addClass('loading-placeholder loading-line')
+
     let prob = problem_statement || ""
 
     let unit_test = correction_data['unit_test_string']
@@ -676,6 +685,8 @@ function request_direction_feedback(){
     .then(data => {
         console.log(data)
 
+        $('#step2_check_feedback').removeClass('loading-placeholder loading-line')
+
         feedback_text = data.results.direction_feedback_data.step1_feedback_to_student
         should_try_again = data.results.direction_feedback_data.step2_asked_to_try_again
         $('#step2_check_feedback').append(marked.parse(feedback_text)+'<br>')
@@ -683,7 +694,8 @@ function request_direction_feedback(){
         if(!should_try_again) {
             // the model told us we are done with this step.
             // turn on next step button
-            $('[data-step-name="direction"] .next-button').removeClass('hidden')
+            $('[data-step-name="direction"] .next-button').removeClass('hidden').trigger('stepFinished')
+
             // remove active class from problem statement (added by arrow drawing logic)
             $('.ui-slider-handle').removeClass('active-check')
 
@@ -758,6 +770,9 @@ function request_full_trace_analysis() {
 
 // request selection of a relevant *slice* of the trace
 function request_trace_slice(diagnostic_responses, descriptive_synced_trace){
+
+    $('#action-text').addClass('loading-line loading-placeholder')
+
     let prob = problem_statement || ""
 
     let unit_test = correction_data['unit_test_string']
@@ -923,7 +938,9 @@ function request_chat_response(step_name, chat_history,
 
         if(data.results.response_data.step2_has_question_been_answered){
             //end conversation
-            $(`[data-step-name="${step_name}"] .next-button`).removeClass('hidden')
+            // also trigger an event that signifies this step has finished. The tutorial listens for these events to progress the tutorial phase.
+            $(`[data-step-name="${step_name}"] .next-button`).removeClass('hidden').trigger('stepFinished')
+
 
             $(input_div_selector).addClass('hidden')
 

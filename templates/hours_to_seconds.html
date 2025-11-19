@@ -1,0 +1,419 @@
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="static/logging.js"></script>
+    <script type="text/javascript" src="static/propagate_params.js"></script>
+    <script type="text/javascript" src="static/llm_handler.js"></script>
+    <script type="text/javascript" src="static/fixes_tutorial.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/fixes.css">
+</head>
+<body>
+<div class="code-block side-by-side before" id="before_block"><pre><span class="ast-node" id="student_code_e25b6bd4-da30-4ecc-83d4-b09fe6ecb557" data-node-id="e25b6bd4-da30-4ecc-83d4-b09fe6ecb557" data-node-name="Module"><span class="ast-node" id="student_code_1cae69aa-b646-4b6b-9c5a-4e5168dc3d58" data-node-id="1cae69aa-b646-4b6b-9c5a-4e5168dc3d58" data-node-name="FunctionDef name: hours_to_seconds" data-key=0 data-parent-list-id="f04ce789-0a5d-4a15-8d8d-6ce2683fcc68">def hours_to_seconds(<span class="ast-node" id="student_code_3fd54084-7ea5-45fc-8ccd-5faf8f470391" data-node-id="3fd54084-7ea5-45fc-8ccd-5faf8f470391" data-node-name="arguments" data-key=args><span class="ast-node" id="student_code_384b1c36-9fa2-4647-9081-5c2c78a63edf" data-node-id="384b1c36-9fa2-4647-9081-5c2c78a63edf" data-node-name="arg(arg = h)" data-key=0 data-parent-list-id="84849229-2227-4492-88d1-e54619009072">h</span></span>):
+    <span class="ast-node" id="student_code_5758d5a2-dda5-48ed-8fc9-811ca931ff9f" data-node-id="5758d5a2-dda5-48ed-8fc9-811ca931ff9f" data-node-name="Assign" data-key=0 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a"><span class="ast-node" id="student_code_a3608c60-4bf1-4121-8ad4-fcca7300b5e5" data-node-id="a3608c60-4bf1-4121-8ad4-fcca7300b5e5" data-node-name="Store identifier minutes_in_h" data-key=0 data-parent-list-id="21003034-4438-4cbb-a6a8-50608e6a320a">minutes_in_h</span> = <span class="ast-node" id="student_code_1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba" data-node-id="1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba" data-node-name="BinOp *" data-key=value><span class="ast-node" id="student_code_caadeea8-ad33-4ef3-bef5-aea050d1a55c" data-node-id="caadeea8-ad33-4ef3-bef5-aea050d1a55c" data-node-name="Load identifier h" data-key=left>h</span> * <span class="ast-node rename-node" id="student_code_cfd16cb3-a6c8-405a-8f45-55afc1f786bc" data-node-id="cfd16cb3-a6c8-405a-8f45-55afc1f786bc" data-node-name="Num(n = 0)" data-key=right>0</span></span></span>
+    <span class="ast-node" id="student_code_bd88ecbd-1efd-4e37-ae6c-a721e64692d1" data-node-id="bd88ecbd-1efd-4e37-ae6c-a721e64692d1" data-node-name="Assign" data-key=1 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a"><span class="ast-node" id="student_code_28ca4c83-2ced-4786-90fb-4347ab281ea0" data-node-id="28ca4c83-2ced-4786-90fb-4347ab281ea0" data-node-name="Store identifier seconds_in_h" data-key=0 data-parent-list-id="32e0f861-71db-4864-ba31-af8085346440">seconds_in_h</span> = <span class="ast-node" id="student_code_46e8e505-8092-4a5f-adec-a0410eb97c31" data-node-id="46e8e505-8092-4a5f-adec-a0410eb97c31" data-node-name="BinOp *" data-key=value><span class="ast-node" id="student_code_f32a1d78-092a-41dd-ac91-9293c462d513" data-node-id="f32a1d78-092a-41dd-ac91-9293c462d513" data-node-name="Load identifier minutes_in_h" data-key=left>minutes_in_h</span> * <span class="ast-node" id="student_code_e2e381bb-2973-427f-b90a-2b1812eef256" data-node-id="e2e381bb-2973-427f-b90a-2b1812eef256" data-node-name="Num(n = 60)" data-key=right>60</span></span></span>
+    <span class="ast-node" id="student_code_ffff2034-3d25-4f64-a6bd-b95a75f4a8be" data-node-id="ffff2034-3d25-4f64-a6bd-b95a75f4a8be" data-node-name="Return" data-key=2 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a">return <span class="ast-node" id="student_code_5d7cf759-c36a-4698-ba99-cdc3fdcf60b5" data-node-id="5d7cf759-c36a-4698-ba99-cdc3fdcf60b5" data-node-name="Load identifier seconds_in_h" data-key=value>seconds_in_h</span></span></span></span></pre></div><div class="code-block side-by-side after" id="after_block"><pre><span class="ast-node" id="corrected_code_e25b6bd4-da30-4ecc-83d4-b09fe6ecb557" data-node-id="e25b6bd4-da30-4ecc-83d4-b09fe6ecb557" data-node-name="Module"><span class="ast-node" id="corrected_code_1cae69aa-b646-4b6b-9c5a-4e5168dc3d58" data-node-id="1cae69aa-b646-4b6b-9c5a-4e5168dc3d58" data-node-name="FunctionDef name: hours_to_seconds" data-key=0 data-parent-list-id="f04ce789-0a5d-4a15-8d8d-6ce2683fcc68">def hours_to_seconds(<span class="ast-node" id="corrected_code_3fd54084-7ea5-45fc-8ccd-5faf8f470391" data-node-id="3fd54084-7ea5-45fc-8ccd-5faf8f470391" data-node-name="arguments" data-key=args><span class="ast-node" id="corrected_code_384b1c36-9fa2-4647-9081-5c2c78a63edf" data-node-id="384b1c36-9fa2-4647-9081-5c2c78a63edf" data-node-name="arg(arg = h)" data-key=0 data-parent-list-id="84849229-2227-4492-88d1-e54619009072">h</span></span>):
+    <span class="ast-node" id="corrected_code_5758d5a2-dda5-48ed-8fc9-811ca931ff9f" data-node-id="5758d5a2-dda5-48ed-8fc9-811ca931ff9f" data-node-name="Assign" data-key=0 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a"><span class="ast-node" id="corrected_code_a3608c60-4bf1-4121-8ad4-fcca7300b5e5" data-node-id="a3608c60-4bf1-4121-8ad4-fcca7300b5e5" data-node-name="Store identifier minutes_in_h" data-key=0 data-parent-list-id="21003034-4438-4cbb-a6a8-50608e6a320a">minutes_in_h</span> = <span class="ast-node" id="corrected_code_1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba" data-node-id="1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba" data-node-name="BinOp *" data-key=value><span class="ast-node" id="corrected_code_caadeea8-ad33-4ef3-bef5-aea050d1a55c" data-node-id="caadeea8-ad33-4ef3-bef5-aea050d1a55c" data-node-name="Load identifier h" data-key=left>h</span> * <span class="ast-node rename-node" id="corrected_code_cfd16cb3-a6c8-405a-8f45-55afc1f786bc" data-node-id="cfd16cb3-a6c8-405a-8f45-55afc1f786bc" data-node-name="Num(n = 60)" data-key=right>60</span></span></span>
+    <span class="ast-node" id="corrected_code_bd88ecbd-1efd-4e37-ae6c-a721e64692d1" data-node-id="bd88ecbd-1efd-4e37-ae6c-a721e64692d1" data-node-name="Assign" data-key=1 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a"><span class="ast-node" id="corrected_code_28ca4c83-2ced-4786-90fb-4347ab281ea0" data-node-id="28ca4c83-2ced-4786-90fb-4347ab281ea0" data-node-name="Store identifier seconds_in_h" data-key=0 data-parent-list-id="32e0f861-71db-4864-ba31-af8085346440">seconds_in_h</span> = <span class="ast-node" id="corrected_code_46e8e505-8092-4a5f-adec-a0410eb97c31" data-node-id="46e8e505-8092-4a5f-adec-a0410eb97c31" data-node-name="BinOp *" data-key=value><span class="ast-node" id="corrected_code_f32a1d78-092a-41dd-ac91-9293c462d513" data-node-id="f32a1d78-092a-41dd-ac91-9293c462d513" data-node-name="Load identifier minutes_in_h" data-key=left>minutes_in_h</span> * <span class="ast-node" id="corrected_code_e2e381bb-2973-427f-b90a-2b1812eef256" data-node-id="e2e381bb-2973-427f-b90a-2b1812eef256" data-node-name="Num(n = 60)" data-key=right>60</span></span></span>
+    <span class="ast-node" id="corrected_code_ffff2034-3d25-4f64-a6bd-b95a75f4a8be" data-node-id="ffff2034-3d25-4f64-a6bd-b95a75f4a8be" data-node-name="Return" data-key=2 data-parent-list-id="ab4463a7-95ce-4ab2-bd54-c9bb1880134a">return <span class="ast-node" id="corrected_code_5d7cf759-c36a-4698-ba99-cdc3fdcf60b5" data-node-id="5d7cf759-c36a-4698-ba99-cdc3fdcf60b5" data-node-name="Load identifier seconds_in_h" data-key=value>seconds_in_h</span></span></span></span></pre></div>
+    <script>
+      problem_statement = '<span class="">Write a function, hours_to_seconds </span><span class="">which takes in a number, h, </span><span class="expected">and returns how many seconds there are in h hours.</span>'
+      correction_data={
+  "source_no_diff": "<span class=\"ast-node\" id=\"student_code_only_e25b6bd4-da30-4ecc-83d4-b09fe6ecb557\" data-node-id=\"e25b6bd4-da30-4ecc-83d4-b09fe6ecb557\" data-node-name=\"Module\"><span class=\"ast-node\" id=\"student_code_only_1cae69aa-b646-4b6b-9c5a-4e5168dc3d58\" data-node-id=\"1cae69aa-b646-4b6b-9c5a-4e5168dc3d58\" data-node-name=\"FunctionDef name: hours_to_seconds\" data-key=0 data-parent-list-id=\"f04ce789-0a5d-4a15-8d8d-6ce2683fcc68\">def hours_to_seconds(<span class=\"ast-node\" id=\"student_code_only_3fd54084-7ea5-45fc-8ccd-5faf8f470391\" data-node-id=\"3fd54084-7ea5-45fc-8ccd-5faf8f470391\" data-node-name=\"arguments\" data-key=args><span class=\"ast-node\" id=\"student_code_only_384b1c36-9fa2-4647-9081-5c2c78a63edf\" data-node-id=\"384b1c36-9fa2-4647-9081-5c2c78a63edf\" data-node-name=\"arg(arg = h)\" data-key=0 data-parent-list-id=\"84849229-2227-4492-88d1-e54619009072\">h</span></span>):\n    <span class=\"ast-node\" id=\"student_code_only_5758d5a2-dda5-48ed-8fc9-811ca931ff9f\" data-node-id=\"5758d5a2-dda5-48ed-8fc9-811ca931ff9f\" data-node-name=\"Assign\" data-key=0 data-parent-list-id=\"ab4463a7-95ce-4ab2-bd54-c9bb1880134a\"><span class=\"ast-node\" id=\"student_code_only_a3608c60-4bf1-4121-8ad4-fcca7300b5e5\" data-node-id=\"a3608c60-4bf1-4121-8ad4-fcca7300b5e5\" data-node-name=\"Store identifier minutes_in_h\" data-key=0 data-parent-list-id=\"21003034-4438-4cbb-a6a8-50608e6a320a\">minutes_in_h</span> = <span class=\"ast-node\" id=\"student_code_only_1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba\" data-node-id=\"1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba\" data-node-name=\"BinOp *\" data-key=value><span class=\"ast-node\" id=\"student_code_only_caadeea8-ad33-4ef3-bef5-aea050d1a55c\" data-node-id=\"caadeea8-ad33-4ef3-bef5-aea050d1a55c\" data-node-name=\"Load identifier h\" data-key=left>h</span> * <span class=\"ast-node\" id=\"student_code_only_cfd16cb3-a6c8-405a-8f45-55afc1f786bc\" data-node-id=\"cfd16cb3-a6c8-405a-8f45-55afc1f786bc\" data-node-name=\"Num(n = 0)\" data-key=right>0</span></span></span>\n    <span class=\"ast-node\" id=\"student_code_only_bd88ecbd-1efd-4e37-ae6c-a721e64692d1\" data-node-id=\"bd88ecbd-1efd-4e37-ae6c-a721e64692d1\" data-node-name=\"Assign\" data-key=1 data-parent-list-id=\"ab4463a7-95ce-4ab2-bd54-c9bb1880134a\"><span class=\"ast-node\" id=\"student_code_only_28ca4c83-2ced-4786-90fb-4347ab281ea0\" data-node-id=\"28ca4c83-2ced-4786-90fb-4347ab281ea0\" data-node-name=\"Store identifier seconds_in_h\" data-key=0 data-parent-list-id=\"32e0f861-71db-4864-ba31-af8085346440\">seconds_in_h</span> = <span class=\"ast-node\" id=\"student_code_only_46e8e505-8092-4a5f-adec-a0410eb97c31\" data-node-id=\"46e8e505-8092-4a5f-adec-a0410eb97c31\" data-node-name=\"BinOp *\" data-key=value><span class=\"ast-node\" id=\"student_code_only_f32a1d78-092a-41dd-ac91-9293c462d513\" data-node-id=\"f32a1d78-092a-41dd-ac91-9293c462d513\" data-node-name=\"Load identifier minutes_in_h\" data-key=left>minutes_in_h</span> * <span class=\"ast-node\" id=\"student_code_only_e2e381bb-2973-427f-b90a-2b1812eef256\" data-node-id=\"e2e381bb-2973-427f-b90a-2b1812eef256\" data-node-name=\"Num(n = 60)\" data-key=right>60</span></span></span>\n    <span class=\"ast-node\" id=\"student_code_only_ffff2034-3d25-4f64-a6bd-b95a75f4a8be\" data-node-id=\"ffff2034-3d25-4f64-a6bd-b95a75f4a8be\" data-node-name=\"Return\" data-key=2 data-parent-list-id=\"ab4463a7-95ce-4ab2-bd54-c9bb1880134a\">return <span class=\"ast-node\" id=\"student_code_only_5d7cf759-c36a-4698-ba99-cdc3fdcf60b5\" data-node-id=\"5d7cf759-c36a-4698-ba99-cdc3fdcf60b5\" data-node-name=\"Load identifier seconds_in_h\" data-key=value>seconds_in_h</span></span></span></span>",
+  "dest_string": "def hours_to_seconds(h):\n    minutes_in_h = h * 60\n    seconds_in_h = minutes_in_h * 60\n    return seconds_in_h\n",
+  "source_string": "def hours_to_seconds(h):\n    minutes_in_h = h * 0\n    seconds_in_h = minutes_in_h * 60\n    return seconds_in_h\n",
+  "unit_test_string": "hours_to_seconds(1)==3600",
+  "synced_trace": [
+    {
+      "before": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "<code object hours_to_seconds>"
+        ],
+        "op": "LOAD_CONST <code object hours_to_seconds at 0x7d0dc3a03660, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "after": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "<code object hours_to_seconds>"
+        ],
+        "op": "LOAD_CONST <code object hours_to_seconds at 0x7d0dc39ff9c0, file \"\", line 1>",
+        "op_id": [
+          "<module>",
+          0
+        ],
+        "actual_op": "('<module>', 0) LOAD_CONST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "hours_to_seconds"
+        ],
+        "op": "LOAD_CONST hours_to_seconds",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "hours_to_seconds"
+        ],
+        "op": "LOAD_CONST hours_to_seconds",
+        "op_id": [
+          "<module>",
+          2
+        ],
+        "actual_op": "('<module>', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "<function hours_to_seconds>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "after": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [
+          "<function hours_to_seconds>"
+        ],
+        "op": "MAKE_FUNCTION 0",
+        "op_id": [
+          "<module>",
+          4
+        ],
+        "actual_op": "('<module>', 4) MAKE_FUNCTION 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [],
+        "op": "STORE_NAME hours_to_seconds",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "after": {
+        "node": "1cae69aa-b646-4b6b-9c5a-4e5168dc3d58",
+        "values": [],
+        "op": "STORE_NAME hours_to_seconds",
+        "op_id": [
+          "<module>",
+          6
+        ],
+        "actual_op": "('<module>', 6) STORE_NAME 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "caadeea8-ad33-4ef3-bef5-aea050d1a55c",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST h",
+        "op_id": [
+          "hours_to_seconds",
+          0
+        ],
+        "actual_op": "('hours_to_seconds', 0) LOAD_FAST 0"
+      },
+      "after": {
+        "node": "caadeea8-ad33-4ef3-bef5-aea050d1a55c",
+        "values": [
+          "1"
+        ],
+        "op": "LOAD_FAST h",
+        "op_id": [
+          "hours_to_seconds",
+          0
+        ],
+        "actual_op": "('hours_to_seconds', 0) LOAD_FAST 0"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "cfd16cb3-a6c8-405a-8f45-55afc1f786bc",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_CONST 0",
+        "op_id": [
+          "hours_to_seconds",
+          2
+        ],
+        "actual_op": "('hours_to_seconds', 2) LOAD_CONST 1"
+      },
+      "after": {
+        "node": "cfd16cb3-a6c8-405a-8f45-55afc1f786bc",
+        "values": [
+          "60"
+        ],
+        "op": "LOAD_CONST 60",
+        "op_id": [
+          "hours_to_seconds",
+          2
+        ],
+        "actual_op": "('hours_to_seconds', 2) LOAD_CONST 1"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "hours_to_seconds",
+          4
+        ],
+        "actual_op": "('hours_to_seconds', 4) BINARY_MULTIPLY 0"
+      },
+      "after": {
+        "node": "1954e1e1-1d1c-4c84-b87d-b80a3ee5b1ba",
+        "values": [
+          "60"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "hours_to_seconds",
+          4
+        ],
+        "actual_op": "('hours_to_seconds', 4) BINARY_MULTIPLY 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "a3608c60-4bf1-4121-8ad4-fcca7300b5e5",
+        "values": [],
+        "op": "STORE_FAST minutes_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          6
+        ],
+        "actual_op": "('hours_to_seconds', 6) STORE_FAST 2"
+      },
+      "after": {
+        "node": "a3608c60-4bf1-4121-8ad4-fcca7300b5e5",
+        "values": [],
+        "op": "STORE_FAST minutes_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          6
+        ],
+        "actual_op": "('hours_to_seconds', 6) STORE_FAST 2"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "f32a1d78-092a-41dd-ac91-9293c462d513",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_FAST minutes_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          8
+        ],
+        "actual_op": "('hours_to_seconds', 8) LOAD_FAST 2"
+      },
+      "after": {
+        "node": "f32a1d78-092a-41dd-ac91-9293c462d513",
+        "values": [
+          "60"
+        ],
+        "op": "LOAD_FAST minutes_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          8
+        ],
+        "actual_op": "('hours_to_seconds', 8) LOAD_FAST 2"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "e2e381bb-2973-427f-b90a-2b1812eef256",
+        "values": [
+          "60"
+        ],
+        "op": "LOAD_CONST 60",
+        "op_id": [
+          "hours_to_seconds",
+          10
+        ],
+        "actual_op": "('hours_to_seconds', 10) LOAD_CONST 2"
+      },
+      "after": {
+        "node": "e2e381bb-2973-427f-b90a-2b1812eef256",
+        "values": [
+          "60"
+        ],
+        "op": "LOAD_CONST 60",
+        "op_id": [
+          "hours_to_seconds",
+          10
+        ],
+        "actual_op": "('hours_to_seconds', 10) LOAD_CONST 1"
+      },
+      "value_mismatch": false,
+      "value_matches": true
+    },
+    {
+      "before": {
+        "node": "46e8e505-8092-4a5f-adec-a0410eb97c31",
+        "values": [
+          "0"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "hours_to_seconds",
+          12
+        ],
+        "actual_op": "('hours_to_seconds', 12) BINARY_MULTIPLY 0"
+      },
+      "after": {
+        "node": "46e8e505-8092-4a5f-adec-a0410eb97c31",
+        "values": [
+          "3600"
+        ],
+        "op": "BINARY_MULTIPLY",
+        "op_id": [
+          "hours_to_seconds",
+          12
+        ],
+        "actual_op": "('hours_to_seconds', 12) BINARY_MULTIPLY 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "28ca4c83-2ced-4786-90fb-4347ab281ea0",
+        "values": [],
+        "op": "STORE_FAST seconds_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          14
+        ],
+        "actual_op": "('hours_to_seconds', 14) STORE_FAST 3"
+      },
+      "after": {
+        "node": "28ca4c83-2ced-4786-90fb-4347ab281ea0",
+        "values": [],
+        "op": "STORE_FAST seconds_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          14
+        ],
+        "actual_op": "('hours_to_seconds', 14) STORE_FAST 3"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "5d7cf759-c36a-4698-ba99-cdc3fdcf60b5",
+        "values": [
+          "0"
+        ],
+        "op": "LOAD_FAST seconds_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          16
+        ],
+        "actual_op": "('hours_to_seconds', 16) LOAD_FAST 3"
+      },
+      "after": {
+        "node": "5d7cf759-c36a-4698-ba99-cdc3fdcf60b5",
+        "values": [
+          "3600"
+        ],
+        "op": "LOAD_FAST seconds_in_h",
+        "op_id": [
+          "hours_to_seconds",
+          16
+        ],
+        "actual_op": "('hours_to_seconds', 16) LOAD_FAST 3"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    },
+    {
+      "before": {
+        "node": "ffff2034-3d25-4f64-a6bd-b95a75f4a8be",
+        "values": [
+          "0"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "hours_to_seconds",
+          18
+        ],
+        "actual_op": "('hours_to_seconds', 18) RETURN_VALUE 0"
+      },
+      "after": {
+        "node": "ffff2034-3d25-4f64-a6bd-b95a75f4a8be",
+        "values": [
+          "3600"
+        ],
+        "op": "RETURN_VALUE",
+        "op_id": [
+          "hours_to_seconds",
+          18
+        ],
+        "actual_op": "('hours_to_seconds', 18) RETURN_VALUE 0"
+      },
+      "value_mismatch": true,
+      "value_matches": false
+    }
+  ],
+  "points_of_interest": {
+    "last_matching_before_fix": 9,
+    "first_wrong_before_fix": 10,
+    "last_matching_after_fix": 13
+  },
+  "effect_summary": "The fixed version of the code performed better than the old version: \nThe test passed in the fixed version, but not in the old version."
+}
+    </script>
+                    
+</body>

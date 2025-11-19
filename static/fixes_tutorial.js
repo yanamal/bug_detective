@@ -127,11 +127,28 @@ function generate_view(step_data) {
         update_values_shown(before_pre, after_pre, trace_to_use, op_index)
         console.log( step_data['synced_trace'][op_index])
 
-
+        // log slider event
         log_custom_event('runtime_slider', {
             'op_index': op_index,
             'trace_value': trace_to_use[op_index]
         })
+
+        // In the tutorial, if we are stepping through code and moved onto the next prescribed step, update accordingly
+        //tutorial_highlight stepthrough
+        let tick_elem = $(`[data-synced-index="${op_index}"]`)
+        if(tick_elem.is('.tutorial_highlight.stepthrough')){
+            tick_elem.removeClass('tutorial_highlight stepthrough')
+            if(tick_elem.hasClass('last-selected-tick')){
+                // This is the last execution step; move on to next phase
+                $('#student-action-box').prop('disabled', false)
+                $('#student-action-box').val('The code multiplies h by zero, so after that everything turns to zero.')
+                $('.phase4').dialog('close')
+                $('.phase5').dialog('open')
+            }
+            else {
+                $(`[data-synced-index="${op_index+1}"]`).addClass('tutorial_highlight stepthrough')
+            }
+        }
 
         // move follow_slider div to follow the slider handle
         // (do it with a zero timeout to resolve slider position first)
@@ -364,9 +381,21 @@ function make_observation_inter(){
         })
     }
     else {
-        // If this is not an exception, then the understanding check is already prepared
-        // (the input data defines it, since it depends on the problem and the failing unit test, and is independent of the bug/student input)
-        return request_observation()
+        // This is the tutorial sequence - so override with a pre-generated observation
+        let obs_string = 'It seems that the function is returning 0, but we expected it to return the number of seconds in the given number of hours.'
+
+        $('#observation-text').html(marked.parse(obs_string))
+        $('#observation-text').removeClass()  // no longer loading
+        // set up revealing the understanding check
+        $('[data-step-name="observation"] .understanding_check').addClass('active')
+        start_problem_statement_check($('#problem_statement_div').text(),
+                                      correction_data['unit_test_string'],
+                                      correction_data['synced_trace'].findLast((t)=>t['before'])['before']['values'].toString(),
+                                      correction_data['synced_trace'].findLast((t)=>t['after'])['after']['values'].toString())
+
+        return  Promise.resolve({
+            observation: obs_string
+        })
     }
 }
 
@@ -429,13 +458,31 @@ function make_direction_inter(obs_promise, trace_promise) {
         `, "direction", false)
 
     // request generation of the direction statement once the observation resolved
-    let direction_promise = obs_promise.then(obs_output => request_direction(obs_output))
+    let direction_promise = obs_promise.then(obs_output => {
+        let direction_text = 'Let\'s try to understand what values are being calculated at each step. We can start by checking what the value of `minutes_in_h` is after the first calculation.'
+
+        // Process and display generated direction step
+        $('#direction-text').html(marked.parse(direction_text))
+        $('#direction-text').removeClass()
+
+        return  Promise.resolve({
+            observation: obs_output.observation,
+            direction: direction_text
+        })
+    })
 
     // once both the direction statement and the trace promise are resolved, use those to generate the understanding question
     Promise.all([direction_promise, trace_promise])
-    .then(([diagnostic_responses, descriptive_synced_trace]) =>
-        request_direction_question(diagnostic_responses, descriptive_synced_trace)
-    )
+    .then(([diagnostic_responses, descriptive_synced_trace]) => {
+        let direction_question = 'Use the trace slider to select the step where the value of the variable `minutes_in_h` is first calculated.\n'
+        //request_direction_question(diagnostic_responses, descriptive_synced_trace)
+
+        $('[data-step-name="direction"] .understanding-check-text').removeClass('loading-placeholder loading-line')
+        $('[data-step-name="direction"] .understanding-check-text').html(marked.parse(direction_question))
+        // attach data about question and answers to the slider for selecting the answer
+        $('#follow_slider').data('direction_question', direction_question)
+        $('#follow_slider').data('direction_answers', [2])
+    })
 
     return direction_promise
 }
@@ -489,9 +536,37 @@ function make_action(prev_steps_promise, trace_promise, suggest_slice=true){
 
     // If we are showing the slice, request trace slice once we have trace data AND output from previous steps
     if (suggest_slice) {
-        Promise.all([prev_steps_promise, trace_promise]).then(([prev_output, full_trace]) =>
-            request_trace_slice(prev_output, full_trace)
-        )
+        Promise.all([prev_steps_promise, trace_promise]).then(([prev_output, full_trace]) => {
+            // request_trace_slice(prev_output, full_trace)
+            action_text = 'Let\'s step through the part of the program that calculates the number of minutes in `h` hours and assigns it to the variable `minutes_in_h`.'
+            slice_start_index = 1
+            slice_end_index = 3
+
+
+            student_descriptive_trace = []
+            orig_indices = []
+            for(let i=0; i<full_trace.length; i++)
+            {
+                if(full_trace[i].before !== null) {
+                    student_descriptive_trace.push(full_trace[i].before)
+                    orig_indices.push(i)
+                }
+            }
+
+            // mark the indicated trace steps
+            for(let i=slice_start_index; i <= slice_end_index; i++ ){
+                $(`.tick[data-synced-index="${orig_indices[i]}"]`).addClass('selected-tick')
+            }
+
+            $(`.tick[data-synced-index="${orig_indices[slice_start_index]}"]`).addClass('first-selected-tick')
+            $(`.tick[data-synced-index="${orig_indices[slice_end_index]}"]`).addClass('last-selected-tick')
+
+
+            // "let's investigate!"
+            $('#action-text').html(marked.parse(action_text))
+            $('#action-text').removeClass('loading-line')
+            $('#action-text').removeClass('loading-placeholder')
+        })
     }
 
     // set up chat history tracking
@@ -540,6 +615,135 @@ $(document).ready(function() {
     const step2 = urlParams.get('step2') || 'inter';
     const step3 = urlParams.get('step3') || 'inter';
 
+    $('body').append(`
+    <div class="" id="tutorial_start_modal" title="A tutorial for the tutorial">
+        Before you start debugging code with Bug Detective, this tutorial will familiarize you with the interface.
+    </div>
+    
+    <div class="phase1 tutorial_phase" id="problem_modal" title="The Problem">
+        The top of the screen shows information about the debugging problem you're solving
+    </div>
+    <div class="phase1 tutorial_phase" id="task_modal" title="The Question">
+        The bottom of the screen shows the next question you need to answer
+    </div>
+    <div class="phase1 tutorial_phase" id="step1_answer" title="The Answer">
+        The first question wants you to click on the <span class="tutorial_highlight">blue</span> part of the problem statement.
+        <br/>
+        <b>Click it now!</b>
+    </div>
+    
+    <div class="phase2 tutorial_phase" id="step1_feedback_modal" title="The Feedback">
+        After you choose an answer, the AI's feedback shows up here. <br>
+        Once you get the right answer, you can click "Next step" to continue!
+    </div>
+    
+    <div class="phase3 tutorial_phase" id="trace_explanation" title="The Code and the Trace">
+        After Step 1, the code and <b>execution trace</b> slider appear. <br/>
+        The execution trace is like a timeline of every action the program took when the code ran. 
+        The slider lets you move through the timeline and examine each step of the execution.
+    </div>
+    
+    <div class="phase3 tutorial_phase" id="trace_answer" title="Moving the slider">
+        For this question, the correct answer is the third execution step. Move the slider there and then click "This one!"
+    </div>
+    
+    <div class="phase4 tutorial_phase" id="trace_stepthrough" title="Stepping through the trace">
+        This question asks you to <b>step through</b> part of the execution trace.
+        Start at the first step in the highlighted section and examine each step in order until you reach the last one.
+    </div>
+    
+    <div class="phase5 tutorial_phase" id="answer_step_3" title="Describing the bug">
+        Once you understand what the bug is, enter your answer here and click "Send"! <br>
+        For this tutorial, we filled in an answer for you.
+    </div>
+    `)
+
+
+    $('#tutorial_start_modal').dialog({
+        modal: true,
+        dialogClass: 'tutorial_modal',
+        minWidth: 800,
+        buttons: [
+            {
+                text: "OK",
+                click: function() {
+                    $( this ).dialog( "close" );
+                }
+            }
+        ],
+        close: function( event, ui ) {
+            $('.phase1').dialog("open")
+            $('.expected').addClass("tutorial_highlight")
+        }
+    })
+
+    $('#problem_modal').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        position: { my: "left top", at: "left bottom", of: ".unit-test" },
+    })
+
+    $('#task_modal').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        show: 'fade',
+        autoOpen: false,
+        position: { my: "center bottom", at: "center top", of: '#conversation_div' },
+    })
+
+    $('#step1_answer').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        position: { my: "left top", at: "right+20 top", of: 'span.expected' },
+    })
+
+    $('#step1_feedback_modal').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        position: { my: "left bottom", at: "left top-40", of: '#step1_check_feedback' },
+    })
+
+    $('#trace_explanation').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        minWidth: 400,
+        position: { my: "right top", at: "right top", of: '#before_block' },
+    })
+
+    $('#trace_answer').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        position: { my: "center top", at: "center bottom+20", of: '.tick[data-synced-index="2"]' },
+    })
+    // TODO: remove phase 3 dialogs on correct answer?..
+
+    $('#trace_stepthrough').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        minWidth: 400,
+        position: { my: "left top", at: "right top", of: '#trace-slider-correction' },
+    })
+
+    $('#answer_step_3').dialog({
+        dialogClass: 'tutorial_modal',
+        height: 'auto',
+        autoOpen: false,
+        show: 'fade',
+        minWidth: 400,
+        position: { my: "left bottom", at: "right bottom", of: '#action-convo-send' },
+    })
 
     // add path-data-polyfill library
     const polyfillScript = document.createElement('script');
@@ -583,8 +787,8 @@ $(document).ready(function() {
 
     $('body').append(`
     <div id="error_dialog" title="Error loading response">
-  <p>Oops! The AI failed to generate a response. Please try resending your latest answer or reloading the page.</p>
-</div>`)
+      <p>Oops! The AI failed to generate a response. Please try resending your latest answer or reloading the page.</p>
+    </div>`)
     $('#error_dialog').dialog({
         autoOpen: false,
         modal: true,
@@ -665,6 +869,27 @@ $(document).ready(function() {
     //     });
     // }
     propagate_sequence_params()
+
+
+    // Tutorial logic flow (phase changes)
+    // remove phase 1 (problem statement) highlighting when the user clicks on the expected problem statement
+    $('#problem_statement_div .expected').click(function(){
+        $('.phase1').dialog("close")
+        $('.tutorial_highlight').removeClass('tutorial_highlight')
+        $('#step1_check_feedback').addClass('tutorial_highlight')
+        $('.phase2').dialog("open")
+    })
+
+    $('#sufficient_explanation').on('stepFinished', function(){
+        $('.phase5').dialog("close")
+        $('.tutorial_highlight').removeClass('tutorial_highlight')
+    })
+
+    $(`[data-step-name="direction"] .next-button`).on('stepFinished', function(){
+        console.log('direction step finished')
+        $('.phase3').dialog("close")
+        $('.tutorial_highlight').removeClass('tutorial_highlight')
+    })
 })
 
 $(document).keydown(function(event) {
@@ -689,6 +914,8 @@ function add_step(step_html, step_name, show_next_button = false){
 }
 
 function activate_next_step(){
+    $('.tutorial_phase').dialog('close')
+    $('.tutorial_highlight').removeClass('tutorial_highlight')
     if($('#conversation_div>.explanation.current-step').length === 0){
         // there aren't any current steps - use the first one
         new_step = $('#conversation_div>.explanation').first()
@@ -705,10 +932,18 @@ function activate_next_step(){
     // start appropriate understanding-check questions:
     if(step_name === "direction"){
         start_direction_check()
+        // start the "trace slider" phase of the tutorial
+        $('.phase3').dialog("open")
+        $('.ui-slider-handle').addClass('tutorial_highlight')
+        $('.tick[data-synced-index="2"]').addClass('tutorial_highlight')
     }
     if(step_name === "action")
     {
         start_action_check()
+        // start the "step through" phase of the tutorial
+        $('.phase4').dialog("open")
+        $('.first-selected-tick').addClass('tutorial_highlight stepthrough')
+        $('#student-action-box').prop('disabled', true)
     }
 
 }

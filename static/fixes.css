@@ -400,7 +400,7 @@ body {
     animation: pulse 1.5s infinite ease-in-out;
   }
 
-.loading-placeholder:before {
+.loading-placeholder:after {
   content: "The AI is thinking...";
 }
 
@@ -494,4 +494,21 @@ body {
     background-color: white;
     border-radius: 5px;
     margin: 5px;
+}
+
+.tutorial_modal.ui-widget.ui-widget-content {
+    border: 3px solid #00f;
+    border-radius: 4px;
+    background-color: aliceblue;
+}
+
+.tutorial_modal .ui-widget-content {
+    border: none;
+    background-color: aliceblue;
+}
+
+.tutorial_highlight {
+    border: 3px dotted #00f!important;
+    background-color: aliceblue;
+    transition: border 0.2s ease-in-out;
 }
