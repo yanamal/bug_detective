@@ -119,7 +119,7 @@ function generate_view(step_data) {
     // comparison_div.append(`<button id="play-trace-button">&#9205;</button>`)
     comparison_div.append(after_pre)
     comparison_div.append(`<div id="follow_slider" class="hidden" style="position:absolute;">
-        <button onclick="request_direction_feedback()">This one!</button></div>`)
+        <button onclick="request_direction_feedback()" id="slider_select_button">This one!</button></div>`)
 
     let update_listener = function( event, ui ) {
         let op_index = ui.value
@@ -136,6 +136,9 @@ function generate_view(step_data) {
         // In the tutorial, if we are stepping through code and moved onto the next prescribed step, update accordingly
         //tutorial_highlight stepthrough
         let tick_elem = $(`[data-synced-index="${op_index}"]`)
+
+        // check if this tick elem is part of the tutorial
+        // Is it part of the "step through slice" tutorial?
         if(tick_elem.is('.tutorial_highlight.stepthrough')){
             tick_elem.removeClass('tutorial_highlight stepthrough')
             if(tick_elem.hasClass('last-selected-tick')){
@@ -150,6 +153,12 @@ function generate_view(step_data) {
                 $(`[data-synced-index="${op_index+1}"]`).addClass('tutorial_highlight stepthrough')
             }
         }
+        // Is it part of the "select step" tutorial?
+
+        if(tick_elem.is('.tutorial_highlight.chosen_step')){
+            $('#slider_select_button').prop('disabled', false)
+        }
+
 
         // move follow_slider div to follow the slider handle
         // (do it with a zero timeout to resolve slider position first)
@@ -645,7 +654,10 @@ $(document).ready(function() {
     </div>
     
     <div class="phase3 tutorial_phase" id="trace_answer" title="Moving the slider">
-        For this question, the correct answer is the third execution step. Move the slider there and then click "This one!"
+        For this question, the correct answer is the third execution step.
+        We highlighted it in <span class="tutorial_highlight">blue</span>.<br> 
+        <b>Move the slider handle</b> there and <i>then</i> click "This one!"<br>
+        The slider handle is the circle <b>above</b> the "This one!" button.
     </div>
     
     <div class="phase4 tutorial_phase" id="trace_stepthrough" title="Stepping through the trace">
@@ -659,6 +671,9 @@ $(document).ready(function() {
     </div>
     `)
 
+    // TODO: somewhere alng the line I am removing all tutorial highlighting, but that removes it within modals too
+    //  which is not great for modals that come up later and try to use it to demonstrte the blue highlighting.
+    //  use a different class for those?..
 
     $('#tutorial_start_modal').dialog({
         modal: true,
@@ -667,6 +682,7 @@ $(document).ready(function() {
         buttons: [
             {
                 text: "OK",
+                class: "start_tutorial_button",
                 click: function() {
                     $( this ).dialog( "close" );
                 }
@@ -724,9 +740,9 @@ $(document).ready(function() {
         height: 'auto',
         autoOpen: false,
         show: 'fade',
+        minWidth: 400,
         position: { my: "center top", at: "center bottom+20", of: '.tick[data-synced-index="2"]' },
     })
-    // TODO: remove phase 3 dialogs on correct answer?..
 
     $('#trace_stepthrough').dialog({
         dialogClass: 'tutorial_modal',
@@ -796,6 +812,7 @@ $(document).ready(function() {
         buttons: [
             {
                 text: "OK",
+                class: "429_dialog",
                 click: function() {
                     $( this ).dialog( "close" );
                 }
@@ -936,7 +953,9 @@ function activate_next_step(){
         // start the "trace slider" phase of the tutorial
         $('.phase3').dialog("open")
         $('.ui-slider-handle').addClass('tutorial_highlight')
-        $('.tick[data-synced-index="2"]').addClass('tutorial_highlight')
+        $('.tick[data-synced-index="2"]').addClass('tutorial_highlight chosen_step')
+
+        $('#slider_select_button').prop('disabled', true)
     }
     if(step_name === "action")
     {

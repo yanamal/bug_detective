@@ -591,6 +591,7 @@ $(document).ready(function() {
         buttons: [
             {
                 text: "OK",
+                class: "429_dialog",
                 click: function() {
                     $( this ).dialog( "close" );
                 }
