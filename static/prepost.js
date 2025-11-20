@@ -3,11 +3,13 @@ $(document).ready(function() {
     // Crete dialog for "no AI use" warning
     $('#no_ai').dialog({
         autoOpen: false,
+        dialogClass: 'noai_dialog',
         minWidth: 800,
         modal: true,
         buttons: [
             {
                 text: "I will not use external AI tools",
+                class: "close-no-ai",
                 click: function() {
                     $( this ).dialog( "close" );
                 }
@@ -25,6 +27,7 @@ $(document).ready(function() {
         buttons: [
             {
                 text: "OK",
+                class: "close-timeout",
                 click: function() {
                     $( this ).dialog( "close" );
                 }
@@ -155,6 +158,8 @@ function test_code(close_orig=true, insert_actual=false) {
     // log code being tested
     log_custom_event('starting_test', ace.edit($('#usercode')[0]).getValue())
 
+    $('#test_code_button').prop('disabled', true)
+
     // Run the unit tests and fetch the results
     fetch('/run_tests', {
         method: 'POST',
@@ -174,6 +179,11 @@ function test_code(close_orig=true, insert_actual=false) {
         log_custom_event('ran_test', data)
         // TODO: this might overwrite logs if multiple ran_test events complete in the same millisecond?..
         // send_logs()
+
+        // re-enable run code function after half a second
+         setTimeout(function() {
+             $('#test_code_button').prop('disabled', false)
+         }, 500)
 
         // insert the actual values and add correct/wrong classes
         $('#unit_tests tr').removeClass() // remove classes (indicating correct/wrong) from all rows
