@@ -320,8 +320,9 @@ body {
 
 .trace-div{
     /*logic for sharing space with footer/explanations*/
-    flex: 1;
+    flex: 1 0 auto; /*1 grow, 0 shrink (cah't shrink), auto flex(?)*/
     overflow-y: auto;
+    min-height: 0; /* Important: allows flex item to shrink and scroll */
 
     /*logic for spacing within trace div
     justify-content: space-between;
@@ -331,8 +332,10 @@ body {
 }
 
 #conversation_div {
-    /* Not fixed, part of the normal document flow */
-    flex-shrink: 0; /* Don't let this element shrink */
+    /* Grows with content, but has a safety limit */
+    flex: 1 1 auto; /* can grow or shrink from natural size */
+    max-height: 40%; /* Max % of parent (body = 100vh) */
+    overflow-y: auto; /* Scroll when content exceeds max-height */
 }
 
 .problem-statement{
