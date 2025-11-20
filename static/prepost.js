@@ -93,6 +93,7 @@ $(document).ready(function() {
 
         log_custom_event('submit_post_debug_questions', answers);
         send_logs();
+        $('#submit_questions').prop('disabled', true)
         // TODO: don't necessarily need the separate post_debug_questions endpoint?
 
         fetch('/submit_post_debug_questions', {
@@ -105,8 +106,6 @@ $(document).ready(function() {
         .then(response => response.json())
         .then(data => {
             if(data.status === 'success') {
-                send_logs()
-
                 // Build redirect URL on client side
                 const urlParams = new URLSearchParams(window.location.search);
                 const params = [];
@@ -128,6 +127,7 @@ $(document).ready(function() {
         })
         .catch(error => {
             console.error('Error:', error);
+            $('#submit_questions').prop('disabled', false) // in case submit fails
         });
     });
 });
