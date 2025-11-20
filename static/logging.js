@@ -85,6 +85,10 @@ function log_custom_event(event_type, event_data) {
 }
 
 
+$(document).ready(function() {
+    log_custom_event("page_load", "")
+})
+
 // send event logs to server (and empty cache)
 function send_logs(){
     flush_keylog();  // ensure that we get all the keystrokes that were logged before this send event
