@@ -100,8 +100,7 @@
                     .then(response => response.json())
                     .then(data => {
                         if(data.status === 'success') {
-                            // Redirect to external URL if provided
-                            const redirectUrl = 'https://app.prolific.com/submissions/complete?cc=C1GZHIJQ';
+                            const redirectUrl = 'the_end';
                             window.location.href = redirectUrl;
                         }
                     })
