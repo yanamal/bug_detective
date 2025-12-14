@@ -660,7 +660,11 @@ def tutorial_sequence():
     if version is not None:
         return redirect(f'debug_code?end=end_questions{additional_params}')
 
-    return 'done'
+    return "You've reached the end! Thanks!"
+
+@app.route('/the_end')
+def the_end():
+    return "You've reached the end! Thanks!"
 
 @app.route('/debug_code')
 def debug_test():

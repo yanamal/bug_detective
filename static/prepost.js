@@ -18,7 +18,7 @@ $(document).ready(function() {
     })
     // If this is not the end test (so this IS the pre-test), open the dialog.
     if(!urlParams.has('end')) {
-        $('#no_ai').dialog('open');
+        // $('#no_ai').dialog('open');
     }
 
     $('#timeout').dialog({
